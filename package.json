@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "warmup": "node scripts/warmup.mjs",
+    "warmup:dry": "node scripts/warmup.mjs http://localhost:3000 --dry-run"
   },
   "dependencies": {
     "next": "16.2.3",
