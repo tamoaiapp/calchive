@@ -262,6 +262,34 @@ function PersonalLoanPage({ amount, termMonths }: { amount: number; termMonths: 
           { title: 'Mortgage Calculator', href: '/mortgage', icon: '🏠' },
         ]}
       />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: `What is the monthly payment on a $${amount.toLocaleString()} personal loan for ${termMonths} months?`,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: `With good credit at ${rates.good}% APR, the monthly payment on a $${amount.toLocaleString()} personal loan over ${termMonths} months is ${formatUSDCents(primaryData.monthlyPayment)}. Total interest paid: ${formatUSD(primaryData.totalInterest)}. Payoff date: ${primaryData.payoffDate}.`,
+                },
+              },
+              {
+                '@type': 'Question',
+                name: `What credit score do I need for a $${amount.toLocaleString()} personal loan?`,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: `Most lenders require a minimum credit score of 620 for a $${amount.toLocaleString()} personal loan. Borrowers with scores above 750 can typically qualify for rates near ${rates.excellent}% APR. Scores below 640 usually result in rates of ${rates.fair}%–${rates.bad}% from subprime lenders.`,
+                },
+              },
+            ],
+          }),
+        }}
+      />
     </div>
   )
 }
@@ -394,6 +422,46 @@ function AutoLoanPage({ amount, termMonths }: { amount: number; termMonths: numb
         </table>
       </div>
 
+      {/* How to qualify */}
+      <div style={card}>
+        <h2 style={{ fontSize: 16, fontWeight: 800, marginBottom: '0.75rem' }}>How to Qualify for an Auto Loan</h2>
+        <p style={{ color: 'var(--muted)', fontSize: 14, lineHeight: 1.7, margin: 0 }}>
+          For a ${amount.toLocaleString()} auto loan, most lenders look for a minimum credit score of 580–620,
+          though scores above 700 unlock the best new-car rates near {ratesNew.excellent}%. Your debt-to-income
+          ratio should be below 45%. New car loans typically carry lower rates than used — expect a {(ratesUsed.good - ratesNew.good).toFixed(1)}%
+          premium for used vehicles with good credit. Dealer financing and bank pre-approval are worth comparing
+          before signing; credit unions often beat both on rate.
+        </p>
+      </div>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: `What is the monthly payment on a $${amount.toLocaleString()} auto loan for ${termMonths} months?`,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: `With good credit at ${ratesNew.good}% APR on a new car, the monthly payment on a $${amount.toLocaleString()} auto loan over ${termMonths} months is ${formatUSDCents(primaryData.monthlyPayment)}. Total interest: ${formatUSD(primaryData.totalInterest)}.`,
+                },
+              },
+              {
+                '@type': 'Question',
+                name: `What credit score do I need for a $${amount.toLocaleString()} car loan?`,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: `Most lenders approve auto loans with a credit score of 580+, but you need 700+ to access the best new-car rates (${ratesNew.excellent}% APR). Scores below 620 typically result in rates of ${ratesNew.fair}%–${ratesNew.bad}%, adding hundreds in total interest on a $${amount.toLocaleString()} loan.`,
+                },
+              },
+            ],
+          }),
+        }}
+      />
+
       <RelatedLinks
         links={[
           { title: 'Auto Loan Guide', href: '/loan/auto-loan-guide', icon: '🚗' },
@@ -517,6 +585,34 @@ function StudentLoanPage({ amount }: { amount: number }) {
           { title: 'Salary After Tax Calculator', href: '/salary', icon: '💵' },
         ]}
       />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: `What is the monthly payment on $${amount.toLocaleString()} in student loans?`,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: `At the 2025 federal undergraduate rate of ${fedUndergrad}%, the standard 10-year monthly payment on $${amount.toLocaleString()} in student loans is ${formatUSDCents(primaryData.monthlyPayment)}. Total interest over 10 years: ${formatUSD(primaryData.totalInterest)}.`,
+                },
+              },
+              {
+                '@type': 'Question',
+                name: `Should I choose federal or private student loans for $${amount.toLocaleString()}?`,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: `Federal undergraduate loans at ${fedUndergrad}% offer income-driven repayment, forgiveness programs, and fixed rates — advantages private loans do not match. Private loans with excellent credit can reach ${privateRates.excellent}%, which is lower, but lack the safety net of federal programs. Exhaust federal options before considering private loans.`,
+                },
+              },
+            ],
+          }),
+        }}
+      />
     </div>
   )
 }
@@ -633,6 +729,34 @@ function CreditCardPayoffPage({ balance, apr }: { balance: number; apr: number }
           { title: 'Personal Loan (Consolidate)', href: '/loan', icon: '💰' },
         ]}
       />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: `How long to pay off $${balance.toLocaleString()} in credit card debt at ${apr}% APR?`,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: `To pay off $${balance.toLocaleString()} at ${apr}% APR in 5 years, you need to pay ${formatUSDCents(primaryData.monthlyPayment)}/month. Paying only the 2% minimum takes far longer and costs significantly more in interest. A 3-year payoff requires ${formatUSDCents(calculateLoan(balance, apr, 36).monthlyPayment)}/month.`,
+                },
+              },
+              {
+                '@type': 'Question',
+                name: `How much interest do I pay on $${balance.toLocaleString()} at ${apr}% APR?`,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: `Paying off $${balance.toLocaleString()} at ${apr}% APR over 5 years costs ${formatUSD(primaryData.totalInterest)} in total interest. Over 3 years, interest drops to ${formatUSD(calculateLoan(balance, apr, 36).totalInterest)}. Consolidating to a lower-rate personal loan could reduce this substantially.`,
+                },
+              },
+            ],
+          }),
+        }}
+      />
     </div>
   )
 }
@@ -727,8 +851,47 @@ function GuidePage({ guideSlug, guideTitle }: { guideSlug: string; guideTitle: s
     ),
   }
 
-  const content = guideContent[guideSlug] ?? (
-    <p style={{ color: 'var(--muted)' }}>Comprehensive guide content. Browse our loan calculators below for specific payment scenarios.</p>
+  const fallbackGuideContent: Record<string, React.ReactNode> = {
+    'personal-loan-rates-guide': (
+      <>
+        <p>Personal loan rates in 2025 range from <strong>8%–36% APR</strong> depending on credit score, income, and lender. Borrowers with excellent credit (750+) typically qualify for rates of 8%–12%. Those with fair credit (600–649) see rates of 20%–30%.</p>
+        <p style={{ marginTop: 12 }}>Key factors lenders evaluate: credit score, debt-to-income ratio (below 40% preferred), employment history, and loan amount. Banks and credit unions often offer lower rates than online lenders for existing customers.</p>
+        <ul style={{ color: 'var(--muted)', lineHeight: 2, paddingLeft: 24, marginTop: 8 }}>
+          <li>Excellent credit (750+): 8%–12% APR typical</li>
+          <li>Good credit (700–749): 12%–18% APR typical</li>
+          <li>Fair credit (600–699): 18%–30% APR typical</li>
+          <li>Bad credit (below 600): 30%–36% or declined</li>
+        </ul>
+      </>
+    ),
+    'student-loan-guide': (
+      <>
+        <p>Federal student loans are fixed-rate and income-based — in 2025, undergrad Direct Loans are <strong>6.53%</strong>, grad loans are 8.08%, and PLUS loans are 9.08%. Private loans can be lower for excellent credit borrowers but lack federal protections.</p>
+        <p style={{ marginTop: 12 }}>Always exhaust federal loan eligibility (FAFSA) before borrowing privately. Federal loans qualify for income-driven repayment plans (PAYE, SAVE) that cap payments at 5%–10% of discretionary income and offer forgiveness after 10–25 years.</p>
+        <ul style={{ color: 'var(--muted)', lineHeight: 2, paddingLeft: 24, marginTop: 8 }}>
+          <li>Undergrad annual limit: $5,500–$7,500 (dependent) or up to $12,500 (independent)</li>
+          <li>Graduate annual limit: up to $20,500 (unsubsidized Direct)</li>
+          <li>PLUS loans: up to cost of attendance minus other aid</li>
+          <li>Public Service Loan Forgiveness: 10 years of payments for government and nonprofit employees</li>
+        </ul>
+      </>
+    ),
+    'bad-credit-loan-guide': (
+      <>
+        <p>Borrowers with credit scores below 600 can still access personal loans — but rates run 25%–36% APR. The math matters: on a $5,000 loan at 35.99% APR over 36 months, total interest exceeds $3,000. Improving your score even 50 points can cut the rate significantly.</p>
+        <p style={{ marginTop: 12 }}>Strategies to qualify or lower your rate: add a creditworthy co-signer, use a secured loan (backed by savings or a vehicle), try credit unions (often more flexible than banks), or look at community development financial institutions (CDFIs). Payday loans and title loans should be last resorts — APRs often exceed 300%.</p>
+      </>
+    ),
+    'credit-card-payoff-guide': (
+      <>
+        <p>The two main payoff strategies: <strong>avalanche</strong> (highest rate first) minimizes total interest. <strong>Snowball</strong> (smallest balance first) builds momentum. Mathematically, avalanche wins — but snowball often wins behaviorally.</p>
+        <p style={{ marginTop: 12 }}>The fastest path to payoff: stop adding new charges, pay more than the minimum every month, and redirect any windfalls (tax refunds, bonuses) directly to the highest-rate balance. On $10,000 at 24.99%, paying $400/month instead of $200/month cuts payoff time from 8+ years to under 3.</p>
+      </>
+    ),
+  }
+
+  const content = guideContent[guideSlug] ?? fallbackGuideContent[guideSlug] ?? (
+    <p style={{ color: 'var(--muted)' }}>See the key rates, rules, and strategies below — all data reflects 2025 lender averages.</p>
   )
 
   return (
@@ -774,13 +937,12 @@ export default async function LoanPage({
 
   const schema = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
-    name: config.type === 'guide' ? config.guideTitle : 'Loan Calculator',
+    '@type': 'WebPage',
     url: `https://usa-calc.com/loan/${slug}`,
+    name: config.type === 'guide' ? config.guideTitle : 'Loan Calculator',
     description: 'Free loan calculator — monthly payments, total interest, and amortization schedule.',
-    applicationCategory: 'FinanceApplication',
-    operatingSystem: 'Web',
-    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    dateModified: new Date().toISOString().split('T')[0],
+    isPartOf: { '@type': 'WebSite', name: 'USA-Calc', url: 'https://usa-calc.com' },
   }
 
   const jsonLd = (

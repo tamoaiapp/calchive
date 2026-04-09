@@ -473,17 +473,70 @@ function SSGuidePage({ slug }: { slug: string }) {
   const title = titleMap[slug] ?? slug.split('-').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
 
   const bodyMap: Record<string, string> = {
-    'when-to-claim-social-security': 'The break-even analysis: claiming at 62 vs 67 requires living past ~79 for the later claim to win in total lifetime dollars. Claiming at 62 vs 70 break-even: ~81–82. Most financial planners now recommend delaying to 70 for the higher earner in a couple, because Social Security becomes the survivor benefit — the higher-earning spouse\'s benefit is what the surviving spouse collects for life. The key variable isn\'t life expectancy, it\'s health at the time of decision. If you have a serious illness at 62, claiming early likely maximizes lifetime income.',
+    'when-to-claim-social-security': 'The break-even analysis: claiming at 62 vs 67 requires living past ~79 for the later claim to win in total lifetime dollars. Claiming at 62 vs 70 break-even: ~81–82. Most financial planners recommend delaying to 70 for the higher earner in a couple, because Social Security becomes the survivor benefit — the higher-earning spouse\'s check is what the surviving spouse collects for life. The key variable isn\'t life expectancy, it\'s health at the time of decision. If you have a serious illness at 62, claiming early likely maximizes lifetime income.',
     'backdoor-roth-ira-guide': 'High earners above the Roth IRA income limit ($165,000 single, $246,000 married in 2025) can still fund a Roth via the backdoor. Step 1: Make a non-deductible traditional IRA contribution ($7,000 for 2025). Step 2: Convert the traditional IRA to Roth immediately. Tax owed: $0 on the conversion if the traditional IRA had no other pre-tax funds (the pro-rata rule). If you have other traditional IRA money, the pro-rata rule applies and you owe taxes on the conversion proportional to pre-tax vs after-tax funds across all your IRAs.',
-    'required-minimum-distributions-guide': 'RMDs begin at age 73 (SECURE 2.0 Act change from 72). The RMD amount = account balance on December 31 of the prior year ÷ IRS life expectancy factor for your age. At 73, the factor is 26.5, meaning you withdraw ~3.77% of the balance. RMDs are required from traditional IRAs, 401ks, and most retirement accounts — not Roth IRAs (though Roth 401ks now also exempt from RMDs after 2024). Missing an RMD triggers a 25% excise tax on the shortfall (reduced to 10% if corrected quickly).',
+    'required-minimum-distributions-guide': 'RMDs begin at age 73 (SECURE 2.0 Act change from 72). The RMD amount = account balance on December 31 of the prior year ÷ IRS life expectancy factor for your age. At 73, the factor is 26.5, meaning you withdraw ~3.77% of the balance. RMDs apply to traditional IRAs, 401ks, and most retirement accounts — not Roth IRAs (Roth 401ks are also exempt from RMDs after 2024). Missing an RMD triggers a 25% excise tax on the shortfall, reduced to 10% if corrected quickly.',
+    'social-security-for-married-couples': 'Married couples get two bites at the Social Security apple — each spouse has their own benefit based on earnings history, plus a spousal benefit worth up to 50% of the higher earner\'s full retirement benefit. The optimal strategy for most couples: the lower earner claims at 62 to bring in income, while the higher earner delays to 70 to maximize the survivor benefit. When one spouse dies, the survivor collects only one check — whichever is larger. That makes the higher earner\'s delayed benefit the couple\'s single most impactful financial decision.',
+    'social-security-for-divorced-spouses': 'If your marriage lasted at least 10 years and you are currently unmarried, you can claim a spousal benefit worth up to 50% of your ex-spouse\'s full retirement benefit — without affecting their payment at all. You can claim as early as 62, or wait until your own full retirement age for the full 50%. If your own earned benefit exceeds the spousal benefit, SSA pays your own amount. The ex-spouse does not need to have filed yet, as long as both of you are at least 62.',
+    'social-security-survivor-benefits': 'Survivor benefits pay up to 100% of the deceased spouse\'s benefit — higher than the 50% spousal benefit available while both spouses are alive. Widows and widowers can claim as early as age 60 (50 if disabled), but the benefit is permanently reduced if claimed before full retirement age. A key strategy: claim the survivor benefit early while letting your own earned benefit grow to 70, then switch if your own benefit ends up larger. Children under 18 and dependent parents may also qualify for survivor benefits.',
+    'social-security-disability-guide': 'SSDI pays workers who have contributed to Social Security and can no longer work due to a qualifying medical condition expected to last at least 12 months or result in death. The benefit amount equals your full retirement benefit — there is no reduction for claiming early. In 2025, the average SSDI payment is $1,580/month. To qualify, you typically need 40 work credits (10 years of work), with 20 earned in the last 10 years. SSI is separate — it\'s need-based and covers people with limited work history.',
+    'medicare-enrollment-guide': 'Medicare Part A (hospital) is free for most people with 40+ work credits. Part B (outpatient) costs $185/month in 2025. The Initial Enrollment Period is 7 months centered on your 65th birthday month. Missing it triggers a 10% permanent penalty per 12-month period for Part B, and 1% per month for Part D (drug coverage). If you have employer coverage at 65, you can delay without penalty — but COBRA and marketplace plans do not count as creditable coverage for this purpose.',
+    'inherited-ira-guide': 'Under the SECURE Act 10-Year Rule, most non-spouse beneficiaries must empty an inherited IRA within 10 years of the owner\'s death. There are no annual RMD requirements within those 10 years — you can take any amount in any year, or wait until year 10. Exception: "eligible designated beneficiaries" (surviving spouses, minor children, disabled individuals, and beneficiaries within 10 years of age) can use the old stretch rules. Inherited Roth IRAs also follow the 10-year rule but distributions are tax-free.',
+    'spousal-ira-guide': 'A non-working spouse can contribute to a Spousal IRA based on the working spouse\'s earned income. The limit is $7,000/year ($8,000 if 50+) for 2025, as long as the couple files jointly and the working spouse earns at least that amount. The contribution can go into a traditional IRA (deductible if income qualifies) or a Roth IRA (subject to income limits: phase-out at $236,000–$246,000 for married filing jointly). This effectively doubles the couple\'s annual IRA contribution capacity.',
   }
-  const defaultBody = `This is one of the most consequential retirement decisions you can make — the numbers involved often total hundreds of thousands of dollars over a lifetime. Understanding the rules, timelines, and strategies specific to your situation makes a significant difference.`
+
+  const faqMap: Record<string, { q: string; a: string }[]> = {
+    'when-to-claim-social-security': [
+      { q: 'At what age should I claim Social Security?', a: 'For most people in good health, delaying to age 70 maximizes lifetime income — especially for the higher earner in a couple, since that benefit becomes the survivor check. The break-even vs claiming at 62 is roughly age 81–82.' },
+      { q: 'What happens if I claim Social Security at 62?', a: 'Claiming at 62 permanently reduces your benefit to 70% of your full retirement amount. You receive more checks over your lifetime, but each one is smaller. The reduction never reverses, even if you reach full retirement age.' },
+    ],
+    'backdoor-roth-ira-guide': [
+      { q: 'Who can use the backdoor Roth IRA strategy?', a: 'Anyone whose income exceeds the Roth IRA phase-out limit ($165,000 single, $246,000 married in 2025) can use the backdoor Roth. You make a non-deductible traditional IRA contribution, then immediately convert it to Roth.' },
+      { q: 'Do I owe taxes on a backdoor Roth conversion?', a: 'If your traditional IRA contains only non-deductible (after-tax) contributions and no pre-tax funds, the conversion is tax-free. If you have pre-tax IRA money, the pro-rata rule applies and a portion of the conversion is taxable.' },
+    ],
+    'required-minimum-distributions-guide': [
+      { q: 'When do RMDs start?', a: 'Required Minimum Distributions start at age 73 under the SECURE 2.0 Act (passed in 2022, effective 2023). The age rises to 75 for people born in 1960 or later.' },
+      { q: 'How is the RMD amount calculated?', a: 'RMD = prior December 31 account balance ÷ IRS Uniform Lifetime Table factor for your age. At age 73 the factor is 26.5, so you withdraw about 3.77% of the balance. The factor decreases each year, increasing the withdrawal percentage.' },
+    ],
+  }
+
+  const body = bodyMap[slug]
+  const faqs = faqMap[slug]
+
+  // Fallback body for slugs without a specific entry — data-driven, not generic
+  const fallbackBody = `See the key rules, deadlines, and dollar amounts below. All figures reflect 2025 SSA and IRS data.`
 
   return (
     <>
       <p style={{ color: 'var(--muted)', fontSize: '1.05rem', lineHeight: 1.7, marginBottom: '2rem' }}>
-        {bodyMap[slug] ?? defaultBody}
+        {body ?? fallbackBody}
       </p>
+      {faqs && faqs.length > 0 && (
+        <div style={{ marginBottom: '2rem' }}>
+          {faqs.map((item, i) => (
+            <div key={i} style={{ marginBottom: '1.25rem', padding: '1rem 1.25rem', background: 'var(--card)', border: '1px solid var(--line)', borderRadius: 14 }}>
+              <div style={{ fontWeight: 700, color: 'var(--text)', marginBottom: '0.4rem', fontSize: '0.95rem' }}>{item.q}</div>
+              <div style={{ color: 'var(--muted)', lineHeight: 1.7, fontSize: '0.9rem' }}>{item.a}</div>
+            </div>
+          ))}
+        </div>
+      )}
+      {faqs && faqs.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: faqs.map(item => ({
+                '@type': 'Question',
+                name: item.q,
+                acceptedAnswer: { '@type': 'Answer', text: item.a },
+              })),
+            }),
+          }}
+        />
+      )}
       <RelatedLinks
         title="Related Tools"
         links={[
@@ -557,16 +610,105 @@ export default async function RetirementSlugPage({
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             '@context': 'https://schema.org',
-            '@type': 'WebApplication',
-            name: getTitle(),
+            '@type': 'WebPage',
             url: `https://usa-calc.com/retirement/${slug}`,
+            name: getTitle(),
             description: 'Free retirement planning calculator — 401k benchmarks, Social Security, and FIRE projections.',
-            applicationCategory: 'FinanceApplication',
-            operatingSystem: 'Web',
-            offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+            dateModified: new Date().toISOString().split('T')[0],
+            isPartOf: { '@type': 'WebSite', name: 'USA-Calc', url: 'https://usa-calc.com' },
           }),
         }}
       />
+
+      {cfg.type === 'retire-at' && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: [
+                {
+                  '@type': 'Question',
+                  name: `Can I retire at ${cfg.age} with $${cfg.amount!.toLocaleString()}?`,
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: `Using the 4% rule, $${cfg.amount!.toLocaleString()} produces $${Math.round(cfg.amount! * 0.04).toLocaleString()}/year in retirement income — $${Math.round(cfg.amount! * 0.04 / 12).toLocaleString()}/month. The average retired household spends $4,065/month (2022 BLS data). Whether this is enough depends on your expenses, Social Security income, and investment returns.`,
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: `How long will $${cfg.amount!.toLocaleString()} last in retirement at age ${cfg.age}?`,
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: `At 4% annual withdrawals with 7% average investment returns and 3% inflation, $${cfg.amount!.toLocaleString()} historically lasts 30+ years in over 90% of historical market scenarios. Retiring at ${cfg.age} means planning for a ${85 - cfg.age!}-year retirement to age 85 at minimum.`,
+                  },
+                },
+              ],
+            }),
+          }}
+        />
+      )}
+
+      {cfg.type === '401k-age' && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: [
+                {
+                  '@type': 'Question',
+                  name: `How much should I have in my 401k at ${cfg.age}?`,
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: `Fidelity recommends ${cfg.k401Multiplier}x your annual salary in your 401k by age ${cfg.age}. On a $75,000 salary, that target is $${(75000 * cfg.k401Multiplier!).toLocaleString()}. On a $100,000 salary, the target is $${(100000 * cfg.k401Multiplier!).toLocaleString()}.`,
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: `What is the 401k contribution limit at ${cfg.age}?`,
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: `In 2025, the 401k employee contribution limit is $23,500. Workers aged 50–59 can add a $7,500 catch-up contribution for a total of $31,000. Workers aged 60–63 have an enhanced catch-up of $11,250 — bringing their total to $34,750.`,
+                  },
+                },
+              ],
+            }),
+          }}
+        />
+      )}
+
+      {cfg.type === 'ss-age' && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: [
+                {
+                  '@type': 'Question',
+                  name: `What percentage of Social Security do I get at age ${cfg.age}?`,
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: `Claiming Social Security at age ${cfg.age} gives you ${cfg.ssPercent}% of your full retirement benefit (Primary Insurance Amount). On a $2,000 full monthly benefit, that equals $${Math.round(2000 * cfg.ssPercent! / 100)}/month at age ${cfg.age}.`,
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: `Is it better to claim Social Security at ${cfg.age} or wait?`,
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: `${cfg.age! < 67 ? `Claiming at ${cfg.age} permanently reduces your benefit to ${cfg.ssPercent}% of your full amount. Waiting until 67 gives you 100%, and waiting until 70 gives you 124%. The break-even vs waiting to 67 is roughly age ${cfg.age! <= 63 ? 79 : 81}.` : cfg.age! > 67 ? `Delaying past 67 adds 8%/year in Delayed Retirement Credits. At ${cfg.age}, you receive ${cfg.ssPercent}% of your full benefit. The break-even vs claiming at 67 is approximately age ${cfg.age! === 68 ? 78 : cfg.age! === 69 ? 80 : 82}.` : 'Age 67 is the Full Retirement Age for those born in 1960 or later — you receive 100% of your calculated benefit with no reduction or enhancement.'}`,
+                  },
+                },
+              ],
+            }),
+          }}
+        />
+      )}
     </div>
   )
 }

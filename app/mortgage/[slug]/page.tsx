@@ -52,8 +52,22 @@ export async function generateMetadata({
     title = `Refinance ${config.currentRate}% to ${config.newRate}% on ${formatUSD(config.balance!)} Balance`
     description = `Should you refinance from ${config.currentRate}% to ${config.newRate}% on a ${formatUSD(config.balance!)} mortgage? Monthly savings, break-even point, and total interest comparison.`
   } else if (config.type === 'guide') {
+    const guideDescMap: Record<string, string> = {
+      'how-much-house-can-i-afford': 'How much house can you afford? Use the 28% rule: on a $100,000 salary, your max monthly payment is ~$2,333. See home price estimates for $50k–$200k incomes.',
+      'mortgage-points-explained': 'Each mortgage point costs 1% of the loan amount and reduces your rate by ~0.25%. On a $300,000 loan, one point costs $3,000 and saves about $50/month. Break-even: ~60 months.',
+      'pmi-explained': 'PMI costs 0.5%–1.5% of your loan per year — about $83–$250/month on a $200,000 loan. It cancels automatically at 22% equity or upon request at 20%.',
+      'fha-vs-conventional': 'FHA loans accept credit scores as low as 580 with 3.5% down. Conventional loans need 620+ but allow PMI removal. In 2025, the FHA loan limit is $524,225 for most counties.',
+      'va-loan-guide': 'VA loans require no down payment and no PMI for eligible veterans and active-duty service members. The VA funding fee ranges from 1.25%–3.3% of the loan amount in 2025.',
+      'arm-vs-fixed-rate': 'A 5/1 ARM is fixed for 5 years, then adjusts annually. In a high-rate environment, ARMs start ~0.5–1% lower than 30-year fixed rates — useful if you plan to sell or refinance within 5–7 years.',
+      '15-vs-30-year-mortgage': 'A 15-year mortgage at 6.19% on a $280,000 loan costs $522/month more than a 30-year at 6.85%, but saves over $100,000 in total interest. See the full comparison.',
+      'mortgage-closing-costs-guide': 'Mortgage closing costs average 2%–5% of the loan amount — $6,000–$15,000 on a $300,000 mortgage. Lender fees, title insurance, and prepaid taxes make up the largest portions.',
+      'first-time-homebuyer-guide': 'First-time buyers can access FHA loans (3.5% down), down payment assistance programs, and the $10,000 IRA withdrawal penalty exception. See 2025 limits and income requirements.',
+      'mortgage-pre-approval-guide': 'Pre-approval requires proof of income, 2 years of tax returns, credit check (typically 620+ for conventional), and a debt-to-income ratio below 43%. The letter is valid for 60–90 days.',
+      'home-inspection-guide': 'A home inspection costs $300–$500 and covers structural, electrical, plumbing, roof, and HVAC systems. Buyers can negotiate repairs or credits based on inspector findings.',
+      'escrow-explained': 'Escrow accounts hold your property tax and insurance payments until they are due. Your lender collects 1/12 of the annual bill each month, then pays the insurer and tax authority directly.',
+    }
     title = `${config.guideTitle} | USA-Calc`
-    description = `Complete guide to ${config.guideTitle?.toLowerCase()}. Real 2025 data, calculations, and expert tips.`
+    description = guideDescMap[config.guideSlug ?? ''] ?? `Complete guide to ${config.guideTitle?.toLowerCase()} — 2025 rates, rules, and real calculations.`
   }
 
   return {
@@ -400,6 +414,42 @@ function StatePricePage({ stateSlug, stateName, homePrice }: { stateSlug: string
       />
 
       <AdSlot slot="2003" format="auto" />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: `What is the monthly mortgage payment on a ${formatUSD(homePrice)} home in ${stateName}?`,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: `With 20% down and a ${rate30}% 30-year fixed rate, the total monthly payment on a ${formatUSD(homePrice)} home in ${stateName} is ${formatUSD(data30.totalMonthlyPayment)} — including ${formatUSD(data30.monthlyPrincipalInterest)} principal & interest, ${formatUSD(data30.monthlyPropertyTax)} property tax, and ${formatUSD(data30.monthlyInsurance)} insurance.`,
+                },
+              },
+              {
+                '@type': 'Question',
+                name: `What income do you need to afford a ${formatUSD(homePrice)} home in ${stateName}?`,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: `To keep housing costs at or below 28% of gross income, you need at least ${formatUSD(incomeNeeded)}/year (${formatUSD(incomeNeeded / 12)}/month before taxes) to comfortably afford a ${formatUSD(data30.totalMonthlyPayment)}/month payment on a ${formatUSD(homePrice)} home in ${stateName}.`,
+                },
+              },
+              {
+                '@type': 'Question',
+                name: `How much interest do you pay on a ${formatUSD(homePrice)} mortgage over 30 years?`,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: `On a ${formatUSD(homePrice)} home with 20% down at ${rate30}% over 30 years, total interest paid is ${formatUSD(data30.totalInterestPaid)}. Choosing a 15-year term at ${rate15}% reduces total interest to ${formatUSD(data15.totalInterestPaid)} — saving ${formatUSD(data30.totalInterestPaid - data15.totalInterestPaid)}.`,
+                },
+              },
+            ],
+          }),
+        }}
+      />
     </div>
   )
 }
@@ -508,6 +558,34 @@ function RateScenarioPage({ rate, homePrice }: { rate: number; homePrice: number
           { title: 'Mortgage Payment Calculator', href: '/mortgage', icon: '🔢' },
         ]}
       />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: `What is the monthly mortgage payment at ${rate}% on a ${formatUSD(homePrice)} home?`,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: `At a ${rate}% fixed rate with 20% down, the monthly principal and interest on a ${formatUSD(homePrice)} home is ${formatUSD(data30.monthlyPrincipalInterest)}. Total interest over 30 years: ${formatUSD(data30.totalInterestPaid)}.`,
+                },
+              },
+              {
+                '@type': 'Question',
+                name: `How does a ${rate}% mortgage rate compare to other rates?`,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: `On a ${formatUSD(homePrice)} home with 20% down, each 1% increase in rate adds roughly ${formatUSD(calculateMortgage(homePrice, 20, rate + 1, 30, 'texas').monthlyPrincipalInterest - data30.monthlyPrincipalInterest)}/month to the P&I payment. At ${(rate - 1).toFixed(1)}%, the monthly payment drops to ${formatUSD(calculateMortgage(homePrice, 20, Math.max(1, rate - 1), 30, 'texas').monthlyPrincipalInterest)}.`,
+                },
+              },
+            ],
+          }),
+        }}
+      />
     </div>
   )
 }
@@ -589,6 +667,34 @@ function RefinancePage({ currentRate, newRate, balance }: { currentRate: number;
           { title: 'ARM vs Fixed Rate Guide', href: '/mortgage/arm-vs-fixed-rate', icon: '📈' },
           { title: 'Mortgage Closing Costs', href: '/mortgage/mortgage-closing-costs-guide', icon: '📋' },
         ]}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: `How much do I save by refinancing from ${currentRate}% to ${newRate}%?`,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: `Refinancing a ${formatUSD(balance)} mortgage from ${currentRate}% to ${newRate}% saves ${formatUSD(monthlySavings)}/month — or ${formatUSD(monthlySavings * 12)}/year. At estimated closing costs of ${formatUSD(closingCosts)}, the break-even point is ${breakEvenMonths} months.`,
+                },
+              },
+              {
+                '@type': 'Question',
+                name: `Is it worth refinancing if I only drop ${currentRate - newRate}%?`,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: `A drop from ${currentRate}% to ${newRate}% on ${formatUSD(balance)} saves ${formatUSD(monthlySavings)}/month. If you plan to stay in the home beyond the ${breakEvenMonths}-month break-even point, refinancing produces net savings. If you plan to sell or pay off the loan sooner, the closing costs may not be recovered.`,
+                },
+              },
+            ],
+          }),
+        }}
       />
     </div>
   )
@@ -739,6 +845,7 @@ export default async function MortgagePage({
         ? config.guideTitle
         : `Mortgage Calculator`,
     description: 'Free mortgage calculator with property tax, PMI, and insurance. Monthly payment breakdown for US home buyers.',
+    dateModified: new Date().toISOString().split('T')[0],
     isPartOf: { '@type': 'WebSite', name: 'USA-Calc', url: 'https://usa-calc.com' },
   }
 
