@@ -1,0 +1,793 @@
+import type { ToolConfig } from './types'
+
+export const financeReferenceTools: ToolConfig[] = [
+  {
+    slug: 'federal-tax-brackets-2025',
+    title: '2025 Federal Income Tax Brackets',
+    desc: 'Official IRS 2025 federal income tax brackets for all four filing statuses.',
+    cat: 'finance',
+    icon: '🏛️',
+    toolType: 'table',
+    staticContent: () => [
+      {
+        type: 'table', label: 'Single Filers', content: [
+          { label: 'Up to $11,925', value: '10%' },
+          { label: '$11,926 – $48,475', value: '12%' },
+          { label: '$48,476 – $103,350', value: '22%' },
+          { label: '$103,351 – $197,300', value: '24%' },
+          { label: '$197,301 – $250,525', value: '32%' },
+          { label: '$250,526 – $626,350', value: '35%' },
+          { label: 'Over $626,350', value: '37%' },
+        ]
+      },
+      {
+        type: 'table', label: 'Married Filing Jointly (MFJ)', content: [
+          { label: 'Up to $23,850', value: '10%' },
+          { label: '$23,851 – $96,950', value: '12%' },
+          { label: '$96,951 – $206,700', value: '22%' },
+          { label: '$206,701 – $394,600', value: '24%' },
+          { label: '$394,601 – $501,050', value: '32%' },
+          { label: '$501,051 – $751,600', value: '35%' },
+          { label: 'Over $751,600', value: '37%' },
+        ]
+      },
+      {
+        type: 'table', label: 'Head of Household (HOH)', content: [
+          { label: 'Up to $17,000', value: '10%' },
+          { label: '$17,001 – $64,850', value: '12%' },
+          { label: '$64,851 – $103,350', value: '22%' },
+          { label: '$103,351 – $197,300', value: '24%' },
+          { label: '$197,301 – $250,500', value: '32%' },
+          { label: '$250,501 – $626,350', value: '35%' },
+          { label: 'Over $626,350', value: '37%' },
+        ]
+      },
+    ],
+    about: 'The IRS adjusts tax brackets annually for inflation under IRC §1(f)(3). The 2025 brackets reflect a ~2.8% cost-of-living adjustment from 2024. Brackets apply to taxable income after deductions — your first dollar is taxed at 10%, not your last dollar at your top rate.',
+    related: ['standard-deduction-2025', 'capital-gains-rates-2025', 'state-income-tax-rates'],
+  },
+  {
+    slug: 'standard-deduction-2025',
+    title: '2025 Standard Deduction Amounts',
+    desc: 'IRS standard deduction for 2025 by filing status, including extra amounts for age 65+ and blind.',
+    cat: 'finance',
+    icon: '📋',
+    toolType: 'table',
+    staticContent: () => [{
+      type: 'table', label: '2025 Standard Deductions', content: [
+        { label: 'Single', value: '$15,000' },
+        { label: 'Married Filing Jointly (MFJ)', value: '$30,000' },
+        { label: 'Married Filing Separately (MFS)', value: '$15,000' },
+        { label: 'Head of Household (HOH)', value: '$22,500' },
+        { label: 'Qualifying Surviving Spouse', value: '$30,000' },
+        { label: 'Age 65+ or Blind (Single add-on)', value: '+$2,000' },
+        { label: 'Age 65+ or Blind (MFJ add-on per person)', value: '+$1,600' },
+        { label: 'Dependent (max earned income + $450)', value: 'Min $1,350' },
+      ]
+    }],
+    about: 'The standard deduction is the fixed amount you can deduct without itemizing. About 87% of Americans take the standard deduction. It is adjusted for inflation annually. Taxpayers over 65 or who are legally blind receive an additional amount per qualifying condition.',
+    related: ['federal-tax-brackets-2025', 'fica-limits-2025', '401k-contribution-limits-2025'],
+  },
+  {
+    slug: 'capital-gains-rates-2025',
+    title: '2025 Capital Gains Tax Rates',
+    desc: 'Long-term and short-term capital gains tax rates for 2025 by filing status.',
+    cat: 'finance',
+    icon: '📈',
+    toolType: 'table',
+    staticContent: () => [
+      {
+        type: 'table', label: 'Long-Term Capital Gains (assets held 1+ year)', content: [
+          { label: '0% rate — Single (up to $48,350)', value: '0%' },
+          { label: '0% rate — MFJ (up to $96,700)', value: '0%' },
+          { label: '0% rate — HOH (up to $64,750)', value: '0%' },
+          { label: '15% rate — Single ($48,351–$533,400)', value: '15%' },
+          { label: '15% rate — MFJ ($96,701–$600,050)', value: '15%' },
+          { label: '20% rate — Single (over $533,400)', value: '20%' },
+          { label: '20% rate — MFJ (over $600,050)', value: '20%' },
+          { label: 'NIIT surcharge (income over $200K single)', value: '+3.8%' },
+        ]
+      },
+      {
+        type: 'table', label: 'Short-Term Capital Gains', content: [
+          { label: 'Assets held under 1 year', value: 'Taxed as ordinary income' },
+          { label: 'Maximum short-term rate', value: '37%' },
+        ]
+      },
+    ],
+    about: 'Long-term capital gains rates reward investors who hold assets longer than 12 months. The 0% bracket lets lower-income investors sell appreciated assets tax-free. The 3.8% Net Investment Income Tax (NIIT) applies above $200K (single) or $250K (MFJ) in modified AGI.',
+    related: ['federal-tax-brackets-2025', 'capital-gains-exclusion-calculator', 'home-sale-net-proceeds-calculator'],
+  },
+  {
+    slug: 'state-income-tax-rates',
+    title: 'State Income Tax Rates 2025',
+    desc: 'Income tax rates and structures for all 50 states plus DC — flat, graduated, or none.',
+    cat: 'finance',
+    icon: '🗺️',
+    toolType: 'table',
+    staticContent: () => [{
+      type: 'table', label: 'State Income Tax Rates (2025)', content: [
+        { label: 'Alaska', value: 'No state income tax' },
+        { label: 'Florida', value: 'No state income tax' },
+        { label: 'Nevada', value: 'No state income tax' },
+        { label: 'New Hampshire', value: 'No income tax (interest/dividends only)' },
+        { label: 'South Dakota', value: 'No state income tax' },
+        { label: 'Tennessee', value: 'No state income tax' },
+        { label: 'Texas', value: 'No state income tax' },
+        { label: 'Washington', value: 'No state income tax' },
+        { label: 'Wyoming', value: 'No state income tax' },
+        { label: 'Colorado', value: 'Flat 4.40%' },
+        { label: 'Illinois', value: 'Flat 4.95%' },
+        { label: 'Indiana', value: 'Flat 3.05%' },
+        { label: 'Kentucky', value: 'Flat 4.00%' },
+        { label: 'Massachusetts', value: 'Flat 5.00% (9% on cap gains)' },
+        { label: 'Michigan', value: 'Flat 4.25%' },
+        { label: 'North Carolina', value: 'Flat 4.50%' },
+        { label: 'Pennsylvania', value: 'Flat 3.07%' },
+        { label: 'Utah', value: 'Flat 4.55%' },
+        { label: 'California', value: '1%–13.3% (highest in US)' },
+        { label: 'Hawaii', value: '1.4%–11%' },
+        { label: 'New Jersey', value: '1.4%–10.75%' },
+        { label: 'Oregon', value: '4.75%–9.9%' },
+        { label: 'Minnesota', value: '5.35%–9.85%' },
+        { label: 'New York', value: '4%–10.9%' },
+        { label: 'Vermont', value: '3.35%–8.75%' },
+        { label: 'Maryland', value: '2%–5.75% (+ county tax)' },
+        { label: 'Idaho', value: 'Flat 5.695%' },
+        { label: 'Georgia', value: 'Flat 5.39% (2025)' },
+        { label: 'South Carolina', value: '0%–6.2%' },
+        { label: 'Arizona', value: 'Flat 2.50%' },
+        { label: 'Missouri', value: '0%–4.7%' },
+        { label: 'Wisconsin', value: '3.50%–7.65%' },
+        { label: 'Iowa', value: 'Flat 3.8% (2025)' },
+        { label: 'Ohio', value: '0%–3.5%' },
+        { label: 'Alabama', value: '2%–5%' },
+        { label: 'West Virginia', value: '2.36%–5.12%' },
+        { label: 'Connecticut', value: '3%–6.99%' },
+        { label: 'Rhode Island', value: '3.75%–5.99%' },
+        { label: 'Virginia', value: '2%–5.75%' },
+        { label: 'District of Columbia', value: '4%–10.75%' },
+      ]
+    }],
+    about: 'Nine states have no broad-based personal income tax, giving residents a significant advantage over high-tax states like California (max 13.3%) and New Jersey (max 10.75%). Several states moved to flat-rate taxes in 2023–2025 to simplify their code.',
+    related: ['federal-tax-brackets-2025', 'minimum-wage-by-state-2025', 'property-tax-rate-by-state'],
+  },
+  {
+    slug: 'fica-limits-2025',
+    title: 'FICA Tax Limits 2025',
+    desc: '2025 Social Security wage base, Medicare rates, and FICA contribution limits.',
+    cat: 'finance',
+    icon: '👴',
+    toolType: 'table',
+    staticContent: () => [{
+      type: 'table', label: '2025 FICA Limits', content: [
+        { label: 'Social Security wage base', value: '$176,100' },
+        { label: 'Social Security rate (employee)', value: '6.2%' },
+        { label: 'Social Security rate (employer)', value: '6.2%' },
+        { label: 'Max SS tax (employee)', value: '$10,918.20' },
+        { label: 'Medicare rate (employee)', value: '1.45%' },
+        { label: 'Medicare rate (employer)', value: '1.45%' },
+        { label: 'Medicare wage base', value: 'No limit' },
+        { label: 'Additional Medicare (>$200K single)', value: '+0.9%' },
+        { label: 'Self-employment total FICA', value: '15.3% (up to SS base)' },
+        { label: 'Self-employment Medicare only', value: '2.9% (above SS base)' },
+      ]
+    }],
+    about: 'The Social Security wage base is adjusted each year for national average wage growth. The $176,100 cap means the maximum employee Social Security contribution in 2025 is $10,918.20. High earners pay the additional 0.9% Medicare surtax starting at $200K (single) or $250K (MFJ).',
+    related: ['federal-tax-brackets-2025', 'social-security-wage-base-2025', '401k-contribution-limits-2025'],
+  },
+  {
+    slug: '401k-contribution-limits-2025',
+    title: '401(k) Contribution Limits 2025',
+    desc: '2025 IRS contribution limits for 401(k), 403(b), 457(b), and TSP plans.',
+    cat: 'finance',
+    icon: '💰',
+    toolType: 'table',
+    staticContent: () => [{
+      type: 'table', label: '2025 Retirement Plan Contribution Limits', content: [
+        { label: '401(k) / 403(b) / 457(b) employee deferral', value: '$23,500' },
+        { label: 'Catch-up contribution (age 50–59, 64+)', value: '+$7,500' },
+        { label: 'SECURE 2.0 catch-up (age 60–63)', value: '+$11,250' },
+        { label: 'Total employee limit (50+)', value: '$31,000' },
+        { label: 'Total employee + employer (combined)', value: '$70,000' },
+        { label: 'SIMPLE IRA deferral limit', value: '$16,500' },
+        { label: 'SIMPLE IRA catch-up (50+)', value: '+$3,500' },
+        { label: 'Solo 401(k) — employee portion', value: '$23,500' },
+        { label: 'Solo 401(k) — total (employee + employer)', value: '$70,000' },
+      ]
+    }],
+    about: 'SECURE 2.0 (2022) introduced a special enhanced catch-up for ages 60–63, effective 2025, allowing an additional $11,250 vs the standard $7,500 catch-up. The combined limit (employee + employer contributions) increased to $70,000 in 2025.',
+    related: ['ira-contribution-limits-2025', 'fica-limits-2025', 'federal-tax-brackets-2025'],
+  },
+  {
+    slug: 'ira-contribution-limits-2025',
+    title: 'IRA Contribution Limits 2025',
+    desc: '2025 contribution and income limits for Traditional IRA, Roth IRA, and SEP IRA.',
+    cat: 'finance',
+    icon: '🏦',
+    toolType: 'table',
+    staticContent: () => [
+      {
+        type: 'table', label: 'IRA Contribution Limits 2025', content: [
+          { label: 'Traditional IRA / Roth IRA annual limit', value: '$7,000' },
+          { label: 'Catch-up contribution (age 50+)', value: '+$1,000' },
+          { label: 'Total limit age 50+', value: '$8,000' },
+          { label: 'SEP IRA limit (lesser of 25% comp or)', value: '$70,000' },
+          { label: 'SIMPLE IRA employee deferral', value: '$16,500' },
+        ]
+      },
+      {
+        type: 'table', label: 'Roth IRA Income Phase-Out 2025', content: [
+          { label: 'Single phase-out begins', value: '$150,000' },
+          { label: 'Single phase-out ends (ineligible)', value: '$165,000' },
+          { label: 'MFJ phase-out begins', value: '$236,000' },
+          { label: 'MFJ phase-out ends', value: '$246,000' },
+        ]
+      },
+    ],
+    about: 'Roth IRA contributions are not deductible but grow tax-free. High earners above the phase-out threshold can still contribute via the "backdoor Roth" strategy — contributing to a Traditional IRA then converting. The SEP IRA limit mirrors the 401(k) combined limit.',
+    related: ['401k-contribution-limits-2025', 'hsa-contribution-limits-2025', 'rmd-factor-table'],
+  },
+  {
+    slug: 'hsa-contribution-limits-2025',
+    title: 'HSA Contribution Limits 2025',
+    desc: '2025 IRS Health Savings Account contribution limits and HDHP minimums.',
+    cat: 'finance',
+    icon: '🏥',
+    toolType: 'table',
+    staticContent: () => [{
+      type: 'table', label: '2025 HSA Limits', content: [
+        { label: 'Self-only HDHP coverage', value: '$4,300' },
+        { label: 'Family HDHP coverage', value: '$8,550' },
+        { label: 'Catch-up (age 55+, per person)', value: '+$1,000' },
+        { label: 'HDHP minimum deductible — self-only', value: '$1,650' },
+        { label: 'HDHP minimum deductible — family', value: '$3,300' },
+        { label: 'HDHP out-of-pocket maximum — self-only', value: '$8,300' },
+        { label: 'HDHP out-of-pocket maximum — family', value: '$16,600' },
+      ]
+    }],
+    about: 'HSAs are the only account with a triple tax advantage: contributions are pre-tax, growth is tax-free, and withdrawals for qualified medical expenses are tax-free. After age 65, non-medical withdrawals are taxed as ordinary income (like a Traditional IRA) but not penalized.',
+    related: ['fsa-limits-2025', '401k-contribution-limits-2025', 'ira-contribution-limits-2025'],
+  },
+  {
+    slug: 'fsa-limits-2025',
+    title: 'FSA Contribution Limits 2025',
+    desc: '2025 FSA (Flexible Spending Account) contribution limits for healthcare and dependent care.',
+    cat: 'finance',
+    icon: '🏪',
+    toolType: 'table',
+    staticContent: () => [{
+      type: 'table', label: '2025 FSA Limits', content: [
+        { label: 'Health FSA employee contribution', value: '$3,300' },
+        { label: 'Health FSA rollover (if plan allows)', value: '$660' },
+        { label: 'Dependent Care FSA — single / MFJ', value: '$5,000' },
+        { label: 'Dependent Care FSA — MFS', value: '$2,500' },
+        { label: 'Limited Purpose FSA (dental/vision only)', value: '$3,300' },
+      ]
+    }],
+    about: 'FSAs are "use it or lose it" — unused funds are forfeited at year end unless the plan allows a $660 rollover or a 2.5-month grace period. Unlike HSAs, FSAs are available regardless of health plan type. Dependent Care FSAs cover childcare for children under 13.',
+    related: ['hsa-contribution-limits-2025', '401k-contribution-limits-2025', 'federal-tax-brackets-2025'],
+  },
+  {
+    slug: 'gift-tax-annual-exclusion-2025',
+    title: 'Gift Tax Annual Exclusion 2025',
+    desc: '2025 IRS gift tax annual exclusion amount and lifetime exemption.',
+    cat: 'finance',
+    icon: '🎁',
+    toolType: 'table',
+    staticContent: () => [{
+      type: 'table', label: '2025 Gift Tax Rules', content: [
+        { label: 'Annual exclusion per recipient', value: '$19,000' },
+        { label: 'Annual exclusion — married couple (gift-splitting)', value: '$38,000 per recipient' },
+        { label: 'Lifetime gift tax exemption', value: '$13,990,000' },
+        { label: 'Gifts to non-citizen spouse (annual)', value: '$190,000' },
+        { label: 'Gift tax rate (above exemption)', value: '18%–40%' },
+        { label: 'Gift tax return (Form 709) required when', value: 'Gift exceeds annual exclusion' },
+      ]
+    }],
+    about: 'You can give $19,000 per person per year in 2025 without filing a gift tax return. The lifetime exemption of $13.99 million is scheduled to drop by roughly half in 2026 when the Tax Cuts and Jobs Act provisions expire, absent Congressional action.',
+    related: ['estate-tax-exemption-2025', 'federal-tax-brackets-2025', 'capital-gains-rates-2025'],
+  },
+  {
+    slug: 'estate-tax-exemption-2025',
+    title: 'Estate Tax Exemption 2025',
+    desc: 'Federal estate tax exemption, rates, and portability rules for 2025.',
+    cat: 'finance',
+    icon: '🏰',
+    toolType: 'table',
+    staticContent: () => [{
+      type: 'table', label: '2025 Federal Estate Tax', content: [
+        { label: 'Federal exemption (per person)', value: '$13,990,000' },
+        { label: 'Married couple combined exemption', value: '$27,980,000' },
+        { label: 'Estate tax rate above exemption', value: '18%–40% (flat 40% at top)' },
+        { label: 'Portability', value: 'Yes — unused exemption transfers to surviving spouse' },
+        { label: 'Form 706 filing deadline', value: '9 months from date of death' },
+        { label: 'Extension available', value: '6 months (Form 4768)' },
+        { label: 'States with estate tax', value: '12 states + DC (lower exemptions)' },
+      ]
+    }],
+    about: 'The federal estate tax only affects the wealthiest ~0.2% of estates. The current high exemption ($13.99M) is set to revert to approximately $7M per person in 2026 unless Congress acts. Twelve states impose their own estate tax with lower exemptions, some starting at $1M.',
+    related: ['gift-tax-annual-exclusion-2025', 'capital-gains-rates-2025', 'federal-tax-brackets-2025'],
+  },
+  {
+    slug: 'social-security-wage-base-2025',
+    title: 'Social Security Wage Base History',
+    desc: 'Social Security taxable wage base from 2015 to 2025.',
+    cat: 'finance',
+    icon: '👵',
+    toolType: 'table',
+    staticContent: () => [{
+      type: 'table', label: 'SS Wage Base by Year', content: [
+        { label: '2025', value: '$176,100' },
+        { label: '2024', value: '$168,600' },
+        { label: '2023', value: '$160,200' },
+        { label: '2022', value: '$147,000' },
+        { label: '2021', value: '$142,800' },
+        { label: '2020', value: '$137,700' },
+        { label: '2019', value: '$132,900' },
+        { label: '2018', value: '$128,400' },
+        { label: '2017', value: '$127,200' },
+        { label: '2016', value: '$118,500' },
+        { label: '2015', value: '$118,500' },
+      ]
+    }],
+    about: 'The Social Security wage base grows with the national average wage index. In 2025, only the first $176,100 of earned income is subject to the 6.2% Social Security tax. Earnings above this are still subject to Medicare (1.45%) with no cap.',
+    related: ['fica-limits-2025', 'federal-tax-brackets-2025', 'medicare-surcharge-thresholds'],
+  },
+  {
+    slug: 'medicare-surcharge-thresholds',
+    title: 'Medicare Surcharge (IRMAA) Thresholds 2025',
+    desc: '2025 Medicare Part B and Part D income-related monthly adjustment amounts (IRMAA).',
+    cat: 'finance',
+    icon: '💊',
+    toolType: 'table',
+    staticContent: () => [{
+      type: 'table', label: '2025 IRMAA Thresholds (based on 2023 MAGI)', content: [
+        { label: 'Single ≤$106,000 / MFJ ≤$212,000', value: 'Standard Part B: $185.00/mo' },
+        { label: 'Single $106,001–$133,000 / MFJ $212,001–$266,000', value: '$259.00/mo' },
+        { label: 'Single $133,001–$167,000 / MFJ $266,001–$334,000', value: '$370.00/mo' },
+        { label: 'Single $167,001–$200,000 / MFJ $334,001–$400,000', value: '$481.00/mo' },
+        { label: 'Single $200,001–$500,000 / MFJ $400,001–$750,000', value: '$591.90/mo' },
+        { label: 'Single >$500,000 / MFJ >$750,000', value: '$628.90/mo' },
+      ]
+    }],
+    about: 'IRMAA surcharges are based on MAGI from two years prior. Social Security notifies beneficiaries each fall about next year\'s surcharges. Large one-time income events (Roth conversions, asset sales) can trigger IRMAA. Taxpayers can appeal using Form SSA-44 if income has decreased.',
+    related: ['federal-tax-brackets-2025', 'fica-limits-2025', 'hsa-contribution-limits-2025'],
+  },
+  {
+    slug: 'rmd-factor-table',
+    title: 'RMD Uniform Lifetime Table 2025',
+    desc: 'IRS Uniform Lifetime Table factors for calculating Required Minimum Distributions.',
+    cat: 'finance',
+    icon: '📊',
+    toolType: 'table',
+    staticContent: () => [{
+      type: 'table', label: 'RMD Factors (Account Balance ÷ Factor = RMD)', content: [
+        { label: 'Age 72', value: '27.4' },
+        { label: 'Age 73', value: '26.5' },
+        { label: 'Age 74', value: '25.5' },
+        { label: 'Age 75', value: '24.6' },
+        { label: 'Age 76', value: '23.7' },
+        { label: 'Age 77', value: '22.9' },
+        { label: 'Age 78', value: '22.0' },
+        { label: 'Age 79', value: '21.1' },
+        { label: 'Age 80', value: '20.2' },
+        { label: 'Age 81', value: '19.4' },
+        { label: 'Age 82', value: '18.5' },
+        { label: 'Age 83', value: '17.7' },
+        { label: 'Age 84', value: '16.8' },
+        { label: 'Age 85', value: '16.0' },
+        { label: 'Age 86', value: '15.2' },
+        { label: 'Age 87', value: '14.4' },
+        { label: 'Age 88', value: '13.7' },
+        { label: 'Age 89', value: '12.9' },
+        { label: 'Age 90', value: '12.2' },
+      ]
+    }],
+    about: 'RMDs (Required Minimum Distributions) from Traditional IRAs and 401(k)s start at age 73 under SECURE 2.0. Divide the December 31 prior-year account balance by the age-appropriate factor. Failure to take an RMD triggers a 25% excise tax on the amount not withdrawn.',
+    related: ['ira-contribution-limits-2025', '401k-contribution-limits-2025', 'federal-tax-brackets-2025'],
+  },
+  {
+    slug: 'minimum-wage-by-state-2025',
+    title: 'Minimum Wage by State 2025',
+    desc: 'Current minimum wage rates for all 50 states and DC as of 2025.',
+    cat: 'finance',
+    icon: '💵',
+    toolType: 'table',
+    staticContent: () => [{
+      type: 'table', label: 'State Minimum Wages 2025', content: [
+        { label: 'Federal minimum wage', value: '$7.25/hr (since 2009)' },
+        { label: 'Washington', value: '$16.66/hr' },
+        { label: 'California', value: '$16.50/hr ($20 fast food)' },
+        { label: 'District of Columbia', value: '$17.50/hr' },
+        { label: 'New York', value: '$16.50/hr (NYC); $15.50 (rest of state)' },
+        { label: 'Connecticut', value: '$16.35/hr' },
+        { label: 'Massachusetts', value: '$15.00/hr' },
+        { label: 'New Jersey', value: '$15.49/hr' },
+        { label: 'Colorado', value: '$14.81/hr' },
+        { label: 'Illinois', value: '$15.00/hr' },
+        { label: 'Maryland', value: '$15.00/hr' },
+        { label: 'Minnesota', value: '$11.13/hr (large employers)' },
+        { label: 'Michigan', value: '$10.56/hr' },
+        { label: 'Arizona', value: '$14.70/hr' },
+        { label: 'Maine', value: '$14.65/hr' },
+        { label: 'Nevada', value: '$12.00/hr' },
+        { label: 'Ohio', value: '$10.70/hr' },
+        { label: 'Florida', value: '$14.00/hr' },
+        { label: 'Texas', value: '$7.25/hr (federal)' },
+        { label: 'Alabama', value: '$7.25/hr (federal)' },
+        { label: 'Georgia', value: '$7.25/hr (federal)' },
+        { label: 'Louisiana', value: '$7.25/hr (federal)' },
+        { label: 'Mississippi', value: '$7.25/hr (federal)' },
+        { label: 'South Carolina', value: '$7.25/hr (federal)' },
+        { label: 'Tennessee', value: '$7.25/hr (federal)' },
+        { label: 'Wyoming', value: '$7.25/hr (federal)' },
+      ]
+    }],
+    about: 'Twenty-five states and DC have minimum wages above the $7.25 federal floor. California\'s fast-food minimum wage of $20 per hour (AB 1228, 2024) applies to chains with 60+ locations nationally. Several states index their minimums to CPI for automatic annual increases.',
+    related: ['state-income-tax-rates', 'overtime-rules-by-state', 'hourly-to-annual-converter'],
+  },
+  {
+    slug: 'credit-score-range-guide',
+    title: 'Credit Score Range Guide',
+    desc: 'Credit score ranges for FICO and VantageScore, with lending implications at each tier.',
+    cat: 'finance',
+    icon: '📊',
+    toolType: 'table',
+    staticContent: () => [
+      {
+        type: 'table', label: 'FICO Score Ranges', content: [
+          { label: 'Exceptional: 800–850', value: 'Best rates; instant approvals' },
+          { label: 'Very Good: 740–799', value: 'Near-best mortgage rates' },
+          { label: 'Good: 670–739', value: 'Most cards approved; standard rates' },
+          { label: 'Fair: 580–669', value: 'Subprime rates; FHA loan eligible' },
+          { label: 'Poor: 300–579', value: 'Secured cards only; large deposits required' },
+        ]
+      },
+      {
+        type: 'table', label: 'VantageScore Ranges', content: [
+          { label: 'Excellent: 781–850', value: 'Prime borrower' },
+          { label: 'Good: 661–780', value: 'Standard approvals' },
+          { label: 'Fair: 601–660', value: 'Limited options; higher rates' },
+          { label: 'Poor: 500–600', value: 'Few approvals; secured products' },
+          { label: 'Very Poor: 300–499', value: 'Near-impossible to get unsecured credit' },
+        ]
+      },
+      {
+        type: 'list', label: 'Key Credit Score Factors (FICO)', content: [
+          'Payment history — 35% (most important)',
+          'Credit utilization — 30% (keep below 30%)',
+          'Length of credit history — 15%',
+          'New credit / inquiries — 10%',
+          'Credit mix — 10%',
+        ]
+      },
+    ],
+    about: 'FICO scores are used by 90% of top US lenders. VantageScore is used by some credit monitoring services. A score of 760+ generally qualifies for the best mortgage rates. Each 20-point tier can mean hundreds of dollars per year in interest on a mortgage.',
+    related: ['federal-tax-brackets-2025', 'mortgage-rate-history', 'debt-payoff-estimator'],
+  },
+  {
+    slug: 'mortgage-rate-history',
+    title: 'Average Mortgage Rate History',
+    desc: '30-year fixed mortgage rate averages from 2000 to 2025 (Freddie Mac PMMS data).',
+    cat: 'finance',
+    icon: '🏠',
+    toolType: 'table',
+    staticContent: () => [{
+      type: 'table', label: '30-Year Fixed Mortgage Rate Averages', content: [
+        { label: '2025 (YTD avg)', value: '~6.8%' },
+        { label: '2024 (annual avg)', value: '6.72%' },
+        { label: '2023 (annual avg)', value: '6.81%' },
+        { label: '2022 (annual avg)', value: '5.34%' },
+        { label: '2021 (annual avg)', value: '2.96%' },
+        { label: '2020 (annual avg)', value: '3.11%' },
+        { label: '2019 (annual avg)', value: '3.94%' },
+        { label: '2018 (annual avg)', value: '4.54%' },
+        { label: '2017 (annual avg)', value: '3.99%' },
+        { label: '2016 (annual avg)', value: '3.65%' },
+        { label: '2015 (annual avg)', value: '3.85%' },
+        { label: '2010 (annual avg)', value: '4.69%' },
+        { label: '2008 (annual avg)', value: '6.03%' },
+        { label: '2006 (annual avg)', value: '6.41%' },
+        { label: '2000 (annual avg)', value: '8.05%' },
+        { label: 'All-time low (Jan 2021)', value: '2.65%' },
+        { label: 'All-time high (Oct 1981)', value: '18.63%' },
+      ]
+    }],
+    about: 'Mortgage rates are primarily driven by the 10-year Treasury yield plus a spread reflecting lender risk. The spread widened significantly in 2022–2024 compared to historical norms. Rates hit a 40-year high of ~7.8% in October 2023 before retreating slightly.',
+    related: ['home-affordability-quick-check', 'mortgage-rate-comparison', 'federal-reserve-rate-history'],
+  },
+  {
+    slug: 'federal-reserve-rate-history',
+    title: 'Federal Reserve Rate History',
+    desc: 'Federal Funds Rate target range from 2015 to 2025.',
+    cat: 'finance',
+    icon: '🏦',
+    toolType: 'table',
+    staticContent: () => [{
+      type: 'table', label: 'Federal Funds Rate (Target Range)', content: [
+        { label: 'March 2025', value: '4.25%–4.50%' },
+        { label: 'Dec 2024 (cut −0.25%)', value: '4.25%–4.50%' },
+        { label: 'Nov 2024 (cut −0.25%)', value: '4.50%–4.75%' },
+        { label: 'Sep 2024 (cut −0.50%)', value: '4.75%–5.00%' },
+        { label: 'Jul 2023 – Sep 2024 (hold)', value: '5.25%–5.50%' },
+        { label: 'Peak (Jul 2023)', value: '5.25%–5.50%' },
+        { label: 'Mar 2022 – Jul 2023 (hiking cycle)', value: 'Raised 525 bps total' },
+        { label: 'Mar 2020 – Mar 2022', value: '0%–0.25%' },
+        { label: 'Dec 2018 (peak pre-COVID)', value: '2.25%–2.50%' },
+        { label: 'Dec 2015 (first post-GFC hike)', value: '0.25%–0.50%' },
+        { label: 'Dec 2008 – Dec 2015', value: '0%–0.25%' },
+      ]
+    }],
+    about: 'The Fed raised rates by 525 basis points from March 2022 to July 2023 — the fastest tightening cycle since the 1980s — to combat 40-year-high inflation. Rate cuts began in September 2024 as inflation approached the 2% target.',
+    related: ['mortgage-rate-history', 'prime-rate-history', 'inflation-rate-history'],
+  },
+  {
+    slug: 'prime-rate-history',
+    title: 'Prime Rate History',
+    desc: 'US Prime Rate from 2010 to 2025 — the benchmark for HELOCs, credit cards, and variable loans.',
+    cat: 'finance',
+    icon: '📉',
+    toolType: 'table',
+    staticContent: () => [{
+      type: 'table', label: 'US Prime Rate', content: [
+        { label: 'Current (2025)', value: '7.50%' },
+        { label: 'Dec 2024', value: '7.50%' },
+        { label: 'Jul 2023 – Dec 2024', value: '8.50%' },
+        { label: 'Mar 2022 – Jul 2023', value: 'Rose from 3.50% to 8.50%' },
+        { label: '2020–2022', value: '3.25%' },
+        { label: '2019', value: '4.75%–5.50%' },
+        { label: '2018', value: '4.00%–5.50%' },
+        { label: '2017', value: '3.75%–4.50%' },
+        { label: '2016', value: '3.50%–3.75%' },
+        { label: '2008–2015', value: '3.25% (historic low)' },
+      ]
+    }],
+    about: 'The prime rate is typically set at the federal funds target rate plus 3 percentage points. Banks use it as a benchmark for variable-rate products. A 0.25% Fed rate change immediately raises or lowers payments on prime-based HELOCs and credit cards.',
+    related: ['federal-reserve-rate-history', 'mortgage-rate-history', 'inflation-rate-history'],
+  },
+  {
+    slug: 'inflation-rate-history',
+    title: 'US Inflation Rate History (CPI)',
+    desc: 'Annual US inflation rate (CPI-U) from 2010 to 2025.',
+    cat: 'finance',
+    icon: '📈',
+    toolType: 'table',
+    staticContent: () => [{
+      type: 'table', label: 'Annual US Inflation Rate (CPI-U)', content: [
+        { label: '2024', value: '2.9%' },
+        { label: '2023', value: '3.4%' },
+        { label: '2022', value: '8.0% (40-year high)' },
+        { label: '2021', value: '4.7%' },
+        { label: '2020', value: '1.2%' },
+        { label: '2019', value: '2.3%' },
+        { label: '2018', value: '2.4%' },
+        { label: '2017', value: '2.1%' },
+        { label: '2016', value: '2.1%' },
+        { label: '2015', value: '0.1%' },
+        { label: '2014', value: '0.8%' },
+        { label: '2013', value: '1.5%' },
+        { label: '2012', value: '1.7%' },
+        { label: '2011', value: '3.2%' },
+        { label: '2010', value: '1.6%' },
+      ]
+    }],
+    about: 'CPI-U (Consumer Price Index for All Urban Consumers) measures the price change of a fixed basket of goods and services. The Fed\'s target is 2% annual inflation. The 2022 peak of 9.1% (June) was the highest since 1981, driven by pandemic supply disruptions and energy prices.',
+    related: ['federal-reserve-rate-history', 'prime-rate-history', 'cpi-history'],
+  },
+  {
+    slug: 'cpi-history',
+    title: 'CPI Index Values History',
+    desc: 'Bureau of Labor Statistics CPI-U annual index values 2010–2025 for inflation calculations.',
+    cat: 'finance',
+    icon: '📊',
+    toolType: 'table',
+    staticContent: () => [{
+      type: 'table', label: 'CPI-U Annual Average Index (1982–84 = 100)', content: [
+        { label: '2024', value: '314.2' },
+        { label: '2023', value: '304.7' },
+        { label: '2022', value: '292.7' },
+        { label: '2021', value: '271.0' },
+        { label: '2020', value: '258.8' },
+        { label: '2019', value: '255.7' },
+        { label: '2018', value: '251.1' },
+        { label: '2017', value: '245.1' },
+        { label: '2016', value: '240.0' },
+        { label: '2015', value: '237.0' },
+        { label: '2014', value: '236.7' },
+        { label: '2012', value: '229.6' },
+        { label: '2010', value: '218.1' },
+        { label: '2000', value: '172.2' },
+        { label: '1990', value: '130.7' },
+        { label: '1980', value: '82.4' },
+      ]
+    }],
+    about: 'To calculate inflation between years, divide the later CPI by the earlier CPI, subtract 1, and multiply by 100. $100 in 2010 (CPI 218.1) equals $144 in 2024 (CPI 314.2) — a 44% increase over 14 years.',
+    related: ['inflation-rate-history', 'federal-reserve-rate-history'],
+  },
+  {
+    slug: 'debt-payoff-estimator',
+    title: 'Debt Payoff Date Estimator',
+    desc: 'Estimate when you\'ll be debt-free based on balance, APR, and monthly payment.',
+    cat: 'finance',
+    icon: '💳',
+    toolType: 'estimator',
+    fields: [
+      { k: 'balance', l: 'Current Balance', type: 'number', placeholder: '5000', unit: '$' },
+      { k: 'rate', l: 'Annual Interest Rate', type: 'number', placeholder: '19.9', unit: '%' },
+      { k: 'payment', l: 'Monthly Payment', type: 'number', placeholder: '200', unit: '$' },
+    ],
+    fn: (inputs) => {
+      const bal = parseFloat(inputs.balance), rate = parseFloat(inputs.rate) / 100 / 12, pay = parseFloat(inputs.payment)
+      if (isNaN(bal) || isNaN(rate) || isNaN(pay) || pay <= 0) return [{ type: 'text', label: 'Error', content: 'Enter valid balance, rate, and payment.' }]
+      if (pay <= bal * rate) return [{ type: 'text', label: 'Warning', content: 'Payment too low — you\'re not covering interest. Increase your payment.' }]
+      const months = Math.ceil(Math.log(pay / (pay - bal * rate)) / Math.log(1 + rate))
+      const totalPaid = pay * months
+      const totalInterest = totalPaid - bal
+      const date = new Date(); date.setMonth(date.getMonth() + months)
+      return [{
+        type: 'table', label: 'Payoff Estimate', content: [
+          { label: 'Months to payoff', value: months.toString() },
+          { label: 'Payoff date', value: date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' }) },
+          { label: 'Total paid', value: `$${totalPaid.toFixed(2)}` },
+          { label: 'Total interest paid', value: `$${totalInterest.toFixed(2)}` },
+          { label: 'Interest % of balance', value: `${(totalInterest / bal * 100).toFixed(1)}%` },
+        ]
+      }]
+    },
+    about: 'Credit card debt at 20% APR costs roughly $1 in interest for every $5 of balance per year. Doubling your minimum payment dramatically reduces both payoff time and total interest. The avalanche method (highest APR first) minimizes total interest paid.',
+    related: ['credit-score-range-guide', 'federal-tax-brackets-2025'],
+  },
+  {
+    slug: 'savings-estimator',
+    title: 'Savings Growth Estimator',
+    desc: 'Estimate savings growth over time with a starting amount, monthly contribution, and interest rate.',
+    cat: 'finance',
+    icon: '🏦',
+    toolType: 'estimator',
+    fields: [
+      { k: 'start', l: 'Starting Balance', type: 'number', placeholder: '1000', unit: '$' },
+      { k: 'monthly', l: 'Monthly Contribution', type: 'number', placeholder: '500', unit: '$' },
+      { k: 'rate', l: 'Annual Interest Rate', type: 'number', placeholder: '4.5', unit: '%' },
+      { k: 'years', l: 'Years', type: 'number', placeholder: '10' },
+    ],
+    fn: (inputs) => {
+      const start = parseFloat(inputs.start) || 0, monthly = parseFloat(inputs.monthly) || 0, rate = parseFloat(inputs.rate) / 100 / 12, years = parseFloat(inputs.years) || 1
+      const months = years * 12
+      let balance = start
+      for (let i = 0; i < months; i++) balance = balance * (1 + rate) + monthly
+      const totalContributed = start + monthly * months
+      const interestEarned = balance - totalContributed
+      return [{
+        type: 'table', label: 'Savings Estimate', content: [
+          { label: 'Final balance', value: `$${balance.toFixed(2)}` },
+          { label: 'Total contributed', value: `$${totalContributed.toFixed(2)}` },
+          { label: 'Interest earned', value: `$${interestEarned.toFixed(2)}` },
+          { label: 'Return on contributions', value: `${(interestEarned / totalContributed * 100).toFixed(1)}%` },
+        ]
+      }]
+    },
+    about: 'High-yield savings accounts offered 4.5–5.0% APY in 2024–2025, the highest rates since 2006. Online banks and credit unions consistently offered higher yields than traditional brick-and-mortar banks. Interest compounds monthly in most savings accounts.',
+    related: ['401k-contribution-limits-2025', 'ira-contribution-limits-2025', 'debt-payoff-estimator'],
+  },
+  {
+    slug: 'snap-income-limits',
+    title: 'SNAP Income Limits 2025',
+    desc: 'SNAP (food stamps) gross and net income limits and maximum benefit amounts by household size.',
+    cat: 'finance',
+    icon: '🍎',
+    toolType: 'table',
+    staticContent: () => [{
+      type: 'table', label: '2025 SNAP Limits (48 contiguous states)', content: [
+        { label: '1 person — gross income limit', value: '$2,005/mo ($24,060/yr)' },
+        { label: '1 person — max monthly benefit', value: '$292' },
+        { label: '2 people — gross income limit', value: '$2,707/mo ($32,484/yr)' },
+        { label: '2 people — max monthly benefit', value: '$536' },
+        { label: '3 people — gross income limit', value: '$3,408/mo ($40,896/yr)' },
+        { label: '3 people — max monthly benefit', value: '$768' },
+        { label: '4 people — gross income limit', value: '$4,111/mo ($49,332/yr)' },
+        { label: '4 people — max monthly benefit', value: '$973' },
+        { label: 'Each additional person add', value: '+$702/mo gross, +$211 max benefit' },
+        { label: 'Income threshold', value: '130% of federal poverty level (gross)' },
+      ]
+    }],
+    about: 'SNAP eligibility is based on 130% of the federal poverty level for gross income and 100% for net income (after deductions). Benefits are recertified every 6–12 months. Alaska and Hawaii have higher limits due to higher costs of living.',
+    related: ['medicaid-income-limits-by-state', 'minimum-wage-by-state-2025', 'federal-tax-brackets-2025'],
+  },
+  {
+    slug: 'medicaid-income-limits-by-state',
+    title: 'Medicaid Income Limits by State 2025',
+    desc: 'Medicaid income eligibility thresholds for adults and children by state.',
+    cat: 'finance',
+    icon: '🏥',
+    toolType: 'table',
+    staticContent: () => [{
+      type: 'table', label: 'Medicaid Income Limits (% of Federal Poverty Level)', content: [
+        { label: 'ACA expansion states — adults', value: '138% FPL ($20,783 single 2025)' },
+        { label: 'Non-expansion states — adults', value: 'Varies; often very limited' },
+        { label: 'Children (most states)', value: '200%–300% FPL' },
+        { label: 'Pregnant women (most states)', value: '185%–250% FPL' },
+        { label: 'Texas — adults', value: '18% FPL (not expanded)' },
+        { label: 'Florida — adults', value: '100% FPL for parents only' },
+        { label: 'California — adults (Medi-Cal)', value: '138% FPL' },
+        { label: 'New York — adults', value: '138% FPL' },
+        { label: 'Georgia — limited expansion 2023', value: '100% FPL (working adults)' },
+        { label: 'Federal Poverty Level (2025, single)', value: '$15,060/yr' },
+      ]
+    }],
+    about: '40 states plus DC have adopted ACA Medicaid expansion, covering adults up to 138% FPL (~$20,783 for a single person). The 10 holdout states leave millions of working-poor adults ineligible. The gap between Medicaid eligibility and ACA marketplace subsidies leaves many uninsured.',
+    related: ['snap-income-limits', 'minimum-wage-by-state-2025', 'federal-tax-brackets-2025'],
+  },
+  {
+    slug: 'paycheck-frequency-guide',
+    title: 'Paycheck Frequency Guide',
+    desc: 'Number of paychecks per year and conversion factors for weekly, biweekly, semimonthly, and monthly pay.',
+    cat: 'finance',
+    icon: '📅',
+    toolType: 'table',
+    staticContent: () => [{
+      type: 'table', label: 'Pay Frequency Conversion', content: [
+        { label: 'Weekly (52/year)', value: 'Annual salary ÷ 52' },
+        { label: 'Biweekly (26/year)', value: 'Annual salary ÷ 26' },
+        { label: 'Semimonthly (24/year)', value: 'Annual salary ÷ 24' },
+        { label: 'Monthly (12/year)', value: 'Annual salary ÷ 12' },
+        { label: '3-paycheck months (biweekly)', value: '2 times per year' },
+        { label: 'Most common US schedule', value: 'Biweekly (26 checks)' },
+        { label: 'Biweekly vs. semimonthly', value: 'Biweekly: 2 extra paychecks per year' },
+      ]
+    }],
+    about: 'Biweekly pay (every two weeks) is the most common in the US. Semimonthly pay (1st and 15th) divides the year into exactly 24 periods. In biweekly years, employees receive 3 paychecks in 2 months, which requires careful budgeting.',
+    related: ['minimum-wage-by-state-2025', 'hourly-to-annual-converter', 'cobra-cost-calculator'],
+  },
+  {
+    slug: 'bank-routing-number-lookup-guide',
+    title: 'Bank Routing Number Guide',
+    desc: 'Routing numbers for major US banks and instructions for finding your routing number.',
+    cat: 'finance',
+    icon: '🏦',
+    toolType: 'table',
+    staticContent: () => [{
+      type: 'table', label: 'Major US Bank Routing Numbers', content: [
+        { label: 'JPMorgan Chase (East)', value: '021000021' },
+        { label: 'JPMorgan Chase (West)', value: '322271627' },
+        { label: 'Bank of America (East)', value: '026009593' },
+        { label: 'Wells Fargo (East)', value: '021200025' },
+        { label: 'Wells Fargo (West)', value: '121042882' },
+        { label: 'Citibank (New York)', value: '021000089' },
+        { label: 'US Bank', value: '091000022' },
+        { label: 'PNC Bank (East)', value: '043000096' },
+        { label: 'Capital One (Virginia)', value: '051405515' },
+        { label: 'TD Bank', value: '031101266' },
+        { label: 'Navy Federal Credit Union', value: '256074974' },
+        { label: 'Ally Bank', value: '124003116' },
+        { label: 'Charles Schwab Bank', value: '121202211' },
+        { label: 'Note: routing numbers can vary by region', value: 'Check your check or bank app' },
+      ]
+    }],
+    about: 'Routing numbers are 9-digit codes identifying financial institutions in the US. They appear on the bottom left of paper checks. Your account number follows the routing number. Routing numbers differ by geographic region for large banks — always verify through your bank\'s official website.',
+    related: ['paycheck-frequency-guide', 'direct-deposit-timing-guide'],
+  },
+  {
+    slug: 'direct-deposit-timing-guide',
+    title: 'Direct Deposit Timing Guide',
+    desc: 'How long direct deposit takes and when to expect funds for major US banks.',
+    cat: 'finance',
+    icon: '💸',
+    toolType: 'table',
+    staticContent: () => [{
+      type: 'table', label: 'Direct Deposit Timing', content: [
+        { label: 'Standard ACH processing time', value: '1–2 business days' },
+        { label: 'Payroll direct deposit (typical arrival)', value: 'Business day before payday (some banks)' },
+        { label: 'Chime early direct deposit', value: 'Up to 2 days early' },
+        { label: 'Ally Bank early direct deposit', value: 'Up to 2 days early' },
+        { label: 'Chase — early pay availability', value: 'Same day if submitted by cutoff' },
+        { label: 'USPS mail (paper check)', value: '3–5 business days after issue' },
+        { label: 'Federal tax refund (e-file)', value: 'Within 21 days (IRS target)' },
+        { label: 'Federal tax refund (paper check)', value: '4–6 weeks' },
+        { label: 'IRS "Where\'s My Refund" status update', value: '24 hours after e-filing' },
+      ]
+    }],
+    about: 'ACH (Automated Clearing House) processes most payroll and government payments. Many online banks and fintech apps offer early access to direct deposits by posting funds when the payment is received rather than on the scheduled date. Banks are not required to release funds early.',
+    related: ['paycheck-frequency-guide', 'bank-routing-number-lookup-guide'],
+  },
+]
