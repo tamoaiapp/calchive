@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary',
-    site: '@calchive',
+    site: '@usacalc',
   },
   robots: {
     index: true,
