@@ -44,7 +44,7 @@ export async function generateMetadata({
       break
     default:
       title = `${slug.split('-').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')} | Calchive`
-      description = `Complete guide to ${slug.replace(/-/g, ' ')} — facts, strategies, and tools for 2025.`
+      description = `Complete guide to ${slug.replace(/-/g, ' ')} — facts, strategies, and tools for ${new Date().getFullYear()}.`
   }
 
   return {

@@ -296,7 +296,7 @@ export default async function SalaryStatePage({
           </tbody>
         </table>
         <p style={{ margin: '0.75rem 0 0', fontSize: 12, color: 'var(--dim)' }}>
-          Married filing jointly adds a standard deduction of $30,000 vs $15,000 for single filers (2025).
+          Married filing jointly adds a standard deduction of $30,000 vs $15,000 for single filers ({new Date().getFullYear()} IRS rules).
         </p>
       </div>
 
@@ -438,6 +438,22 @@ export default async function SalaryStatePage({
                 acceptedAnswer: {
                   '@type': 'Answer',
                   text: `A ${formattedGross} salary in ${state.name} takes home ${formatCurrency(bd.netAnnual)} per year after federal and state taxes, for a ${formatPct(bd.effectiveRate)} effective tax rate. Monthly take-home is ${formatCurrency(bd.netMonthly)}.`,
+                },
+              },
+              {
+                '@type': 'Question',
+                name: `How much is ${formattedGross} per month after taxes in ${state.name}?`,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: `A ${formattedGross} annual salary in ${state.name} comes to ${formatCurrency(bd.netMonthly)} per month after taxes (single filer). Bi-weekly take-home is ${formatCurrency(bd.netBiweekly)} and weekly is ${formatCurrency(bd.netWeekly)}.`,
+                },
+              },
+              {
+                '@type': 'Question',
+                name: `What is the effective tax rate on ${formattedGross} in ${state.name}?`,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: `The combined effective tax rate on a ${formattedGross} salary in ${state.name} is ${formatPct(bd.effectiveRate)} for a single filer. This includes federal income tax (${formatCurrency(bd.federalIncomeTax)}), ${state.hasIncomeTax ? `${state.abbr} state tax (${formatCurrency(bd.stateIncomeTax)}), ` : 'no state income tax, '}Social Security (${formatCurrency(bd.socialSecurity)}), and Medicare (${formatCurrency(bd.medicare)}).`,
                 },
               },
             ],

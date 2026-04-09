@@ -82,7 +82,7 @@ function buildStateContext(state: StateData): string {
   }
   const topRate = (state.incomeTaxRate * 100).toFixed(1)
   if (state.slug === 'california') {
-    return `California's 13.3% top marginal rate is the highest in the nation, applying to income over $1 million. Even moderate earners face meaningful state tax burden: a single filer at $75,000 hits the 9.3% bracket. The state also levies SDI (State Disability Insurance) at 0.9% on all wages with no cap in 2025. ${state.localTaxNote ? state.localTaxNote + '.' : ''}`
+    return `California's 13.3% top marginal rate is the highest in the nation, applying to income over $1 million. Even moderate earners face meaningful state tax burden: a single filer at $75,000 hits the 9.3% bracket. The state also levies SDI (State Disability Insurance) at 0.9% on all wages with no cap. ${state.localTaxNote ? state.localTaxNote + '.' : ''}`
   }
   if (state.slug === 'new-york') {
     return `New York's top rate of 10.9% applies above $25 million, but most six-figure earners sit in the 6.85% bracket. ${state.localTaxNote ? state.localTaxNote + '.' : ''} The combination of state and city taxes makes New York City one of the highest-tax jurisdictions in the US for wage earners.`
@@ -228,7 +228,7 @@ export function generateProfessionPage(profession: ProfessionData): SalaryProfes
   const faq: { q: string; a: string }[] = [
     {
       q: `What is the average ${profession.title} salary in the US?`,
-      a: `The national median ${profession.title} salary is ${formatCurrency(profession.medianSalary)} per year as of 2025. The middle 50% of earners fall between ${formatCurrency(profession.p25Salary)} and ${formatCurrency(profession.p75Salary)}, while the top 10% earn over ${formatCurrency(profession.p90Salary)}.`,
+      a: `The national median ${profession.title} salary is ${formatCurrency(profession.medianSalary)} per year (BLS data). The middle 50% of earners fall between ${formatCurrency(profession.p25Salary)} and ${formatCurrency(profession.p75Salary)}, while the top 10% earn over ${formatCurrency(profession.p90Salary)}.`,
     },
     {
       q: `How much does a ${profession.title} take home after taxes?`,

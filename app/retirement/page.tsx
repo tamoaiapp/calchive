@@ -5,10 +5,10 @@ import { SS_CLAIMING_BENEFIT, K401_BENCHMARK_MULTIPLIER } from '@/lib/retirement
 export const metadata: Metadata = {
   title: 'Retirement Planning: Can You Retire? Social Security & 401k | Calchive',
   description:
-    'Can you retire at 62 with $1 million? How much should you have in your 401k at 50? Real retirement benchmarks, Social Security claiming data, and income projections for 2025.',
+    'Can you retire at 62 with $1 million? How much should you have in your 401k at 50? Real retirement benchmarks, Social Security claiming data, and income projections.',
   alternates: { canonical: '/retirement' },
   openGraph: {
-    title: 'Retirement Planning Guides & Calculators 2025 | Calchive',
+    title: 'Retirement Planning Guides & Calculators 2026 | Calchive',
     description: 'Retire-at pages, Social Security claiming analysis, 401k benchmarks — all with real data.',
     type: 'website',
   },

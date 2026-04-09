@@ -3,9 +3,9 @@ import Link from 'next/link'
 import AdSlot from '@/components/AdSlot'
 
 export const metadata: Metadata = {
-  title: 'Federal Income Tax Calculator 2025 | Tax Brackets & Rates | Calchive',
+  title: 'Federal Income Tax Calculator 2026 | Tax Brackets & Rates | Calchive',
   description:
-    'Calculate federal income tax, capital gains tax, self-employment tax, and state income taxes for 2025. Real IRS brackets, exact math, all filing statuses.',
+    'Calculate federal income tax, capital gains tax, self-employment tax, and state income taxes for 2026. Real IRS brackets, exact math, all filing statuses.',
   alternates: { canonical: '/tax' },
 }
 

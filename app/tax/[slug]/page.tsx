@@ -285,7 +285,7 @@ function FederalTaxView({ page, slug }: { page: TaxPage; slug: string }) {
                 name: `How much federal tax do I pay on ${fmt(bd.grossIncome)}?`,
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: `A ${FILING_STATUS_LABELS[bd.filing].toLowerCase()} filer earning ${fmt(bd.grossIncome)} in 2025 pays ${fmt(bd.totalFederalTax)} in federal income tax — an effective rate of ${fmtPct(page.effectiveRate)}. The marginal rate is ${fmtPct(page.marginalRate)}.`,
+                  text: `A ${FILING_STATUS_LABELS[bd.filing].toLowerCase()} filer earning ${fmt(bd.grossIncome)} pays ${fmt(bd.totalFederalTax)} in federal income tax — an effective rate of ${fmtPct(page.effectiveRate)}. The marginal rate is ${fmtPct(page.marginalRate)}.`,
                 },
               },
               {
@@ -427,7 +427,15 @@ function CapGainsView({ page }: { page: CapGainsTaxPage }) {
                 name: `How much capital gains tax on ${fmt(page.gainAmount)}?`,
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: `A ${bd.isLongTerm ? 'long-term' : 'short-term'} capital gain of ${fmt(page.gainAmount)} triggers ${fmt(bd.taxOwed)} in federal tax for a single filer with no other income in 2025. Net proceeds after tax: ${fmt(bd.netProceeds)}.`,
+                  text: `A ${bd.isLongTerm ? 'long-term' : 'short-term'} capital gain of ${fmt(page.gainAmount)} triggers ${fmt(bd.taxOwed)} in federal tax for a single filer with no other income. Net proceeds after tax: ${fmt(bd.netProceeds)}.`,
+                },
+              },
+              {
+                '@type': 'Question',
+                name: `Is it better to hold investments long-term for tax purposes?`,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: `Long-term capital gains (assets held over 1 year) are taxed at 0%, 15%, or 20% depending on income — significantly lower than short-term gains, which are taxed as ordinary income up to 37%. On ${fmt(page.gainAmount)}, the tax difference between long-term and short-term treatment is ${fmt(bd.shortTermComparison - bd.taxOwed)}.`,
                 },
               },
             ],
@@ -548,6 +556,14 @@ function SETaxView({ page }: { page: SETaxPage }) {
                 acceptedAnswer: {
                   '@type': 'Answer',
                   text: `Self-employment tax on ${fmt(bd.netEarnings)} in net earnings is ${fmt(bd.selfEmploymentTax)} (15.3% on 92.35% of net earnings). Combined with federal income tax, total tax is ${fmt(bd.totalTax)} — a ${fmtPct(bd.effectiveRate)} effective rate. Take-home: ${fmt(bd.takeHome)}.`,
+                },
+              },
+              {
+                '@type': 'Question',
+                name: `Can I deduct self-employment tax from my income?`,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: `Yes. The IRS allows you to deduct 50% of self-employment tax from gross income when calculating federal income tax. On ${fmt(bd.netEarnings)} in net earnings, that deduction is ${fmt(bd.selfEmploymentTax * 0.5)}, reducing your taxable income before federal brackets apply.`,
                 },
               },
             ],
@@ -695,6 +711,14 @@ function StateTaxView({ page }: { page: StateTaxPage }) {
                   text: page.hasStateTax
                     ? `${page.stateName} income tax on ${fmt(bd.grossIncome)} is ${fmt(bd.stateTax)} — a ${fmtPct(bd.stateEffectiveRate)} effective state rate. Combined with federal taxes and FICA, total tax is ${fmt(bd.totalTax)}, leaving take-home pay of ${fmt(bd.takeHome)}.`
                     : `${page.stateName} has no state income tax. At ${fmt(bd.grossIncome)}, you pay only federal taxes of ${fmt(bd.federalTax + bd.ficaSocialSecurity + bd.ficaMedicare)}, keeping ${fmt(bd.takeHome)}.`,
+                },
+              },
+              {
+                '@type': 'Question',
+                name: `What is the total tax burden on ${fmt(bd.grossIncome)} in ${page.stateName}?`,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: `On ${fmt(bd.grossIncome)} gross income in ${page.stateName}, total taxes equal ${fmt(bd.totalTax)} — a ${fmtPct(bd.effectiveRate)} combined effective rate. This includes federal income tax (${fmt(bd.federalTax)}), ${page.hasStateTax ? `${page.stateName} state income tax (${fmt(bd.stateTax)}), ` : 'no state income tax, '}Social Security (${fmt(bd.ficaSocialSecurity)}), and Medicare (${fmt(bd.ficaMedicare)}).`,
                 },
               },
             ],

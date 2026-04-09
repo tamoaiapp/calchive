@@ -289,8 +289,8 @@ function generateFallbackContent(slug: string): GuideContent {
 
   return {
     slug,
-    title: `${title}: Complete Guide for 2025`,
-    description: `Everything you need to know about ${title.toLowerCase()} in 2025 — key facts, strategies, and tools.`,
+    title: `${title}: Complete Guide for ${new Date().getFullYear()}`,
+    description: `Everything you need to know about ${title.toLowerCase()} in ${new Date().getFullYear()} — key facts, strategies, and tools.`,
     category,
     keyFact: `Understanding ${title.toLowerCase()} is essential for financial health`,
     sections: [

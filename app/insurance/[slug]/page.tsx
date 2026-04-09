@@ -51,7 +51,7 @@ export async function generateMetadata({
     }
     default:
       title = `${slug.split('-').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')} | Calchive`
-      description = `Complete guide to ${slug.replace(/-/g, ' ')} — facts, costs, and strategies for 2025.`
+      description = `Complete guide to ${slug.replace(/-/g, ' ')} — facts, costs, and strategies for ${new Date().getFullYear()}.`
   }
 
   return {

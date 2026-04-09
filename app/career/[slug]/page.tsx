@@ -69,7 +69,7 @@ export async function generateMetadata({
     title = [
       `${config.profession.title} Career Guide: Salary, Path & Interview Tips`,
       `${config.profession.title} Career: How to Break In, Advance & Earn More`,
-      `${config.profession.title} Careers — Salary, Skills & Outlook (2025)`,
+      `${config.profession.title} Careers — Salary, Skills & Outlook (${new Date().getFullYear()})`,
       `Becoming a ${config.profession.title}: Complete Career & Salary Guide`,
     ][vi]
     desc = [
@@ -284,7 +284,7 @@ function HowToBecomePage({ profession }: { profession: CareerExtended }) {
       </nav>
 
       <h1 style={{ fontSize: 'clamp(1.5rem, 4vw, 2.2rem)', fontWeight: 900, margin: '0 0 0.75rem', lineHeight: 1.15 }}>
-        How to Become a {profession.title} in 2025: Roadmap & Timeline
+        How to Become a {profession.title}: Roadmap & Timeline
       </h1>
       <p style={{ color: 'var(--muted)', lineHeight: 1.7, marginBottom: '2rem' }}>
         {profession.dayInLife}
