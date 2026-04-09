@@ -185,7 +185,7 @@ const GUIDE_CONTENT_MAP: Record<string, GuideContent> = {
   },
   'how-to-start-llc': {
     slug: 'how-to-start-llc',
-    title: 'How to Start an LLC in 2025: Step-by-Step (All 50 States)',
+    title: 'How to Start an LLC: Step-by-Step Guide (All 50 States)',
     description: 'Forming an LLC costs $50–$500 depending on state, takes 1–4 weeks, and protects personal assets from business debts. Here\'s the exact process.',
     category: 'Small Business',
     keyFact: 'Wyoming and Delaware are the most popular states for LLC formation: Wyoming charges just $102/year, Delaware $300',
@@ -220,7 +220,7 @@ const GUIDE_CONTENT_MAP: Record<string, GuideContent> = {
   '529-plan-guide': {
     slug: '529-plan-guide',
     title: '529 Plan Guide: Tax-Free College Savings Explained',
-    description: 'A 529 plan grows tax-free and withdrawals are tax-free for education expenses. In 2025, you can contribute up to $18,000/year per beneficiary without gift tax.',
+    description: 'A 529 plan grows tax-free and withdrawals are tax-free for education expenses. You can contribute up to $18,000/year per beneficiary without gift tax (annual exclusion limit).',
     category: 'Kids & Family',
     keyFact: 'Investing $200/month from birth to 18 in a 529 at 7% growth = ~$82,000 for college',
     sections: [
