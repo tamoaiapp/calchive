@@ -4,12 +4,12 @@ import { STATES_ALL } from '@/lib/salary/states'
 import { MORTGAGE_RATES_2025 } from '@/lib/mortgage/data'
 
 export const metadata: Metadata = {
-  title: 'Mortgage Payment Calculator by State & Price | Calchive',
+  title: 'Mortgage Payment Calculator by State & Price | USA-Calc',
   description:
     'Calculate your exact monthly mortgage payment for any home price in all 50 US states. Includes property tax, insurance, PMI, and 30-year vs 15-year comparison.',
   alternates: { canonical: '/mortgage' },
   openGraph: {
-    title: 'Mortgage Payment Calculator by State & Price | Calchive',
+    title: 'Mortgage Payment Calculator by State & Price | USA-Calc',
     description: 'Monthly mortgage payment for any home price in all 50 US states — real 2025 rates and tax data.',
     type: 'website',
   },

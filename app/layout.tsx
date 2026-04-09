@@ -5,14 +5,14 @@ import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Calchive — Free Online Calculators for Finance, Salary, Tax & More',
-    template: '%s | Calchive',
+    default: 'USA-Calc — Free Online Calculators for Finance, Salary, Tax & More',
+    template: '%s | USA-Calc',
   },
   description:
     'Free online calculators and tools for finance, salary, tax, mortgage, health and more. Fast, accurate, and easy to use.',
-  metadataBase: new URL('https://calchive.com'),
+  metadataBase: new URL('https://usa-calc.com'),
   openGraph: {
-    siteName: 'Calchive',
+    siteName: 'USA-Calc',
     type: 'website',
     locale: 'en_US',
   },

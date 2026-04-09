@@ -3,12 +3,12 @@ import Link from 'next/link'
 import { CREDIT_SCORE_RANGES } from '@/lib/credit/data'
 
 export const metadata: Metadata = {
-  title: 'Credit Score Guides, Card Interest & Debt Calculators 2025 | Calchive',
+  title: 'Credit Score Guides, Card Interest & Debt Calculators 2025 | USA-Calc',
   description:
     'What does your credit score mean? See what you qualify for at every FICO score from 500–850, credit card interest costs, and debt payoff plans. Real 2025 data.',
   alternates: { canonical: '/credit' },
   openGraph: {
-    title: 'Credit Score Guides & Debt Calculators 2025 | Calchive',
+    title: 'Credit Score Guides & Debt Calculators 2025 | USA-Calc',
     description: 'Credit scores 500–850 explained — what you qualify for, interest rates, and how to improve.',
     type: 'website',
   },

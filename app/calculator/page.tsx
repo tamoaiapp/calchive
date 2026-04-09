@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     'Browse 300+ free online calculators for finance, tax, mortgage, salary, health, math, business, and retirement. No signup required.',
   openGraph: {
-    title: 'Free Online Calculators | Calchive',
+    title: 'Free Online Calculators | USA-Calc',
     description: '300+ free calculators for finance, tax, mortgage, health, and more.',
   },
 }

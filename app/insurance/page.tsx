@@ -3,12 +3,12 @@ import Link from 'next/link'
 import { NATIONAL_AUTO_AVG, AUTO_INSURANCE_BY_STATE } from '@/lib/insurance/data'
 
 export const metadata: Metadata = {
-  title: 'Insurance Guides & Cost Estimators 2025 | Calchive',
+  title: 'Insurance Guides & Cost Estimators 2025 | USA-Calc',
   description:
     'Real insurance cost data for all 50 states. Auto insurance rates, life insurance premiums by age, health insurance plans, and home insurance averages — no estimates, actual 2025 data.',
   alternates: { canonical: '/insurance' },
   openGraph: {
-    title: 'Insurance Guides & Cost Estimators 2025 | Calchive',
+    title: 'Insurance Guides & Cost Estimators 2025 | USA-Calc',
     description: 'Auto, home, life, and health insurance costs for every US state — real 2025 data.',
     type: 'website',
   },

@@ -22,7 +22,7 @@ export async function generateMetadata({
   if (!guide) return { title: 'Page Not Found' }
 
   return {
-    title: `${guide.title} | Calchive`,
+    title: `${guide.title} | USA-Calc`,
     description: guide.description,
     alternates: { canonical: `/guide/${slug}` },
     openGraph: {
@@ -147,9 +147,9 @@ export default async function GuideSlugPage({
             '@type': 'Article',
             headline: guide.title,
             description: guide.description,
-            url: `https://calchive.com/guide/${slug}`,
-            publisher: { '@type': 'Organization', name: 'Calchive', url: 'https://calchive.com' },
-            isPartOf: { '@type': 'WebSite', name: 'Calchive', url: 'https://calchive.com' },
+            url: `https://usa-calc.com/guide/${slug}`,
+            publisher: { '@type': 'Organization', name: 'USA-Calc', url: 'https://usa-calc.com' },
+            isPartOf: { '@type': 'WebSite', name: 'USA-Calc', url: 'https://usa-calc.com' },
           }),
         }}
       />

@@ -26,7 +26,7 @@ export async function generateMetadata({
     title: `${tool.title} — Free Online Tool`,
     description: tool.desc,
     openGraph: {
-      title: `${tool.title} | Calchive`,
+      title: `${tool.title} | USA-Calc`,
       description: tool.desc,
       type: 'website',
     },
@@ -174,7 +174,7 @@ export default async function ToolPage({
             description: tool.desc,
             applicationCategory: 'UtilitiesApplication',
             operatingSystem: 'Web',
-            url: `https://calchive.com/tool/${tool.slug}`,
+            url: `https://usa-calc.com/tool/${tool.slug}`,
             offers: {
               '@type': 'Offer',
               price: '0',

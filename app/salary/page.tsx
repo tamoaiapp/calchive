@@ -4,12 +4,12 @@ import { STATES_ALL } from '@/lib/salary/states'
 import { PROFESSIONS, PROFESSION_CATEGORIES } from '@/lib/salary/professions'
 
 export const metadata: Metadata = {
-  title: 'Salary After Tax Calculator by State | Calchive',
+  title: 'Salary After Tax Calculator by State | USA-Calc',
   description:
     'Calculate your take-home pay for any salary in all 50 US states. Real 2025 federal and state tax data. See monthly, weekly, and hourly breakdowns.',
   alternates: { canonical: '/salary' },
   openGraph: {
-    title: 'Salary After Tax Calculator by State | Calchive',
+    title: 'Salary After Tax Calculator by State | USA-Calc',
     description: 'Calculate take-home pay for any salary in all 50 US states — real 2025 tax data.',
     type: 'website',
   },

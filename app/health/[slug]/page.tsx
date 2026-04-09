@@ -238,10 +238,10 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${title} | Calchive`,
+    title: `${title} | USA-Calc`,
     description,
     alternates: { canonical: `/health/${slug}` },
-    openGraph: { title: `${title} | Calchive`, description, type: 'article' },
+    openGraph: { title: `${title} | USA-Calc`, description, type: 'article' },
   }
 }
 
@@ -1021,10 +1021,10 @@ function PageWrapper({
   const schema = slug ? {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    url: `https://calchive.com/health/${slug}`,
+    url: `https://usa-calc.com/health/${slug}`,
     name: pageTitle ?? breadcrumb[breadcrumb.length - 1]?.label ?? 'Health',
     description: pageDesc ?? 'Free health calculator and reference guide.',
-    isPartOf: { '@type': 'WebSite', name: 'Calchive', url: 'https://calchive.com' },
+    isPartOf: { '@type': 'WebSite', name: 'USA-Calc', url: 'https://usa-calc.com' },
   } : null
 
   return (

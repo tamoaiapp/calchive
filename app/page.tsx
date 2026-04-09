@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Calchive — Free Online Calculators for Finance, Salary, Tax & More',
+  title: 'USA-Calc — Free Online Calculators for Finance, Salary, Tax & More',
   description:
     'Free online calculators and tools for US finance, salary, federal tax, mortgage payments, BMI, retirement, and more. Fast, accurate, no sign-up.',
 }

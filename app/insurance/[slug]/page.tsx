@@ -50,12 +50,12 @@ export async function generateMetadata({
       break
     }
     default:
-      title = `${slug.split('-').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')} | Calchive`
+      title = `${slug.split('-').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')} | USA-Calc`
       description = `Complete guide to ${slug.replace(/-/g, ' ')} — facts, costs, and strategies for ${new Date().getFullYear()}.`
   }
 
   return {
-    title: `${title} | Calchive`,
+    title: `${title} | USA-Calc`,
     description,
     alternates: { canonical: `/insurance/${slug}` },
     openGraph: { title, description, type: 'article' },
@@ -442,10 +442,10 @@ export default async function InsuranceSlugPage({
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'WebPage',
-            url: `https://calchive.com/insurance/${slug}`,
+            url: `https://usa-calc.com/insurance/${slug}`,
             name: getTitle(),
             description: 'Insurance cost estimates, rates by state, and guides for US consumers.',
-            isPartOf: { '@type': 'WebSite', name: 'Calchive', url: 'https://calchive.com' },
+            isPartOf: { '@type': 'WebSite', name: 'USA-Calc', url: 'https://usa-calc.com' },
           }),
         }}
       />

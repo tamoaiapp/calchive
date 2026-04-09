@@ -5,11 +5,11 @@ import { ALL_TOOLS, TOOL_CATEGORIES } from '@/lib/tools'
 export const dynamic = 'force-static'
 
 export const metadata: Metadata = {
-  title: 'Free Online Tools — Converters, Calculators, Generators & References | Calchive',
+  title: 'Free Online Tools — Converters, Calculators, Generators & References | USA-Calc',
   description:
     'Browse 300+ free online tools: unit converters, tax reference tables, password generators, real estate guides, career tools, and lifestyle utilities. No signup required.',
   openGraph: {
-    title: 'Free Online Tools | Calchive',
+    title: 'Free Online Tools | USA-Calc',
     description: '300+ free tools — converters, generators, checkers, and reference tables.',
   },
   alternates: {

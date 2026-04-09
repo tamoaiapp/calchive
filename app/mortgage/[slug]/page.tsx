@@ -52,7 +52,7 @@ export async function generateMetadata({
     title = `Refinance ${config.currentRate}% to ${config.newRate}% on ${formatUSD(config.balance!)} Balance`
     description = `Should you refinance from ${config.currentRate}% to ${config.newRate}% on a ${formatUSD(config.balance!)} mortgage? Monthly savings, break-even point, and total interest comparison.`
   } else if (config.type === 'guide') {
-    title = `${config.guideTitle} | Calchive`
+    title = `${config.guideTitle} | USA-Calc`
     description = `Complete guide to ${config.guideTitle?.toLowerCase()}. Real 2025 data, calculations, and expert tips.`
   }
 
@@ -727,7 +727,7 @@ export default async function MortgagePage({
   const config = parseMortgageSlug(slug)
   if (!config) notFound()
 
-  const pageUrl = `https://calchive.com/mortgage/${slug}`
+  const pageUrl = `https://usa-calc.com/mortgage/${slug}`
 
   const schema = {
     '@context': 'https://schema.org',
@@ -739,7 +739,7 @@ export default async function MortgagePage({
         ? config.guideTitle
         : `Mortgage Calculator`,
     description: 'Free mortgage calculator with property tax, PMI, and insurance. Monthly payment breakdown for US home buyers.',
-    isPartOf: { '@type': 'WebSite', name: 'Calchive', url: 'https://calchive.com' },
+    isPartOf: { '@type': 'WebSite', name: 'USA-Calc', url: 'https://usa-calc.com' },
   }
 
   const jsonLd = (

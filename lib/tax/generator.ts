@@ -272,7 +272,7 @@ export function generateFederalTaxPage(amount: number, filingSlug: string): TaxP
   const marginalPct = fmtPct(marginalRate)
 
   const h1 = `Federal Income Tax on ${formattedAmount} (${label}, 2025)`
-  const metaTitle = `How Much Federal Tax on ${formattedAmount}? ${label} 2025 | Calchive`
+  const metaTitle = `How Much Federal Tax on ${formattedAmount}? ${label} 2025 | USA-Calc`
   const metaDesc = `A ${label.toLowerCase()} filer earning ${formattedAmount} in 2025 pays ${formattedTax} in federal income tax — ${effectivePct} effective rate, ${marginalPct} marginal rate. Take-home: ${formattedTakeHome}.`
 
   const keyFacts: string[] = [
@@ -325,7 +325,7 @@ export function generateCapitalGainsPage(amount: number, holdingPeriod: string):
   const netProceeds = amount - taxOwed
 
   const h1 = `Capital Gains Tax on ${formattedAmount} (${isLongTerm ? 'Long-Term' : 'Short-Term'}, 2025)`
-  const metaTitle = `${isLongTerm ? 'Long' : 'Short'}-Term Capital Gains Tax on ${formattedAmount} (2025) | Calchive`
+  const metaTitle = `${isLongTerm ? 'Long' : 'Short'}-Term Capital Gains Tax on ${formattedAmount} (2025) | USA-Calc`
   const metaDesc = `A ${isLongTerm ? 'long-term' : 'short-term'} capital gain of ${formattedAmount} in 2025 triggers ${formattedTax} in federal tax — ${isLongTerm ? `${fmtPct(longTermRate)} long-term rate` : `${fmtPct(shortTermTax / amount)} effective rate`}. Net proceeds: ${fmt(netProceeds)}.`
 
   const allFilings: FilingStatus[] = ['single', 'married_jointly', 'married_separately', 'head_of_household']
@@ -418,7 +418,7 @@ export function generateSETaxPage(amount: number): SETaxPage {
   const formattedSE = fmt(selfEmploymentTax)
 
   const h1 = `Self-Employment Tax on ${formattedAmount} Net Earnings (2025)`
-  const metaTitle = `Self-Employment Tax on ${formattedAmount} (2025) — Full Breakdown | Calchive`
+  const metaTitle = `Self-Employment Tax on ${formattedAmount} (2025) — Full Breakdown | USA-Calc`
   const metaDesc = `A self-employed person with ${formattedAmount} in net earnings owes ${formattedSE} in self-employment tax plus ${fmt(federalIncomeTax)} in federal income tax — ${fmtPct(effectiveRate)} combined effective rate.`
 
   const keyFacts: string[] = [
@@ -493,7 +493,7 @@ export function generateStateTaxPage(stateSlug: string, amount: number): StateTa
     ? `${stateName} Income Tax on ${formattedAmount} (2025)`
     : `${stateName} Income Tax on ${formattedAmount} — No State Income Tax (2025)`
 
-  const metaTitle = `${stateName} Income Tax on ${formattedAmount} (2025) | Calchive`
+  const metaTitle = `${stateName} Income Tax on ${formattedAmount} (2025) | USA-Calc`
   const metaDesc = hasStateTax
     ? `A ${formattedAmount} earner in ${stateName} pays ${fmt(stateTax)} in state income tax and ${fmt(federalTax)} federal — ${fmtPct(effectiveRate)} total effective rate. Take-home: ${fmt(takeHome)}.`
     : `${stateName} has no state income tax. At ${formattedAmount}, you pay only federal taxes — ${fmt(federalTax)} — keeping ${fmt(takeHome)} after all taxes.`
@@ -551,7 +551,7 @@ export function generateTaxGuidePage(topic: string): TaxGuidePage {
   const guides: Record<string, TaxGuidePage> = {
     'tax-brackets-2025': {
       h1: '2025 Federal Income Tax Brackets — Rates by Filing Status',
-      metaTitle: '2025 Federal Tax Brackets: Rates, Thresholds & How They Work | Calchive',
+      metaTitle: '2025 Federal Tax Brackets: Rates, Thresholds & How They Work | USA-Calc',
       metaDesc: 'The 2025 federal income tax brackets run from 10% to 37%. Single filers hit the 22% bracket at $48,475. See full tables for all four filing statuses.',
       sections: [
         {
@@ -595,7 +595,7 @@ export function generateTaxGuidePage(topic: string): TaxGuidePage {
     },
     'standard-deduction-2025': {
       h1: '2025 Standard Deduction — Amounts by Filing Status',
-      metaTitle: '2025 Standard Deduction: $15,000 Single, $30,000 Married | Calchive',
+      metaTitle: '2025 Standard Deduction: $15,000 Single, $30,000 Married | USA-Calc',
       metaDesc: 'The 2025 standard deduction is $15,000 for single filers, $30,000 for married filing jointly, and $22,500 for head of household. See when itemizing beats the standard deduction.',
       sections: [
         {
@@ -628,7 +628,7 @@ export function generateTaxGuidePage(topic: string): TaxGuidePage {
     },
     'capital-gains-rates-2025': {
       h1: '2025 Capital Gains Tax Rates — Long-Term and Short-Term',
-      metaTitle: '2025 Capital Gains Tax Rates: 0%, 15%, 20% Thresholds | Calchive',
+      metaTitle: '2025 Capital Gains Tax Rates: 0%, 15%, 20% Thresholds | USA-Calc',
       metaDesc: 'Long-term capital gains in 2025 are taxed at 0%, 15%, or 20% depending on income. Single filers pay 0% up to $47,025 in gains. Full thresholds and examples inside.',
       sections: [
         {
@@ -664,7 +664,7 @@ export function generateTaxGuidePage(topic: string): TaxGuidePage {
     },
     'self-employment-tax-guide': {
       h1: 'Self-Employment Tax Guide 2025 — Rates, Deductions & Calculator',
-      metaTitle: 'Self-Employment Tax 2025: 15.3% Rate, Deductions & How to Pay | Calchive',
+      metaTitle: 'Self-Employment Tax 2025: 15.3% Rate, Deductions & How to Pay | USA-Calc',
       metaDesc: 'Self-employed workers pay 15.3% self-employment tax (12.4% Social Security + 2.9% Medicare) on 92.35% of net earnings. Deduct half and pay quarterly to avoid penalties.',
       sections: [
         {
@@ -693,7 +693,7 @@ export function generateTaxGuidePage(topic: string): TaxGuidePage {
     },
     'fica-tax-2025': {
       h1: 'FICA Tax 2025 — Social Security and Medicare Rates',
-      metaTitle: 'FICA Tax 2025: Social Security 6.2% + Medicare 1.45% | Calchive',
+      metaTitle: 'FICA Tax 2025: Social Security 6.2% + Medicare 1.45% | USA-Calc',
       metaDesc: 'FICA tax in 2025 is 7.65% total: 6.2% Social Security (wage base $176,100) and 1.45% Medicare. High earners add 0.9% Additional Medicare Tax. See full breakdown.',
       sections: [
         {
@@ -725,7 +725,7 @@ export function generateTaxGuidePage(topic: string): TaxGuidePage {
     },
     'tax-filing-deadlines-2025': {
       h1: '2025 Tax Filing Deadlines — Key Dates for Individuals and Businesses',
-      metaTitle: '2025 Tax Deadlines: April 15, Extension Dates & Quarterly Due Dates | Calchive',
+      metaTitle: '2025 Tax Deadlines: April 15, Extension Dates & Quarterly Due Dates | USA-Calc',
       metaDesc: 'The 2025 individual tax return deadline is April 15, 2026. Quarterly estimated tax payments are due April 15, June 16, September 15, and January 15. Extensions push the deadline to October 15.',
       sections: [
         {
@@ -757,7 +757,7 @@ export function generateTaxGuidePage(topic: string): TaxGuidePage {
     },
     'w2-vs-1099-guide': {
       h1: 'W-2 vs 1099: Tax Differences, Self-Employment Tax & Take-Home Pay',
-      metaTitle: 'W-2 vs 1099 Tax Comparison 2025 — What You Actually Take Home | Calchive',
+      metaTitle: 'W-2 vs 1099 Tax Comparison 2025 — What You Actually Take Home | USA-Calc',
       metaDesc: 'A 1099 worker earning $80,000 pays ~$11,304 more in self-employment tax than a W-2 employee at the same gross. See the full tax cost comparison and break-even rate.',
       sections: [
         {
@@ -785,7 +785,7 @@ export function generateTaxGuidePage(topic: string): TaxGuidePage {
     },
     'quarterly-estimated-taxes-guide': {
       h1: 'Quarterly Estimated Taxes 2025 — How to Calculate and Pay',
-      metaTitle: 'Quarterly Estimated Tax Payments 2025: Dates, Amounts & How to Pay | Calchive',
+      metaTitle: 'Quarterly Estimated Tax Payments 2025: Dates, Amounts & How to Pay | USA-Calc',
       metaDesc: 'Self-employed workers and investors must make quarterly estimated tax payments in 2025. Due April 15, June 16, September 15, and January 15. Learn how to calculate the right amount.',
       sections: [
         {
@@ -814,7 +814,7 @@ export function generateTaxGuidePage(topic: string): TaxGuidePage {
     },
     'tax-deductions-guide': {
       h1: '2025 Tax Deductions — Biggest Write-Offs for Individuals',
-      metaTitle: 'Tax Deductions 2025: Standard, Itemized & Above-the-Line | Calchive',
+      metaTitle: 'Tax Deductions 2025: Standard, Itemized & Above-the-Line | USA-Calc',
       metaDesc: 'The 2025 standard deduction is $15,000 (single) or $30,000 (married). Above-the-line deductions include student loan interest, IRA contributions, and SE health insurance. See what you can claim.',
       sections: [
         {
@@ -851,7 +851,7 @@ export function generateTaxGuidePage(topic: string): TaxGuidePage {
     },
     'tax-credits-guide': {
       h1: '2025 Tax Credits — Biggest Dollar-for-Dollar Tax Reducers',
-      metaTitle: '2025 Tax Credits: Child Tax Credit, EITC & Education Credits | Calchive',
+      metaTitle: '2025 Tax Credits: Child Tax Credit, EITC & Education Credits | USA-Calc',
       metaDesc: 'Tax credits reduce your tax bill dollar-for-dollar — more valuable than deductions. The 2025 Child Tax Credit is $2,000 per child. EITC reaches up to $7,830 for families.',
       sections: [
         {
@@ -883,7 +883,7 @@ export function generateTaxGuidePage(topic: string): TaxGuidePage {
     },
     'backdoor-roth-guide': {
       h1: 'Backdoor Roth IRA 2025 — How It Works, Limits & Tax Impact',
-      metaTitle: 'Backdoor Roth IRA 2025: Steps, Limits & Pro-Rata Rule Explained | Calchive',
+      metaTitle: 'Backdoor Roth IRA 2025: Steps, Limits & Pro-Rata Rule Explained | USA-Calc',
       metaDesc: 'High earners above $165,000 (single) or $246,000 (married) can\'t contribute directly to a Roth IRA. The backdoor Roth allows after-tax Traditional IRA contributions followed by a Roth conversion.',
       sections: [
         {
@@ -912,7 +912,7 @@ export function generateTaxGuidePage(topic: string): TaxGuidePage {
     },
     '401k-tax-benefits-guide': {
       h1: '401(k) Tax Benefits 2025 — Contribution Limits & Tax Savings',
-      metaTitle: '401(k) Tax Benefits 2025: $23,500 Limit, Roth vs Traditional | Calchive',
+      metaTitle: '401(k) Tax Benefits 2025: $23,500 Limit, Roth vs Traditional | USA-Calc',
       metaDesc: 'A 401(k) contribution of $23,500 saves $5,170 in federal taxes for a 22% bracket earner. 2025 limits: $23,500 employee, $70,000 total. Roth vs Traditional comparison inside.',
       sections: [
         {
@@ -956,7 +956,7 @@ export function generateTaxGuidePage(topic: string): TaxGuidePage {
     },
     'hsa-tax-benefits-guide': {
       h1: 'HSA Tax Benefits 2025 — Triple Tax Advantage Explained',
-      metaTitle: 'HSA Tax Benefits 2025: $4,300 Limit, Triple Tax Advantage | Calchive',
+      metaTitle: 'HSA Tax Benefits 2025: $4,300 Limit, Triple Tax Advantage | USA-Calc',
       metaDesc: 'HSAs offer a triple tax advantage: contributions are pre-tax, growth is tax-free, and withdrawals for medical expenses are tax-free. 2025 limits: $4,300 (individual), $8,550 (family).',
       sections: [
         {
@@ -989,7 +989,7 @@ export function generateTaxGuidePage(topic: string): TaxGuidePage {
     },
     'llc-tax-guide': {
       h1: 'LLC Taxes 2025 — How Single-Member and Multi-Member LLCs Are Taxed',
-      metaTitle: 'LLC Tax Guide 2025: Single-Member, Partnership & S-Corp Election | Calchive',
+      metaTitle: 'LLC Tax Guide 2025: Single-Member, Partnership & S-Corp Election | USA-Calc',
       metaDesc: 'Single-member LLCs are taxed as sole proprietors (Schedule C) — all profits subject to 15.3% self-employment tax. Multi-member LLCs file as partnerships. S-corp election can reduce SE tax.',
       sections: [
         {
@@ -1014,7 +1014,7 @@ export function generateTaxGuidePage(topic: string): TaxGuidePage {
     },
     's-corp-vs-llc-taxes': {
       h1: 'S-Corp vs LLC Taxes 2025 — Which Structure Saves More?',
-      metaTitle: 'S-Corp vs LLC Tax Comparison 2025 — SE Tax Savings Calculator | Calchive',
+      metaTitle: 'S-Corp vs LLC Tax Comparison 2025 — SE Tax Savings Calculator | USA-Calc',
       metaDesc: 'Comparing S-corp vs LLC taxes: an LLC owner earning $120,000 profit pays $16,956 in SE tax; an S-corp with $70,000 salary saves $7,650. S-corps win above ~$50k profit.',
       sections: [
         {
@@ -1057,7 +1057,7 @@ export function generateTaxGuidePage(topic: string): TaxGuidePage {
     // Fallback for missing guides
     return {
       h1: `${topic.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())} — Tax Guide 2025`,
-      metaTitle: `${topic.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())} (2025) | Calchive`,
+      metaTitle: `${topic.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())} (2025) | USA-Calc`,
       metaDesc: `Complete guide to ${topic.replace(/-/g, ' ')} for 2025.`,
       sections: [],
       faq: [],

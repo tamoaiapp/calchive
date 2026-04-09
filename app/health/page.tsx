@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Health Calculators & Tools — BMI, Calories, Fitness | Calchive',
+  title: 'Health Calculators & Tools — BMI, Calories, Fitness | USA-Calc',
   description:
     'Free health calculators for BMI, calories, ideal weight, heart rate zones, TDEE, and more. Based on WHO, CDC, and Mifflin-St Jeor standards.',
   alternates: { canonical: '/health' },

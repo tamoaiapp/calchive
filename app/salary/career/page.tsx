@@ -8,7 +8,7 @@ import { formatCurrency } from '@/lib/salary/generator'
 import { getStateBySlug } from '@/lib/salary/states'
 
 export const metadata: Metadata = {
-  title: 'Career Salary After Tax — All Professions | Calchive',
+  title: 'Career Salary After Tax — All Professions | USA-Calc',
   description:
     'See take-home pay for 200+ careers and professions. Real 2025 BLS salary data with federal tax breakdowns for every occupation.',
   alternates: { canonical: '/salary/career' },

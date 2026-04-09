@@ -28,7 +28,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Negotiation',
     content: {
       h1: 'How to Negotiate Salary: A Tactical Guide With Scripts',
-      metaTitle: 'How to Negotiate Salary: Scripts, Tactics & Timing | Calchive',
+      metaTitle: 'How to Negotiate Salary: Scripts, Tactics & Timing | USA-Calc',
       metaDesc: 'Step-by-step salary negotiation guide with real scripts, counter-offer tactics, and data on how much you can gain by negotiating vs. accepting the first offer.',
       intro: 'According to a 2023 Fidelity survey, 85% of people who negotiate salary get at least some of what they ask for — yet only 37% of workers always negotiate. The median first offer is 10–20% below the employer\'s actual budget ceiling, meaning accepting without negotiating costs the average professional $5,000–$15,000 in year-one income alone.',
       sections: [
@@ -75,7 +75,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Negotiation',
     content: {
       h1: 'How to Ask for a Raise: Timing, Scripts & the Data That Works',
-      metaTitle: 'How to Ask for a Raise: Timing, Evidence & Scripts | Calchive',
+      metaTitle: 'How to Ask for a Raise: Timing, Evidence & Scripts | USA-Calc',
       metaDesc: 'Practical guide on how to request a raise — when to ask, how to build your case with performance data, and what to say when your manager pushes back.',
       intro: 'The median raise in 2024 across US companies was 3.8% (Willis Towers Watson), while job-switchers saw median increases of 10–15%. If you\'re asking for a raise at your current employer, you\'re competing against both the budget cycle and your manager\'s perception of your market value. Making a data-driven case consistently outperforms an emotional appeal.',
       sections: [
@@ -117,7 +117,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Career Development',
     content: {
       h1: 'How to Get Promoted: The Evidence-Based Framework',
-      metaTitle: 'How to Get Promoted at Work: Framework & Strategies | Calchive',
+      metaTitle: 'How to Get Promoted at Work: Framework & Strategies | USA-Calc',
       metaDesc: 'Practical guide on earning a promotion — from performing at the next level to building visibility with decision-makers and creating urgency around your timeline.',
       intro: 'The most common reason people don\'t get promoted is not performance — it\'s visibility. A 2023 McKinsey study found that managers cited "not knowing what the employee wanted" and "not seeing them operate at the next level" as the top two blockers to promotion. Both are problems you can solve.',
       sections: [
@@ -159,7 +159,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Job Search',
     content: {
       h1: 'How to Write a Resume That Actually Gets Interviews in 2026',
-      metaTitle: 'How to Write a Resume in 2026: Format, ATS Tips & Examples | Calchive',
+      metaTitle: 'How to Write a Resume in 2026: Format, ATS Tips & Examples | USA-Calc',
       metaDesc: 'Complete guide to writing a resume that passes ATS screening and impresses hiring managers — format, bullet writing, length rules, and common mistakes to avoid.',
       intro: 'The average resume spends 7.4 seconds with a recruiter\'s eyes before being moved to a pile or discarded. Applicant Tracking Systems (ATS) filter 75% of resumes before a human ever sees them. These two realities mean that resume writing is simultaneously a keyword optimization exercise and a human communication challenge.',
       sections: [
@@ -201,7 +201,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Job Search',
     content: {
       h1: 'How to Write a Cover Letter That Hiring Managers Actually Read',
-      metaTitle: 'How to Write a Cover Letter in 2026: Examples & Format | Calchive',
+      metaTitle: 'How to Write a Cover Letter in 2026: Examples & Format | USA-Calc',
       metaDesc: 'Modern cover letter guide — when they\'re read, what to include, what to skip, and how to write one that complements (not repeats) your resume.',
       intro: 'Cover letters are read by hiring managers roughly 50% of the time according to a 2023 ResumeLab survey — but when they are read, they significantly influence the outcome. The function of a cover letter has shifted from a formal introduction to a targeted argument for why you specifically fit this specific role, written by a person who has done their research.',
       sections: [
@@ -244,7 +244,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Job Search',
     content: {
       h1: 'How to Prepare for a Job Interview: The Complete 2026 Guide',
-      metaTitle: 'How to Prepare for a Job Interview: Steps, Research & Practice | Calchive',
+      metaTitle: 'How to Prepare for a Job Interview: Steps, Research & Practice | USA-Calc',
       metaDesc: 'Complete interview preparation guide — company research, behavioral story preparation, question practice, and what to do in the 24 hours before your interview.',
       intro: 'Interview performance correlates strongly with preparation — specifically with how many times candidates have practiced articulating their stories out loud, not just in their heads. A LinkedIn study found that candidates who do structured interview prep are 50% more likely to receive an offer than those who review questions mentally without rehearsal.',
       sections: [
@@ -285,7 +285,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Job Search',
     content: {
       h1: '50 Behavioral Interview Questions & How to Answer Each',
-      metaTitle: '50 Behavioral Interview Questions With Answer Frameworks | Calchive',
+      metaTitle: '50 Behavioral Interview Questions With Answer Frameworks | USA-Calc',
       metaDesc: 'Complete list of behavioral interview questions organized by theme — leadership, conflict, failure, collaboration — with what interviewers are actually looking for in each answer.',
       intro: 'Behavioral interview questions are based on the premise that past behavior predicts future performance. Every question follows the pattern "Tell me about a time when..." and requires a specific, structured story — not a hypothetical answer. Hiring managers are trained to probe generic answers until they get specific examples, so preparing real stories in advance is the only durable preparation strategy.',
       sections: [
@@ -331,7 +331,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Job Search',
     content: {
       h1: 'The STAR Method Interview Framework: How to Use It & Examples',
-      metaTitle: 'STAR Method Interview: Framework, Examples & Mistakes to Avoid | Calchive',
+      metaTitle: 'STAR Method Interview: Framework, Examples & Mistakes to Avoid | USA-Calc',
       metaDesc: 'Complete guide to the STAR method — Situation, Task, Action, Result — with real examples across different career fields and common mistakes that undermine strong stories.',
       intro: 'The STAR method (Situation, Task, Action, Result) is the standard structure for answering behavioral interview questions and is the explicit evaluation framework used by most Fortune 500 companies, consulting firms, and tech companies in structured interviews. A properly formatted STAR answer takes 60–120 seconds, is specific rather than general, and ends with a measurable result.',
       sections: [
@@ -374,7 +374,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Job Search',
     content: {
       h1: 'How to Follow Up After a Job Interview: Timing, Templates & Next Steps',
-      metaTitle: 'How to Follow Up After a Job Interview: Timing & Templates | Calchive',
+      metaTitle: 'How to Follow Up After a Job Interview: Timing & Templates | USA-Calc',
       metaDesc: 'When and how to follow up after a job interview — thank-you note timing, what to include, how to handle silence, and when to move on.',
       intro: 'A post-interview thank-you email within 24 hours is one of the few low-effort, high-impact actions job seekers consistently skip. A 2023 TopInterview survey found that 68% of hiring managers consider thank-you notes when making final decisions — and 22% would eliminate an otherwise-strong candidate who didn\'t send one.',
       sections: [
@@ -417,7 +417,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Negotiation',
     content: {
       h1: 'How to Negotiate Equity: RSUs, Options & Offer Letter Red Flags',
-      metaTitle: 'How to Negotiate Equity in a Job Offer: RSUs, Options & Vesting | Calchive',
+      metaTitle: 'How to Negotiate Equity in a Job Offer: RSUs, Options & Vesting | USA-Calc',
       metaDesc: 'Practical guide to negotiating equity compensation — understanding RSUs vs. options, vesting schedules, valuation math, and how to counter a low equity offer.',
       intro: 'Equity compensation has become central to tech and startup compensation packages, yet most candidates negotiate it less aggressively than base salary because they understand it less. A software engineer accepting an offer with 50% fewer RSUs than a comparable offer is effectively taking a 10–30% total compensation cut.',
       sections: [
@@ -455,7 +455,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Negotiation',
     content: {
       h1: 'Job Offer Evaluation Guide: How to Analyze Total Compensation',
-      metaTitle: 'How to Evaluate a Job Offer: Total Comp, Benefits & Trade-offs | Calchive',
+      metaTitle: 'How to Evaluate a Job Offer: Total Comp, Benefits & Trade-offs | USA-Calc',
       metaDesc: 'Complete guide to evaluating a job offer — comparing total compensation (base, bonus, equity), assessing benefits, evaluating career trajectory, and deciding when to accept or negotiate.',
       intro: 'A job offer\'s base salary is often the least informative number on the page. Total compensation — including annual bonus, equity, benefits, and retirement match — frequently exceeds base salary by 20–50% for professional roles. Two offers with identical base salaries can differ by $50,000 or more in actual annual value.',
       sections: [
@@ -493,7 +493,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Negotiation',
     content: {
       h1: 'How to Counter a Job Offer: Scripts and Strategies That Work',
-      metaTitle: 'How to Counter a Job Offer: Scripts, Timing & Tactics | Calchive',
+      metaTitle: 'How to Counter a Job Offer: Scripts, Timing & Tactics | USA-Calc',
       metaDesc: 'Step-by-step guide to countering a job offer — when to respond, how to frame the counteroffer, what numbers to use, and how to handle multiple competing offers.',
       intro: 'Countering a job offer is standard professional behavior — employers universally expect it at the professional level. A 2023 Indeed survey found that 85% of employers who receive a counteroffer respond with an improved offer. The average candidate who counters receives 5–10% above their initial offer number.',
       sections: [
@@ -534,7 +534,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Career Development',
     content: {
       h1: 'How to Network Professionally Without Feeling Like a Fraud',
-      metaTitle: 'How to Network Professionally in 2026: LinkedIn, Events & Follow-Up | Calchive',
+      metaTitle: 'How to Network Professionally in 2026: LinkedIn, Events & Follow-Up | USA-Calc',
       metaDesc: 'Practical professional networking guide — how to approach people authentically, what to say, how to follow up, and how to build a network that actually creates opportunities.',
       intro: 'Roughly 70% of jobs are filled through networking before they\'re ever publicly posted, according to a LinkedIn study. But most advice about networking focuses on tactics (attend events, send LinkedIn requests) without addressing the fundamental reason people avoid it: networking that feels transactional creates genuine discomfort. Effective networking is relationship-building with a long time horizon, not favor extraction.',
       sections: [
@@ -571,7 +571,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Job Search',
     content: {
       h1: 'LinkedIn Profile Optimization: What Actually Gets You Found in 2026',
-      metaTitle: 'LinkedIn Profile Tips 2026: Optimization, Keywords & Photo | Calchive',
+      metaTitle: 'LinkedIn Profile Tips 2026: Optimization, Keywords & Photo | USA-Calc',
       metaDesc: 'Actionable LinkedIn profile tips — headline formulas, keyword placement, about section writing, and profile settings that affect recruiter visibility.',
       intro: 'LinkedIn has 900 million users but recruiter sourcing is highly concentrated — the top 10% of profiles receive roughly 50% of all recruiter outreach. The difference between a profile that attracts inbound opportunities and one that doesn\'t is largely a combination of keyword optimization, activity level, and profile completeness.',
       sections: [
@@ -609,7 +609,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Job Search',
     content: {
       h1: 'How to Find a Job Fast: A 30-Day Action Plan',
-      metaTitle: 'How to Find a Job Fast: 30-Day Action Plan & Job Search Tactics | Calchive',
+      metaTitle: 'How to Find a Job Fast: 30-Day Action Plan & Job Search Tactics | USA-Calc',
       metaDesc: 'Practical guide to accelerating your job search — which tactics move the needle, how to prioritize, and the daily actions that lead to offers within 30 days.',
       intro: 'The average job search takes 3–6 months for professional roles, but candidates who run structured, high-intensity searches consistently compress this timeline to 4–6 weeks. The difference is almost entirely about activity volume, targeting precision, and channel prioritization.',
       sections: [
@@ -647,7 +647,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Job Search',
     content: {
       h1: 'How to Work with a Recruiter: What They Can and Can\'t Do For You',
-      metaTitle: 'How to Work with a Recruiter: Tips, Red Flags & Best Practices | Calchive',
+      metaTitle: 'How to Work with a Recruiter: Tips, Red Flags & Best Practices | USA-Calc',
       metaDesc: 'Guide to working with both internal corporate recruiters and external agency recruiters — what they\'re incentivized to do, how to use them effectively, and red flags to watch for.',
       intro: 'Recruiters operate within two very different models that most job seekers conflate. Internal (corporate) recruiters are employees of the company hiring you — they\'re advocates for the company\'s interests, not yours. External (agency) recruiters work on contingency and are paid by the company when you\'re hired — they\'re advocates for completing transactions, not necessarily for your best interest.',
       sections: [
@@ -684,7 +684,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Career Development',
     content: {
       h1: 'How to Change Careers: The Honest Guide for Professionals Over 28',
-      metaTitle: 'How to Change Careers Successfully: Timeline, Costs & Realistic Steps | Calchive',
+      metaTitle: 'How to Change Careers Successfully: Timeline, Costs & Realistic Steps | USA-Calc',
       metaDesc: 'Realistic career change guide — how to identify transferable skills, what retraining actually costs and takes, and how to navigate the entry-level vs. experience mismatch.',
       intro: 'The average American changes careers (not just jobs) 5–7 times in a lifetime. The hardest phase of a career change is the transition period where you\'re overqualified for entry-level positions and underqualified for the target role at your current seniority. Planning that gap explicitly — rather than hoping to bridge it — determines whether the transition succeeds.',
       sections: [
@@ -722,7 +722,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Career Development',
     content: {
       h1: 'How to Resign Professionally: Timing, Scripts & Loose Ends to Tie',
-      metaTitle: 'How to Resign from a Job: Notice Period, Scripts & What to Expect | Calchive',
+      metaTitle: 'How to Resign from a Job: Notice Period, Scripts & What to Expect | USA-Calc',
       metaDesc: 'Complete guide to resigning professionally — when to give notice, what to say, how to handle counteroffers, and protecting your professional reputation on the way out.',
       intro: 'How you leave a job follows you — references, LinkedIn recommendations, and industry reputation all trace back to whether you gave adequate notice, transitioned professionally, and left on good terms. Most professionals underestimate how small their industry is and how frequently they\'ll encounter former managers and colleagues.',
       sections: [
@@ -759,7 +759,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Self-Employment',
     content: {
       h1: 'How to Freelance Full Time: The Financial Reality Check',
-      metaTitle: 'How to Freelance Full Time: Rates, Taxes, Clients & Cash Flow | Calchive',
+      metaTitle: 'How to Freelance Full Time: Rates, Taxes, Clients & Cash Flow | USA-Calc',
       metaDesc: 'Practical guide to full-time freelancing — how to set your rate, find clients, manage cash flow, handle taxes, and transition from employment without financial disaster.',
       intro: 'Freelancing generates an average of 30% higher gross income than equivalent employment for the same skill set — but also generates 100% of its own expenses (health insurance, retirement contributions, self-employment tax, and client acquisition costs). Net income parity typically requires 40–60% higher gross revenue than your employment salary.',
       sections: [
@@ -796,7 +796,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Personal Finance',
     content: {
       h1: 'Financial Planning in Your 20s: What Matters Most',
-      metaTitle: 'Financial Planning in Your 20s: Priorities, Mistakes & First Steps | Calchive',
+      metaTitle: 'Financial Planning in Your 20s: Priorities, Mistakes & First Steps | USA-Calc',
       metaDesc: 'Practical financial planning guide for people in their 20s — emergency fund, debt, retirement accounts, and why compound interest means the decisions you make now have 3x the impact of decisions made in your 30s.',
       intro: 'A 25-year-old who contributes $5,000 to a Roth IRA today will have roughly $108,000 from that single contribution by age 65 (at 8% annual growth). The same $5,000 contributed at age 35 grows to only $50,000. This isn\'t a motivation poster — it\'s the mathematical reality of compound interest, and it\'s the central argument for financial prioritization in your 20s.',
       sections: [
@@ -833,7 +833,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Personal Finance',
     content: {
       h1: 'Roth vs Traditional 401(k): Which Is Better in 2026?',
-      metaTitle: 'Roth vs Traditional 401(k): Tax Comparison & Decision Framework | Calchive',
+      metaTitle: 'Roth vs Traditional 401(k): Tax Comparison & Decision Framework | USA-Calc',
       metaDesc: 'Complete comparison of Roth vs traditional 401(k) — tax treatment, when each is better, income limits, and the key factors that determine which is right for your situation.',
       intro: 'The Roth vs. traditional 401(k) decision is fundamentally a tax-timing bet: do you pay taxes now (Roth) or later (traditional)? The answer depends on whether your current tax rate is higher or lower than your expected retirement tax rate — which requires making predictions about future tax law, your retirement income, and your spending in retirement.',
       sections: [
@@ -870,7 +870,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Personal Finance',
     content: {
       h1: 'Employee Stock Options Guide: ISOs, NSOs, RSUs & When to Exercise',
-      metaTitle: 'Employee Stock Options Guide: ISOs, NSOs & When to Exercise | Calchive',
+      metaTitle: 'Employee Stock Options Guide: ISOs, NSOs & When to Exercise | USA-Calc',
       metaDesc: 'Complete guide to employee stock options — the difference between ISOs and NSOs, how RSUs work, when to exercise, tax implications, and what questions to ask HR.',
       intro: 'Equity compensation is among the most complex elements of a compensation package and the most misunderstood. A senior engineer at a Series B startup who doesn\'t understand their options grant — including the exercise price, expiration date, and post-termination exercise window — may leave tens of thousands of dollars on the table when they change jobs.',
       sections: [
@@ -907,7 +907,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Personal Finance',
     content: {
       h1: 'Understanding Your Pay Stub: Every Line Explained',
-      metaTitle: 'Understanding Your Pay Stub: Deductions, Withholding & What It All Means | Calchive',
+      metaTitle: 'Understanding Your Pay Stub: Deductions, Withholding & What It All Means | USA-Calc',
       metaDesc: 'Complete pay stub breakdown — federal and state withholding, FICA taxes, 401(k) deductions, health insurance, and how to verify your paycheck is calculated correctly.',
       intro: 'The average worker looks at their take-home amount and ignores everything else on their pay stub. This costs them money — in the form of incorrect withholding, missed pretax benefit elections, and an inability to verify that their employer is calculating FICA contributions correctly. Understanding each line takes 15 minutes once and is useful for the rest of your working life.',
       sections: [
@@ -944,7 +944,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Personal Finance',
     content: {
       h1: 'Understanding Your W-2 Form: Every Box Explained',
-      metaTitle: 'W-2 Form Explained: Every Box and What It Means for Your Taxes | Calchive',
+      metaTitle: 'W-2 Form Explained: Every Box and What It Means for Your Taxes | USA-Calc',
       metaDesc: 'Complete W-2 form guide — what each box represents, why your Box 1 wages are less than your gross salary, and how W-2 data flows into your tax return.',
       intro: 'Your W-2 arrives in January and must be filed with your federal tax return by April 15. Most people hand it directly to their tax software or accountant — but understanding what each box means helps you verify accuracy, understand why you owe more or less than expected, and catch errors (which affect 30% of W-2s according to the IRS).',
       sections: [
@@ -981,7 +981,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Personal Finance',
     content: {
       h1: 'Understanding the 1099 Form: Which Type You Have & What to Do',
-      metaTitle: '1099 Form Explained: Types, Tax Impact & Filing Requirements | Calchive',
+      metaTitle: '1099 Form Explained: Types, Tax Impact & Filing Requirements | USA-Calc',
       metaDesc: 'Complete 1099 guide — 1099-NEC vs 1099-MISC vs 1099-K vs 1099-INT, what each means for your taxes, and how to file if you received one without a W-2.',
       intro: 'Unlike a W-2, a 1099 means no taxes were withheld on your behalf — you\'re responsible for setting aside and paying them yourself. Receiving a 1099 for the first time and not planning for it routinely results in a 25–40% unexpected tax bill in April that many freelancers and gig workers are financially unprepared to pay.',
       sections: [
@@ -1018,7 +1018,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Personal Finance',
     content: {
       h1: 'How to File Taxes When Self-Employed: The Complete Guide',
-      metaTitle: 'How to File Taxes Self-Employed: Forms, Deductions & Deadlines | Calchive',
+      metaTitle: 'How to File Taxes Self-Employed: Forms, Deductions & Deadlines | USA-Calc',
       metaDesc: 'Complete self-employment tax filing guide — Schedule C, SE tax calculation, quarterly payments, deductible expenses, and the forms you need to file by April 15.',
       intro: 'Self-employed individuals face a tax burden that is structurally higher than employees at the same income level: you pay the employer\'s 7.65% FICA match on top of your own 7.65%, owe estimated taxes four times a year, and must track every deductible expense manually. Understanding the system in advance prevents the most common and costly mistakes.',
       sections: [
@@ -1055,7 +1055,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Personal Finance',
     content: {
       h1: 'Quarterly Estimated Taxes for Freelancers: How to Calculate and Pay',
-      metaTitle: 'Quarterly Estimated Taxes for Freelancers: Deadlines & Calculation | Calchive',
+      metaTitle: 'Quarterly Estimated Taxes for Freelancers: Deadlines & Calculation | USA-Calc',
       metaDesc: 'Step-by-step guide to quarterly estimated taxes — who needs to pay, how to calculate the amount, when deadlines are, and how to avoid the underpayment penalty.',
       intro: 'Missing quarterly estimated tax payments costs the average freelancer $600–$1,200 in underpayment penalties annually — on top of the tax bill itself. The IRS requires anyone who expects to owe $1,000 or more in federal income tax to pay quarterly, and most freelancers earning over $15,000/year fall into this category.',
       sections: [
@@ -1092,7 +1092,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Personal Finance',
     content: {
       h1: 'Home Office Deduction Guide: Who Qualifies & How to Calculate It',
-      metaTitle: 'Home Office Tax Deduction 2026: Simplified vs Actual Method | Calchive',
+      metaTitle: 'Home Office Tax Deduction 2026: Simplified vs Actual Method | USA-Calc',
       metaDesc: 'Complete home office deduction guide — who qualifies, simplified vs actual expense method, how to calculate the deduction, and the exclusive use rule explained.',
       intro: 'The home office deduction is available to self-employed individuals who use part of their home regularly and exclusively for business. Employees who work from home — even full-time remote employees — do not qualify for the federal home office deduction under the Tax Cuts and Jobs Act of 2017, which suspended the deduction for employees through 2025.',
       sections: [
@@ -1129,7 +1129,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Self-Employment',
     content: {
       h1: 'LLC vs Sole Proprietorship: Which Is Better for Freelancers in 2026?',
-      metaTitle: 'LLC vs Sole Proprietorship: Tax, Liability & Cost Comparison | Calchive',
+      metaTitle: 'LLC vs Sole Proprietorship: Tax, Liability & Cost Comparison | USA-Calc',
       metaDesc: 'Practical comparison of LLC vs sole proprietorship for freelancers — liability protection, tax treatment, formation cost, and when each structure makes sense.',
       intro: 'Most freelancers start as sole proprietors by default — no registration required, the IRS treats all self-employment income as sole proprietorship income unless you elect otherwise. Forming an LLC adds liability protection and optionality, but the tax treatment is often identical unless you elect S-Corp status, which only makes sense above approximately $40,000–$60,000 in net annual income.',
       sections: [
@@ -1166,7 +1166,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Personal Finance',
     content: {
       h1: 'Remote Work Tax Implications: What Your Employer Won\'t Tell You',
-      metaTitle: 'Remote Work Taxes 2026: State Tax Rules, Nexus & Your Liability | Calchive',
+      metaTitle: 'Remote Work Taxes 2026: State Tax Rules, Nexus & Your Liability | USA-Calc',
       metaDesc: 'Remote work tax guide — how working from a different state affects your taxes, the "convenience of the employer" rule, nexus issues for employers, and what to do if you moved mid-year.',
       intro: 'The expansion of remote work since 2020 created an underappreciated tax complexity: working remotely from a state different from where your employer is located creates multi-state tax filing requirements for millions of American workers. Many remote employees are unknowingly non-compliant — owing taxes to the state where they work without knowing it.',
       sections: [
@@ -1203,7 +1203,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Self-Employment',
     content: {
       h1: 'Digital Nomad Guide: Taxes, Visas & Making It Work Financially',
-      metaTitle: 'Digital Nomad Guide 2026: Tax Strategy, Visas & Income Setup | Calchive',
+      metaTitle: 'Digital Nomad Guide 2026: Tax Strategy, Visas & Income Setup | USA-Calc',
       metaDesc: 'Practical digital nomad guide — how US citizens manage taxes abroad, which countries have digital nomad visas, how to structure income, and the healthcare and banking challenges.',
       intro: 'US citizens owe US federal income taxes on worldwide income regardless of where they live — a rare tax rule that distinguishes American nomads from those of nearly every other country. Managing this obligation while also complying with host country rules requires understanding the Foreign Earned Income Exclusion, tax treaties, and how to maintain your banking infrastructure.',
       sections: [
@@ -1240,7 +1240,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Career Development',
     content: {
       h1: 'Work-Life Balance in 2026: What Research Actually Shows Works',
-      metaTitle: 'Work-Life Balance Guide 2026: Evidence-Based Strategies | Calchive',
+      metaTitle: 'Work-Life Balance Guide 2026: Evidence-Based Strategies | USA-Calc',
       metaDesc: 'Evidence-based work-life balance guide — what research shows about overwork, the cost of not disconnecting, and specific tactics that improve balance without sacrificing career trajectory.',
       intro: 'The World Health Organization estimates overwork kills 745,000 people annually through stroke and heart disease. The economic argument for working more is also weaker than assumed: research from Stanford shows that productivity per hour worked drops sharply above 50 hours per week and becomes nearly zero beyond 55 hours — meaning a 70-hour week produces roughly the same output as a 55-hour week.',
       sections: [
@@ -1277,7 +1277,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Career Development',
     content: {
       h1: 'Burnout Recovery Guide: What Works and How Long It Takes',
-      metaTitle: 'Job Burnout Recovery: Signs, Timeline & Evidence-Based Steps | Calchive',
+      metaTitle: 'Job Burnout Recovery: Signs, Timeline & Evidence-Based Steps | USA-Calc',
       metaDesc: 'Practical burnout recovery guide — how to recognize clinical burnout vs. regular tiredness, the realistic recovery timeline, and what changes actually prevent recurrence.',
       intro: 'The World Health Organization classifies burnout as an occupational phenomenon characterized by chronic workplace stress that has not been successfully managed. It\'s distinct from depression and not just "really tired" — and unlike regular fatigue, recovery from clinical burnout takes 3–12 months even with active intervention.',
       sections: [
@@ -1315,7 +1315,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Negotiation',
     content: {
       h1: 'How to Negotiate Remote Work: During Hiring and After You\'re In',
-      metaTitle: 'How to Negotiate Remote Work: Scripts for Offers & Return-to-Office | Calchive',
+      metaTitle: 'How to Negotiate Remote Work: Scripts for Offers & Return-to-Office | USA-Calc',
       metaDesc: 'Practical guide to negotiating remote work — during offer negotiation, after a return-to-office mandate, and how to make the business case for a hybrid or fully remote arrangement.',
       intro: 'Remote work has moved from a pandemic concession to a standard compensation expectation at professional levels. McKinsey reports that 87% of employees with remote work options take them. The leverage for negotiating remote work is real — but it peaks at the offer stage and declines significantly once you\'re employed.',
       sections: [
@@ -1352,7 +1352,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Self-Employment',
     content: {
       h1: '40 Side Hustle Ideas Ranked by Earning Potential in 2026',
-      metaTitle: 'Best Side Hustle Ideas 2026: Earning Potential & Time Investment | Calchive',
+      metaTitle: 'Best Side Hustle Ideas 2026: Earning Potential & Time Investment | USA-Calc',
       metaDesc: 'Ranked list of side hustle ideas with realistic income ranges, startup costs, and time investment — from freelancing and consulting to passive income and gig economy work.',
       intro: 'The median American side hustle earns $810 per month, but the distribution is extremely wide — from $50/month in passive income to $10,000+/month in consulting. The ceiling on any given side hustle is determined by market demand for the skill, your ability to charge market rates, and how many hours you can realistically invest.',
       sections: [
@@ -1388,7 +1388,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Personal Finance',
     content: {
       h1: 'Passive Income Guide: What\'s Actually Passive and What Isn\'t',
-      metaTitle: 'Passive Income Ideas 2026: Realistic Returns & What They Actually Take | Calchive',
+      metaTitle: 'Passive Income Ideas 2026: Realistic Returns & What They Actually Take | USA-Calc',
       metaDesc: 'Honest guide to passive income — dividend investing, REITs, index funds, rental properties, and digital products. Realistic income ranges and the true time investment required.',
       intro: '"Passive income" is largely a myth in its pure form — income that requires zero ongoing effort. The accurate category is "scalable income" — income streams where the ratio of income earned to hours worked improves dramatically over time. Understanding what\'s genuinely achievable versus what\'s marketed requires distinguishing between capital-intensive and effort-intensive income sources.',
       sections: [
@@ -1425,7 +1425,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Personal Finance',
     content: {
       h1: 'How to Max Out Your 401(k) in 2026: Step-by-Step',
-      metaTitle: 'How to Max Out Your 401(k) in 2026: Limits, Strategy & Steps | Calchive',
+      metaTitle: 'How to Max Out Your 401(k) in 2026: Limits, Strategy & Steps | USA-Calc',
       metaDesc: 'Practical guide to maximizing your 401(k) contributions — 2026 limits, how to calculate the right contribution percentage, employer match strategy, and what to invest in.',
       intro: 'The 2024 401(k) contribution limit is $23,000 ($30,500 for those 50 and older). Contributing the maximum reduces your federal taxable income dollar-for-dollar (for traditional contributions) and grows tax-deferred for decades. At the median US wage of $59,000, maxing out a 401(k) takes a 39% contribution rate — which is why less than 14% of eligible workers actually hit the limit.',
       sections: [
@@ -1462,7 +1462,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Personal Finance',
     content: {
       h1: 'Retirement Planning for Millennials: What\'s Different and What Matters',
-      metaTitle: 'Retirement Planning for Millennials 2026: Key Strategies & Numbers | Calchive',
+      metaTitle: 'Retirement Planning for Millennials 2026: Key Strategies & Numbers | USA-Calc',
       metaDesc: 'Retirement planning guide for millennials — Social Security uncertainty, the 4% rule, how much you actually need, and which accounts to prioritize in your 30s and 40s.',
       intro: 'Millennials (born 1981–1996) face a retirement environment meaningfully different from their parents\': Social Security benefit cuts of 20–25% are projected if Congress doesn\'t act by 2035, pension plans cover only 15% of private-sector workers (down from 35% in 1991), and housing costs have consumed wealth-building that previous generations invested. The math is still workable, but it requires explicit planning.',
       sections: [
@@ -1499,7 +1499,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Personal Finance',
     content: {
       h1: 'HSA vs FSA: Which Is Better and How to Choose',
-      metaTitle: 'HSA vs FSA 2026: Contribution Limits, Rules & Which to Choose | Calchive',
+      metaTitle: 'HSA vs FSA 2026: Contribution Limits, Rules & Which to Choose | USA-Calc',
       metaDesc: 'Complete HSA vs FSA comparison — tax advantages, 2026 contribution limits, rollover rules, and who should choose each account.',
       intro: 'HSAs and FSAs both reduce taxes on healthcare spending, but they operate very differently. The HSA\'s triple tax advantage — deductible contributions, tax-free growth, and tax-free qualified withdrawals — makes it the more powerful wealth-building tool. The FSA is more flexible in terms of eligibility but has strict use-it-or-lose-it rules that require careful planning.',
       sections: [
@@ -1536,7 +1536,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Personal Finance',
     content: {
       h1: 'Financial Planning in Your 30s: Competing Priorities, Ranked',
-      metaTitle: 'Financial Planning in Your 30s: Home, Kids, Retirement & Debt | Calchive',
+      metaTitle: 'Financial Planning in Your 30s: Home, Kids, Retirement & Debt | USA-Calc',
       metaDesc: 'Financial planning guide for your 30s — how to prioritize competing demands (house, kids, retirement, debt), what the research says about trade-offs, and the biggest mistakes to avoid.',
       intro: 'Your 30s are the decade when financial priorities multiply simultaneously: career earning power increases, home purchase decisions carry multi-decade consequences, starting a family creates new expenses, and retirement savings must accelerate or the compounding math becomes brutal. The mistake most people in their 30s make is not being explicit about the order in which they\'re addressing these priorities.',
       sections: [
@@ -1573,7 +1573,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Personal Finance',
     content: {
       h1: 'Financial Planning in Your 40s: Peak Earning, Catch-Up, and What\'s Still Achievable',
-      metaTitle: 'Financial Planning in Your 40s: Retirement, College & Peak Earnings | Calchive',
+      metaTitle: 'Financial Planning in Your 40s: Retirement, College & Peak Earnings | USA-Calc',
       metaDesc: 'Financial planning guide for your 40s — retirement catch-up math, college saving vs. retirement trade-offs, peak earning strategies, and the mistakes to avoid before 50.',
       intro: 'Your 40s are typically your peak earning decade — and the last window to significantly course-correct retirement savings before the math becomes difficult. A 45-year-old who has saved less than $150,000 for retirement needs to understand what\'s required to reach a secure retirement by 65 and whether that\'s achievable with current income, or whether planning adjustments are necessary.',
       sections: [
@@ -1610,7 +1610,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Personal Finance',
     content: {
       h1: 'How to Build an Emergency Fund: Amount, Location & Timeline',
-      metaTitle: 'How to Build an Emergency Fund 2026: How Much & Where to Keep It | Calchive',
+      metaTitle: 'How to Build an Emergency Fund 2026: How Much & Where to Keep It | USA-Calc',
       metaDesc: 'Practical guide to building an emergency fund — how much you need, where to keep it (HYSA rates in 2026), how long it takes to build, and the right strategy for different income situations.',
       intro: 'An emergency fund is the financial infrastructure that allows every other financial plan to survive an unexpected event — job loss, medical emergency, major car repair, or home crisis. Gallup\'s 2023 survey found that 37% of Americans couldn\'t cover a $400 emergency without borrowing or selling something. Without an emergency fund, every financial setback becomes a credit card debt problem.',
       sections: [
@@ -1647,7 +1647,7 @@ export const CAREER_TOPICS: CareerTopic[] = [
     category: 'Self-Employment',
     content: {
       h1: 'How to Build Business Credit: A Step-by-Step Timeline',
-      metaTitle: 'How to Build Business Credit Fast: EIN, DUNS & Vendor Accounts | Calchive',
+      metaTitle: 'How to Build Business Credit Fast: EIN, DUNS & Vendor Accounts | USA-Calc',
       metaDesc: 'Step-by-step business credit building guide — getting your EIN, establishing a DUNS number, opening vendor credit accounts, and building a profile that qualifies for business loans.',
       intro: 'Business credit is separate from personal credit and allows businesses to borrow, lease equipment, and establish vendor payment terms without putting the owner\'s personal credit at risk. Building business credit from scratch takes 6–18 months but follows a predictable sequence that most small business owners skip — and then regret when they need financing.',
       sections: [

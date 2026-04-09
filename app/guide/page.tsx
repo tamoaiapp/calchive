@@ -3,12 +3,12 @@ import Link from 'next/link'
 import { GUIDE_SLUGS, GUIDE_CATEGORIES } from '@/lib/guides/manifest'
 
 export const metadata: Metadata = {
-  title: 'Financial Guides: Budgeting, Investing, Crypto, Business & More | Calchive',
+  title: 'Financial Guides: Budgeting, Investing, Crypto, Business & More | USA-Calc',
   description:
     'Practical guides on budgeting, investing, crypto, small business, real estate, and side hustles. Data-driven, no fluff. Updated for 2026.',
   alternates: { canonical: '/guide' },
   openGraph: {
-    title: 'Financial Guides 2026 | Calchive',
+    title: 'Financial Guides 2026 | USA-Calc',
     description: 'Budgeting, investing, crypto, small business, and more — practical guides with real numbers.',
     type: 'website',
   },

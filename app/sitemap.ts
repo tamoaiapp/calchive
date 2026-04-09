@@ -13,7 +13,7 @@ import { GUIDE_SLUGS } from '@/lib/guides/manifest'
 import { PROFESSIONS } from '@/lib/salary/professions'
 import { STATES_ALL } from '@/lib/salary/states'
 
-const BASE_URL = 'https://calchive.com'
+const BASE_URL = 'https://usa-calc.com'
 
 // Salary state+amount combinations
 const SALARY_AMOUNTS = [

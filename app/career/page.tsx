@@ -5,7 +5,7 @@ import { CAREER_TOPICS } from '@/lib/career/topics'
 import AdSlot from '@/components/AdSlot'
 
 export const metadata: Metadata = {
-  title: 'Career Guides, Interview Tips & Salary Negotiation | Calchive',
+  title: 'Career Guides, Interview Tips & Salary Negotiation | USA-Calc',
   description:
     'Career guides for 20+ professions, interview question banks, salary negotiation scripts, resume tips, and personal finance guides for working professionals.',
   alternates: { canonical: '/career' },

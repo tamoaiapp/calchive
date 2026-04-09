@@ -4,12 +4,12 @@ import { LOAN_RATES_2025 } from '@/lib/loan/data'
 import { PERSONAL_AMOUNTS, PERSONAL_TERMS, AUTO_AMOUNTS, AUTO_TERMS, STUDENT_AMOUNTS } from '@/lib/loan/pages-manifest'
 
 export const metadata: Metadata = {
-  title: 'Loan Payment Calculator — Personal, Auto & Student | Calchive',
+  title: 'Loan Payment Calculator — Personal, Auto & Student | USA-Calc',
   description:
     'Calculate monthly payments for personal loans, auto loans, student loans, and credit card payoff. Real 2025 interest rates by credit score. Full amortization breakdowns.',
   alternates: { canonical: '/loan' },
   openGraph: {
-    title: 'Loan Payment Calculator — Personal, Auto & Student | Calchive',
+    title: 'Loan Payment Calculator — Personal, Auto & Student | USA-Calc',
     description: 'Monthly payments for any loan amount and term — real 2025 interest rate data by credit score.',
     type: 'website',
   },

@@ -26,7 +26,7 @@ export async function generateMetadata({
     title: calc.title,
     description: calc.desc,
     openGraph: {
-      title: `${calc.title} | Calchive`,
+      title: `${calc.title} | USA-Calc`,
       description: calc.desc,
       type: 'website',
     },
@@ -139,7 +139,7 @@ export default async function CalcPage({
             description: calc.desc,
             applicationCategory: 'FinanceApplication',
             operatingSystem: 'Web',
-            url: `https://calchive.com/calculator/${calc.slug}`,
+            url: `https://usa-calc.com/calculator/${calc.slug}`,
             offers: {
               '@type': 'Offer',
               price: '0',

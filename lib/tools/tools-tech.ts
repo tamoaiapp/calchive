@@ -605,7 +605,7 @@ export const techTools: ToolConfig[] = [
     icon: '🐦',
     toolType: 'checker',
     fields: [
-      { k: 'title', l: 'Twitter Title', type: 'text', placeholder: 'Free Tax Calculator — Calchive' },
+      { k: 'title', l: 'Twitter Title', type: 'text', placeholder: 'Free Tax Calculator — USA-Calc' },
       { k: 'desc', l: 'Twitter Description', type: 'text', placeholder: 'Calculate 2025 federal income tax in seconds.' },
       {
         k: 'card',
@@ -1003,7 +1003,7 @@ export const techTools: ToolConfig[] = [
     fn: (inputs) => {
       const type = inputs.type || 'article', name = inputs.name || '', desc = inputs.desc || '', url = inputs.url || ''
       const schemas: Record<string, object> = {
-        article: { '@context': 'https://schema.org', '@type': 'Article', name, description: desc, url, headline: name, author: { '@type': 'Organization', name: 'Calchive' } },
+        article: { '@context': 'https://schema.org', '@type': 'Article', name, description: desc, url, headline: name, author: { '@type': 'Organization', name: 'USA-Calc' } },
         faq: { '@context': 'https://schema.org', '@type': 'FAQPage', name, description: desc, url, mainEntity: [{ '@type': 'Question', name: 'Example question?', acceptedAnswer: { '@type': 'Answer', text: 'Example answer.' } }] },
         review: { '@context': 'https://schema.org', '@type': 'Review', name, description: desc, url, reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' } },
         tool: { '@context': 'https://schema.org', '@type': 'WebApplication', name, description: desc, url, applicationCategory: 'FinanceApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } },

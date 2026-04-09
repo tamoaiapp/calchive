@@ -57,12 +57,12 @@ export async function generateMetadata({
       description = `Workers earning $${cfg.income!.toLocaleString()}/year can estimate their Social Security benefit. See how years of earnings, claiming age, and AIME calculations determine your monthly check.`
       break
     default:
-      title = `${slug.split('-').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')} | Calchive`
+      title = `${slug.split('-').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')} | USA-Calc`
       description = `Retirement planning guide: ${slug.replace(/-/g, ' ')}.`
   }
 
   return {
-    title: `${title} | Calchive`,
+    title: `${title} | USA-Calc`,
     description,
     alternates: { canonical: `/retirement/${slug}` },
     openGraph: { title, description, type: 'article' },
@@ -559,7 +559,7 @@ export default async function RetirementSlugPage({
             '@context': 'https://schema.org',
             '@type': 'WebApplication',
             name: getTitle(),
-            url: `https://calchive.com/retirement/${slug}`,
+            url: `https://usa-calc.com/retirement/${slug}`,
             description: 'Free retirement planning calculator — 401k benchmarks, Social Security, and FIRE projections.',
             applicationCategory: 'FinanceApplication',
             operatingSystem: 'Web',

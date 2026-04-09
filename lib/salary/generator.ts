@@ -139,10 +139,10 @@ export function generateStatePage(state: StateData, amount: number): SalaryState
       ]
 
   const metaTitleVariants = [
-    `${formattedGross} After Tax in ${state.name} (${year}) | Calchive`,
-    `${state.name} Take-Home on ${formattedGross} (${year}) | Calchive`,
-    `${formattedGross} Salary — ${state.name} Tax Breakdown ${year} | Calchive`,
-    `What Does ${formattedGross} Take Home in ${state.name}? (${year}) | Calchive`,
+    `${formattedGross} After Tax in ${state.name} (${year}) | USA-Calc`,
+    `${state.name} Take-Home on ${formattedGross} (${year}) | USA-Calc`,
+    `${formattedGross} Salary — ${state.name} Tax Breakdown ${year} | USA-Calc`,
+    `What Does ${formattedGross} Take Home in ${state.name}? (${year}) | USA-Calc`,
   ]
 
   const metaDescVariants = state.hasIncomeTax
@@ -261,10 +261,10 @@ export function generateProfessionPage(profession: ProfessionData): SalaryProfes
   ][profVariant]
 
   const metaTitle = [
-    `${profession.title} Salary After Tax (${profYear}) — Median, Entry & Senior Pay | Calchive`,
-    `${profession.title} Take-Home Pay (${profYear}) — What You Keep After Taxes | Calchive`,
-    `${profession.title} Salary: ${formatCurrency(profession.medianSalary)} Median — After-Tax Breakdown (${profYear}) | Calchive`,
-    `${profession.title} Income After Tax (${profYear}) — Entry to Senior Levels | Calchive`,
+    `${profession.title} Salary After Tax (${profYear}) — Median, Entry & Senior Pay | USA-Calc`,
+    `${profession.title} Take-Home Pay (${profYear}) — What You Keep After Taxes | USA-Calc`,
+    `${profession.title} Salary: ${formatCurrency(profession.medianSalary)} Median — After-Tax Breakdown (${profYear}) | USA-Calc`,
+    `${profession.title} Income After Tax (${profYear}) — Entry to Senior Levels | USA-Calc`,
   ][profVariant]
 
   const metaDesc = [

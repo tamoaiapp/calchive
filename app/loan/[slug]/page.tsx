@@ -43,7 +43,7 @@ export async function generateMetadata({
     title = `Pay Off $${config.amount!.toLocaleString()} Credit Card Balance at ${config.apr}% APR`
     description = `How to pay off $${config.amount!.toLocaleString()} in credit card debt at ${config.apr}% APR. Monthly payment options and total interest at different payoff speeds.`
   } else if (config.type === 'guide') {
-    title = `${config.guideTitle} | Calchive`
+    title = `${config.guideTitle} | USA-Calc`
     description = `Complete guide: ${config.guideTitle?.toLowerCase()}. Real 2025 interest rate data and strategies.`
   }
 
@@ -776,7 +776,7 @@ export default async function LoanPage({
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
     name: config.type === 'guide' ? config.guideTitle : 'Loan Calculator',
-    url: `https://calchive.com/loan/${slug}`,
+    url: `https://usa-calc.com/loan/${slug}`,
     description: 'Free loan calculator — monthly payments, total interest, and amortization schedule.',
     applicationCategory: 'FinanceApplication',
     operatingSystem: 'Web',

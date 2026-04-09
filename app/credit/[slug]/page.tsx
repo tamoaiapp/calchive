@@ -43,12 +43,12 @@ export async function generateMetadata({
       description = `Paying off $${cfg.debtBalance?.toLocaleString()} in ${cfg.debtMonths} months requires specific monthly payments depending on interest rate. See exact breakdown and strategies.`
       break
     default:
-      title = `${slug.split('-').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')} | Calchive`
+      title = `${slug.split('-').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')} | USA-Calc`
       description = `Complete guide to ${slug.replace(/-/g, ' ')} — facts, strategies, and tools for ${new Date().getFullYear()}.`
   }
 
   return {
-    title: `${title} | Calchive`,
+    title: `${title} | USA-Calc`,
     description,
     alternates: { canonical: `/credit/${slug}` },
     openGraph: { title, description, type: 'article' },
@@ -453,10 +453,10 @@ export default async function CreditSlugPage({
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'WebPage',
-            url: `https://calchive.com/credit/${slug}`,
+            url: `https://usa-calc.com/credit/${slug}`,
             name: getTitle(),
             description: 'Credit score information, interest calculators, and debt payoff guides.',
-            isPartOf: { '@type': 'WebSite', name: 'Calchive', url: 'https://calchive.com' },
+            isPartOf: { '@type': 'WebSite', name: 'USA-Calc', url: 'https://usa-calc.com' },
           }),
         }}
       />
