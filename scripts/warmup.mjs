@@ -17,7 +17,7 @@ const DELAY_MS = 150  // ms between requests per worker
 
 // ─── All ISR slugs ────────────────────────────────────────────────────────────
 
-// Salary: all states × all amounts
+// Salary: all states × all amounts (no 'dc' — not in states data)
 const SALARY_STATES = [
   'alabama','alaska','arizona','arkansas','california','colorado','connecticut',
   'delaware','florida','georgia','hawaii','idaho','illinois','indiana','iowa',
@@ -26,7 +26,7 @@ const SALARY_STATES = [
   'new-hampshire','new-jersey','new-mexico','new-york','north-carolina',
   'north-dakota','ohio','oklahoma','oregon','pennsylvania','rhode-island',
   'south-carolina','south-dakota','tennessee','texas','utah','vermont',
-  'virginia','washington','west-virginia','wisconsin','wyoming','dc'
+  'virginia','washington','west-virginia','wisconsin','wyoming'
 ]
 const SALARY_AMOUNTS = [
   25000, 30000, 35000, 40000, 45000, 50000, 55000, 60000, 65000, 70000,
@@ -37,33 +37,32 @@ const salaryStatePages = SALARY_STATES.flatMap(state =>
   SALARY_AMOUNTS.map(amount => `/salary/${state}/${amount}`)
 )
 
-// Salary career (professions)
+// Salary career (professions — exact slugs from professions.ts)
 const PROFESSIONS = [
   'software-engineer','data-scientist','machine-learning-engineer','devops-engineer',
   'cloud-architect','cybersecurity-analyst','product-manager','ux-designer',
   'frontend-developer','backend-developer','full-stack-developer','database-administrator',
   'systems-administrator','network-engineer','it-manager','ai-engineer','data-engineer',
-  'mobile-developer','qa-engineer','physician','surgeon','dentist','nurse',
-  'registered-nurse','nurse-practitioner','physician-assistant','pharmacist',
-  'physical-therapist','occupational-therapist','speech-therapist','radiologist',
-  'anesthesiologist','psychiatrist','psychologist','dental-hygienist',
-  'medical-assistant','healthcare-administrator','lab-technician','paramedic',
-  'financial-advisor','investment-banker','accountant','cpa','auditor',
-  'financial-analyst','actuary','economist','loan-officer','mortgage-broker',
-  'insurance-agent','compliance-officer','risk-manager','portfolio-manager','cfo',
-  'lawyer','attorney','paralegal','judge','corporate-attorney','patent-attorney',
-  'immigration-attorney','family-law-attorney','criminal-defense-attorney',
-  'civil-engineer','mechanical-engineer','electrical-engineer','chemical-engineer',
-  'aerospace-engineer','biomedical-engineer','environmental-engineer',
-  'industrial-engineer','petroleum-engineer','structural-engineer',
-  'ceo','coo','marketing-manager','operations-manager','project-manager',
-  'hr-manager','supply-chain-manager','business-analyst','management-consultant',
+  'mobile-developer','qa-engineer',
+  'physician','surgeon','dentist','registered-nurse','nurse-practitioner',
+  'physician-assistant','pharmacist','physical-therapist','occupational-therapist',
+  'radiologist','anesthesiologist','psychiatrist','psychologist','dental-hygienist',
+  'paramedic','veterinarian','healthcare-administrator',
+  'financial-advisor','investment-banker','accountant','cpa','financial-analyst',
+  'actuary','cfo','loan-officer','portfolio-manager','economist',
+  'lawyer','paralegal','corporate-attorney','patent-attorney','immigration-attorney',
+  'teacher','high-school-teacher','college-professor','school-principal','school-counselor',
+  'civil-engineer','mechanical-engineer','electrical-engineer','aerospace-engineer',
+  'petroleum-engineer','chemical-engineer','biomedical-engineer',
+  'ceo','marketing-manager','project-manager','hr-manager','management-consultant',
+  'operations-manager','business-analyst','sales-manager',
   'electrician','plumber','hvac-technician','carpenter','welder','auto-mechanic',
-  'construction-manager','graphic-designer','video-editor','photographer',
-  'content-writer','copywriter','journalist','social-media-manager','seo-specialist',
-  'pilot','real-estate-agent','social-worker','therapist','chef',
-  'veterinarian','police-officer','firefighter','truck-driver','teacher',
-  'high-school-teacher','college-professor','school-principal','librarian',
+  'construction-manager','elevator-technician',
+  'graphic-designer','copywriter','journalist','social-media-manager','web-designer',
+  'game-developer',
+  'pilot','real-estate-agent','social-worker','chef',
+  'police-officer','firefighter','truck-driver','personal-trainer',
+  'event-planner','nutritionist',
 ]
 const salaryCareerPages = PROFESSIONS.map(p => `/salary/career/${p}`)
 
@@ -105,7 +104,10 @@ const loanStudentPages = STUDENT_AMOUNTS.map(a => `/loan/student-loan-${a}`)
 
 const CC_BALANCES = [1000,2000,3000,5000,7500,10000,15000,20000,25000,30000,50000]
 const CC_APRS = [15.99,19.99,24.99,29.99]
-const loanCCPages = CC_BALANCES.flatMap(b => CC_APRS.map(r => `/loan/credit-card-payoff-${b}-${r}`))
+// APR uses dot→hyphen: 15.99 → 15-99
+const loanCCPages = CC_BALANCES.flatMap(b =>
+  CC_APRS.map(r => `/loan/credit-card-payoff-${b}-${r.toFixed(2).replace('.', '-')}`)
+)
 
 // Health pages
 const bmiPages = []
@@ -134,23 +136,32 @@ const insuranceHealthPages = healthInsStates.map(s => `/insurance/health-insuran
 
 // Credit pages
 const creditScorePages = Array.from({length: 36}, (_, i) => `/credit/credit-score-${500 + i * 10}`)
+// APR uses dot→hyphen: 15.99 → 15-99
 const creditCardPages = [15.99,19.99,22.99,24.99,29.99].flatMap(apr =>
-  [1000,2000,5000,10000].map(bal => `/credit/credit-card-interest-${apr}-${bal}`)
+  [1000,2000,5000,10000].map(bal => `/credit/credit-card-interest-${apr.toFixed(2).replace('.', '-')}-${bal}`)
 )
+// debt-payoff includes both balance AND months in slug
 const debtPayoffPages = [5000,10000,15000,20000,30000,50000].flatMap(bal =>
-  [12,24,36,48,60].map(mo => `/credit/debt-payoff-${bal}-months`)
+  [12,24,36,48,60].map(mo => `/credit/debt-payoff-${bal}-${mo}-months`)
 )
 
-// Retirement pages
+// Retirement pages — amounts use k/m format: 250000→250k, 1000000→1m, 1500000→1-5m
+function formatRetireAmt(n) {
+  if (n >= 1000000) {
+    const m = n / 1000000
+    return m === Math.floor(m) ? `${m}m` : `${m.toFixed(1).replace('.', '-')}m`
+  }
+  return `${n / 1000}k`
+}
 const retireAges = [55,60,62,65,67,70]
 const retireAmounts = [250000,500000,750000,1000000,1500000,2000000,2500000,3000000,4000000,5000000]
 const retirementPages = retireAges.flatMap(age =>
-  retireAmounts.map(amt => `/retirement/retire-at-${age}-with-${amt}`)
+  retireAmounts.map(amt => `/retirement/retire-at-${age}-with-${formatRetireAmt(amt)}`)
 )
 const k401Ages = [30,35,40,45,50,55,60].map(a => `/retirement/401k-at-age-${a}`)
-const rothAges = [30,35,40,45,50,55,60].map(a => `/retirement/roth-ira-${a}`)
-const ssAges = [62,63,64,65,66,67,68,69,70].map(a => `/retirement/social-security-at-${a}`)
-const ssIncomes = [30000,40000,50000,60000,75000,100000,125000,150000,200000].map(i => `/retirement/social-security-for-${i}`)
+const rothAges = [30,35,40,45,50,55,60].map(a => `/retirement/roth-ira-age-${a}`)
+const ssAges = [62,63,64,65,66,67,68,69,70].map(a => `/retirement/social-security-at-age-${a}`)
+const ssIncomes = [30000,40000,50000,60000,75000,100000,125000,150000,200000].map(i => `/retirement/social-security-for-income-${i}`)
 
 // ─── Compile all URLs ──────────────────────────────────────────────────────────
 
@@ -247,7 +258,7 @@ async function worker(queue, workerId) {
 
 async function main() {
   const total = ALL_URLS.length
-  const eta = Math.ceil((total * DELAY_MS) / (CONCURRENCY * 1000 / 60))
+  const eta = Math.ceil((total * DELAY_MS) / CONCURRENCY / 1000 / 60)
 
   console.log(`\n🚀 Calchive Warmup`)
   console.log(`   Base URL:    ${BASE_URL}`)
