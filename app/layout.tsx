@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   },
   description:
     'Free online calculators and tools for finance, salary, tax, mortgage, health and more. Fast, accurate, and easy to use.',
-  metadataBase: new URL('https://usa-calc.com'),
+  metadataBase: new URL('https://www.usa-calc.com'),
   openGraph: {
     siteName: 'USA-Calc',
     type: 'website',
