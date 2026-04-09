@@ -53,7 +53,7 @@ export default function Header() {
             flexShrink: 0,
           }}
         >
-          Calchive
+          USA-Calc
         </Link>
 
         {/* Desktop Nav */}

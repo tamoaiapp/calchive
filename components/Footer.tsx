@@ -76,7 +76,7 @@ export default function Footer() {
               marginBottom: 12,
             }}
           >
-            Calchive
+            USA-Calc
           </div>
           <p style={{ fontSize: 14, color: 'var(--muted)', lineHeight: 1.7, maxWidth: 240 }}>
             Free online calculators and tools for finance, salary, tax, mortgage, health, and more.
@@ -133,7 +133,7 @@ export default function Footer() {
             textAlign: 'center',
           }}
         >
-          &copy; 2025 Calchive. All rights reserved. Results are for informational purposes only.
+          &copy; 2026 USA-Calc. All rights reserved. Results are for informational purposes only.
         </p>
       </div>
     </footer>
