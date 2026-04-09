@@ -45,7 +45,11 @@ export default function RootLayout({
         {/* Google Fonts preconnect */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* AdSense: add script here when domain is set */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6916421107498737"
+          crossOrigin="anonymous"
+        />
       </head>
       <body>
         <Header />
