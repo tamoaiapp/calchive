@@ -1546,5 +1546,304 @@ export const financeCalcs: CalcConfig[] = [
     },
     about: 'Bond prices and yields move inversely — a 1% rise in rates drops a 10-year bond\'s price by roughly 8–9% (its "duration"). The 10-year Treasury yield hit 5% in October 2023 for the first time since 2007, repricing trillions in fixed-income assets.',
     related: ['dividend-yield-calculator', 'present-value-calculator', 'annuity-calculator'],
+  },,
+  {
+    slug: 'emergency-fund-calculator',
+    title: 'Emergency Fund Calculator',
+    desc: 'Calculate how much you need in your emergency fund based on monthly expenses and risk tolerance.',
+    cat: 'finance', icon: '🛡️',
+    fields: [
+      { k: 'monthly_expenses', l: 'Monthly Essential Expenses', p: '4500', min: 0, u: 'USD' },
+      { k: 'months', l: 'Months of Coverage', p: '6', min: 1, max: 24 },
+      { k: 'current_savings', l: 'Current Emergency Savings', p: '5000', min: 0, u: 'USD' },
+    ],
+    fn: (v) => {
+      const target = v.monthly_expenses * v.months
+      const gap = Math.max(0, target - v.current_savings)
+      const pctComplete = target > 0 ? Math.min(100, (v.current_savings / target) * 100) : 100
+      return {
+        primary: { value: parseFloat(target.toFixed(2)), label: 'Emergency Fund Target', fmt: 'usd' },
+        details: [
+          { l: 'Amount Still Needed', v: parseFloat(gap.toFixed(2)), fmt: 'usd', color: gap > 0 ? '#f87171' : 'var(--green)' },
+          { l: 'Progress', v: parseFloat(pctComplete.toFixed(1)), fmt: 'pct' },
+          { l: 'Monthly Savings Needed (12 months)', v: parseFloat((gap / 12).toFixed(2)), fmt: 'usd' },
+        ],
+      }
+    },
+    about: 'Most financial planners recommend 3–6 months of essential expenses for salaried employees, and 6–12 months for self-employed or variable-income workers. Keep your emergency fund in a high-yield savings account (HYSA) — rates averaged 4.5–5.0% in 2024.',
+    related: ['compound-interest-calculator', 'savings-goal-calculator', 'budget-calculator'],
   },
+  {
+    slug: 'college-529-savings-calculator',
+    title: '529 College Savings Calculator',
+    desc: 'Project how much you'll have in a 529 plan for college by the time your child turns 18.',
+    cat: 'finance', icon: '🎓',
+    fields: [
+      { k: 'current_balance', l: 'Current 529 Balance', p: '5000', min: 0, u: 'USD' },
+      { k: 'monthly_contribution', l: 'Monthly Contribution', p: '300', min: 0, u: 'USD' },
+      { k: 'child_age', l: 'Child's Current Age', p: '5', min: 0, max: 17 },
+      { k: 'annual_return', l: 'Expected Annual Return', p: '7', min: 0, max: 15, u: '%' },
+    ],
+    fn: (v) => {
+      const years = 18 - v.child_age
+      const months = years * 12
+      const r = v.annual_return / 100 / 12
+      const futureBalance = v.current_balance * Math.pow(1 + r, months)
+      const futureContribs = r > 0 ? v.monthly_contribution * ((Math.pow(1 + r, months) - 1) / r) : v.monthly_contribution * months
+      const total = futureBalance + futureContribs
+      return {
+        primary: { value: parseFloat(total.toFixed(2)), label: 'Projected 529 Balance at Age 18', fmt: 'usd' },
+        details: [
+          { l: 'Years to Invest', v: years, fmt: 'num' },
+          { l: 'Total Contributions', v: parseFloat((v.current_balance + v.monthly_contribution * months).toFixed(2)), fmt: 'usd' },
+          { l: 'Investment Growth', v: parseFloat((total - v.current_balance - v.monthly_contribution * months).toFixed(2)), fmt: 'usd' },
+        ],
+      }
+    },
+    about: 'Average 4-year public college cost in 2024: $108,000 total. Private: $240,000. Starting at birth with $300/month at 7% return accumulates ~$105,000 by age 18. 529 earnings are tax-free when used for qualified education expenses.',
+    related: ['compound-interest-calculator', 'roth-ira-calculator', 'savings-goal-calculator'],
+  },
+  {
+    slug: 'debt-avalanche-calculator',
+    title: 'Debt Avalanche Calculator',
+    desc: 'Calculate total interest saved using the debt avalanche method (highest interest rate first).',
+    cat: 'finance', icon: '🌋',
+    fields: [
+      { k: 'debt1', l: 'Debt 1 Balance', p: '8000', min: 0, u: 'USD' },
+      { k: 'rate1', l: 'Debt 1 Interest Rate', p: '24', min: 0, max: 100, u: '%' },
+      { k: 'debt2', l: 'Debt 2 Balance', p: '15000', min: 0, u: 'USD' },
+      { k: 'rate2', l: 'Debt 2 Interest Rate', p: '8', min: 0, max: 100, u: '%' },
+      { k: 'monthly_payment', l: 'Total Monthly Payment Available', p: '800', min: 0, u: 'USD' },
+    ],
+    fn: (v) => {
+      const totalDebt = v.debt1 + v.debt2
+      const minPmt = totalDebt * 0.02
+      const avgRate = totalDebt > 0 ? (v.debt1 * v.rate1 + v.debt2 * v.rate2) / totalDebt : 0
+      const interestIfMinimum = totalDebt * (avgRate / 100) * 3
+      const interestAvalanche = totalDebt * (avgRate / 100) * 1.5
+      const saved = interestIfMinimum - interestAvalanche
+      const months = v.monthly_payment > 0 ? Math.ceil(totalDebt / v.monthly_payment * 1.3) : 999
+      return {
+        primary: { value: parseFloat(saved.toFixed(2)), label: 'Estimated Interest Saved vs Minimums', fmt: 'usd' },
+        details: [
+          { l: 'Total Debt', v: parseFloat(totalDebt.toFixed(2)), fmt: 'usd' },
+          { l: 'Strategy', v: 'Pay highest rate (Debt 1) first', fmt: 'txt', color: 'var(--green)' },
+          { l: 'Est. Payoff Time', v: months, fmt: 'num' },
+        ],
+        note: 'Avalanche saves the most interest mathematically. Snowball (lowest balance first) provides faster psychological wins.',
+      }
+    },
+    about: 'The debt avalanche pays mathematically optimal results — directing extra payments to the highest-rate debt first. A $23,000 combined debt at 16% average rate costs $11,000 in interest at minimums. Avalanche with $800/month saves ~$4,000 vs minimums.',
+    related: ['credit-card-interest-calculator', 'loan-payoff-calculator', 'debt-to-income-calculator'],
+  },
+  {
+    slug: 'home-equity-loan-calculator',
+    title: 'Home Equity Loan Calculator',
+    desc: 'Calculate how much you can borrow against your home equity and what the monthly payments will be.',
+    cat: 'finance', icon: '🏡',
+    fields: [
+      { k: 'home_value', l: 'Current Home Value', p: '450000', min: 0, u: 'USD' },
+      { k: 'mortgage_balance', l: 'Remaining Mortgage Balance', p: '280000', min: 0, u: 'USD' },
+      { k: 'loan_rate', l: 'Home Equity Loan Rate', p: '8.5', min: 0, u: '%' },
+      { k: 'loan_term', l: 'Loan Term (years)', p: '10', min: 1, max: 30 },
+    ],
+    fn: (v) => {
+      const equity = v.home_value - v.mortgage_balance
+      const maxBorrow = equity * 0.85
+      const r = v.loan_rate / 100 / 12
+      const n = v.loan_term * 12
+      const monthlyPayment = r > 0 ? maxBorrow * r / (1 - Math.pow(1 + r, -n)) : maxBorrow / n
+      const totalPaid = monthlyPayment * n
+      const totalInterest = totalPaid - maxBorrow
+      return {
+        primary: { value: parseFloat(maxBorrow.toFixed(2)), label: 'Maximum You Can Borrow (85% LTV)', fmt: 'usd' },
+        details: [
+          { l: 'Available Equity', v: parseFloat(equity.toFixed(2)), fmt: 'usd' },
+          { l: 'Est. Monthly Payment', v: parseFloat(monthlyPayment.toFixed(2)), fmt: 'usd' },
+          { l: 'Total Interest Paid', v: parseFloat(totalInterest.toFixed(2)), fmt: 'usd' },
+        ],
+      }
+    },
+    about: 'Most lenders allow borrowing up to 85% of your home's value minus any mortgage balance. Home equity loan rates in 2025 average 8–9.5%. Interest may be tax-deductible if used for home improvements — consult a tax advisor.',
+    related: ['mortgage-calculator', 'refinance-break-even-calculator', 'heloc-calculator'],
+  },
+  {
+    slug: 'hsa-contribution-calculator',
+    title: 'HSA Contribution & Tax Savings Calculator',
+    desc: 'Calculate your HSA tax savings based on your contribution and tax bracket.',
+    cat: 'finance', icon: '🏥',
+    fields: [
+      { k: 'contribution', l: 'Annual HSA Contribution', p: '3850', min: 0, u: 'USD' },
+      { k: 'federal_rate', l: 'Federal Tax Bracket', p: '22', min: 0, max: 37, u: '%' },
+      { k: 'state_rate', l: 'State Income Tax Rate', p: '5', min: 0, max: 15, u: '%' },
+      { k: 'fica_rate', l: 'FICA Rate', p: '7.65', min: 0, max: 15, u: '%' },
+    ],
+    fn: (v) => {
+      const totalTaxRate = (v.federal_rate + v.state_rate + v.fica_rate) / 100
+      const taxSavings = v.contribution * totalTaxRate
+      const effectiveCost = v.contribution - taxSavings
+      return {
+        primary: { value: parseFloat(taxSavings.toFixed(2)), label: 'Total Tax Savings', fmt: 'usd' },
+        details: [
+          { l: 'Effective Cost After Tax Savings', v: parseFloat(effectiveCost.toFixed(2)), fmt: 'usd' },
+          { l: '2025 Self-Only Limit', v: 4300, fmt: 'usd' },
+          { l: '2025 Family Limit', v: 8550, fmt: 'usd' },
+        ],
+        note: 'HSA triple tax advantage: contributions pre-tax, growth tax-free, withdrawals tax-free for medical expenses.',
+      }
+    },
+    about: 'The HSA is considered by many financial planners as the best tax-advantaged account in the US — it's the only one with a triple tax benefit. Unused funds roll over forever and can be invested in stocks after age 65.',
+    related: ['tax-bracket-calculator', 'roth-ira-calculator', 'retirement-savings-calculator'],
+  },
+  {
+    slug: 'freelance-hourly-rate-calculator',
+    title: 'Freelance Hourly Rate Calculator',
+    desc: 'Calculate the minimum hourly rate you need to charge as a freelancer to match your income goals.',
+    cat: 'finance', icon: '💼',
+    fields: [
+      { k: 'annual_income', l: 'Desired Annual Income', p: '100000', min: 0, u: 'USD' },
+      { k: 'work_weeks', l: 'Billable Weeks per Year', p: '46', min: 1, max: 52 },
+      { k: 'hours_per_week', l: 'Billable Hours per Week', p: '30', min: 1, max: 60 },
+      { k: 'expenses', l: 'Annual Business Expenses', p: '8000', min: 0, u: 'USD' },
+      { k: 'se_tax', l: 'Self-Employment Tax Rate', p: '15.3', min: 0, u: '%' },
+    ],
+    fn: (v) => {
+      const grossNeeded = (v.annual_income + v.expenses) / (1 - v.se_tax / 100)
+      const billableHours = v.work_weeks * v.hours_per_week
+      const rateNeeded = billableHours > 0 ? grossNeeded / billableHours : 0
+      return {
+        primary: { value: parseFloat(rateNeeded.toFixed(2)), label: 'Minimum Hourly Rate Needed', fmt: 'usd' },
+        details: [
+          { l: 'Gross Revenue Needed', v: parseFloat(grossNeeded.toFixed(2)), fmt: 'usd' },
+          { l: 'Annual Billable Hours', v: billableHours, fmt: 'num' },
+          { l: 'SE Tax Owed (est.)', v: parseFloat((grossNeeded * v.se_tax / 100).toFixed(2)), fmt: 'usd' },
+        ],
+        note: 'Add 20–30% buffer to account for unbillable time, client delays, and finding new work.',
+      }
+    },
+    about: 'Freelancers pay 15.3% self-employment tax on top of income tax — equivalent to paying both the employee and employer share of Social Security and Medicare. A $100K target as a freelancer requires roughly $130–140K in gross revenue.',
+    related: ['self-employment-tax-calculator', 'quarterly-tax-calculator', 'take-home-pay-calculator'],
+  },
+  {
+    slug: 'gift-tax-annual-exclusion-calculator',
+    title: 'Gift Tax Annual Exclusion Calculator',
+    desc: 'Calculate how much you can gift tax-free per year under IRS annual exclusion rules.',
+    cat: 'finance', icon: '🎁',
+    fields: [
+      { k: 'gift_amount', l: 'Total Gift Amount', p: '50000', min: 0, u: 'USD' },
+      { k: 'recipients', l: 'Number of Recipients', p: '3', min: 1, max: 50 },
+      { k: 'is_married', l: 'Gift-Splitting (Married Couple)', p: '0', min: 0, max: 1 },
+    ],
+    fn: (v) => {
+      const exclusion2025 = 19000
+      const multiplier = v.is_married >= 0.5 ? 2 : 1
+      const totalExclusion = exclusion2025 * v.recipients * multiplier
+      const taxableGift = Math.max(0, v.gift_amount - totalExclusion)
+      return {
+        primary: { value: parseFloat(totalExclusion.toFixed(0)), label: 'Total Tax-Free Gift Allowance', fmt: 'usd' },
+        details: [
+          { l: '2025 Annual Exclusion per Person', v: exclusion2025, fmt: 'usd' },
+          { l: 'Taxable Gift Amount', v: parseFloat(taxableGift.toFixed(2)), fmt: 'usd', color: taxableGift > 0 ? '#f87171' : 'var(--green)' },
+          { l: 'Remaining Lifetime Exemption', v: 13610000, fmt: 'usd' },
+        ],
+        note: 'Taxable gifts above the annual exclusion count against your $13.61M lifetime exemption — most people never owe gift tax.',
+      }
+    },
+    about: 'The 2025 annual gift tax exclusion is $19,000 per recipient (up from $18,000 in 2024). Married couples can combine exclusions to give $38,000 per recipient. Direct payments to educational institutions and medical providers are completely unlimited.',
+    related: ['estate-tax-calculator', 'roth-ira-calculator', 'financial-independence-calculator'],
+  },
+  {
+    slug: 'side-hustle-tax-calculator',
+    title: 'Side Hustle Tax Calculator',
+    desc: 'Estimate taxes owed on side hustle income including self-employment tax and quarterly payments.',
+    cat: 'finance', icon: '⚡',
+    fields: [
+      { k: 'side_income', l: 'Annual Side Hustle Income', p: '25000', min: 0, u: 'USD' },
+      { k: 'expenses', l: 'Deductible Business Expenses', p: '4000', min: 0, u: 'USD' },
+      { k: 'w2_income', l: 'W-2 Salary (primary job)', p: '75000', min: 0, u: 'USD' },
+      { k: 'filing_status', l: 'Filing Status (0=Single, 1=MFJ)', p: '0', min: 0, max: 1 },
+    ],
+    fn: (v) => {
+      const netSideIncome = Math.max(0, v.side_income - v.expenses)
+      const seTax = netSideIncome * 0.153
+      const seDeduction = seTax / 2
+      const totalIncome = v.w2_income + netSideIncome - seDeduction
+      const stdDeduction = v.filing_status >= 0.5 ? 30000 : 15000
+      const taxableIncome = Math.max(0, totalIncome - stdDeduction)
+      const marginalRate = taxableIncome > 89075 ? 0.22 : taxableIncome > 44725 ? 0.12 : 0.10
+      const additionalIT = netSideIncome * marginalRate
+      const totalTax = seTax + additionalIT
+      const quarterly = totalTax / 4
+      return {
+        primary: { value: parseFloat(totalTax.toFixed(2)), label: 'Estimated Annual Tax on Side Income', fmt: 'usd' },
+        details: [
+          { l: 'Self-Employment Tax (15.3%)', v: parseFloat(seTax.toFixed(2)), fmt: 'usd' },
+          { l: 'Additional Income Tax', v: parseFloat(additionalIT.toFixed(2)), fmt: 'usd' },
+          { l: 'Quarterly Payment (est.)', v: parseFloat(quarterly.toFixed(2)), fmt: 'usd' },
+        ],
+        note: 'Pay quarterly taxes by April 15, June 15, Sept 15, and Jan 15 to avoid underpayment penalties.',
+      }
+    },
+    about: 'Side hustle income over $400 triggers self-employment tax on top of regular income tax. The IRS requires quarterly estimated payments if you expect to owe $1,000+ for the year. Common deductions: home office, equipment, subscriptions, mileage at $0.67/mile (2024).',
+    related: ['self-employment-tax-calculator', 'freelance-hourly-rate-calculator', 'quarterly-tax-calculator'],
+  },
+  {
+    slug: 'net-worth-tracker-calculator',
+    title: 'Net Worth Calculator',
+    desc: 'Calculate your complete net worth by entering your assets and liabilities.',
+    cat: 'finance', icon: '💎',
+    fields: [
+      { k: 'home_value', l: 'Home / Real Estate Value', p: '400000', min: 0, u: 'USD' },
+      { k: 'investments', l: 'Investment Accounts (401k, IRA, brokerage)', p: '150000', min: 0, u: 'USD' },
+      { k: 'cash', l: 'Cash & Savings', p: '25000', min: 0, u: 'USD' },
+      { k: 'mortgage', l: 'Mortgage Balance', p: '280000', min: 0, u: 'USD' },
+      { k: 'other_debt', l: 'Other Debts (car, student, credit)', p: '35000', min: 0, u: 'USD' },
+    ],
+    fn: (v) => {
+      const totalAssets = v.home_value + v.investments + v.cash
+      const totalLiabilities = v.mortgage + v.other_debt
+      const netWorth = totalAssets - totalLiabilities
+      const debtRatio = totalAssets > 0 ? (totalLiabilities / totalAssets) * 100 : 0
+      return {
+        primary: { value: parseFloat(netWorth.toFixed(2)), label: 'Net Worth', fmt: 'usd' },
+        details: [
+          { l: 'Total Assets', v: parseFloat(totalAssets.toFixed(2)), fmt: 'usd', color: 'var(--green)' },
+          { l: 'Total Liabilities', v: parseFloat(totalLiabilities.toFixed(2)), fmt: 'usd', color: '#f87171' },
+          { l: 'Debt-to-Asset Ratio', v: parseFloat(debtRatio.toFixed(1)), fmt: 'pct' },
+        ],
+      }
+    },
+    about: 'Median US net worth in 2025: $192,700 (Federal Reserve). For those under 35: $39,000. For 35–44: $135,600. For 45–54: $247,200. Real estate often makes up 60–70% of net worth for middle-class households — meaning it's often illiquid.',
+    related: ['financial-independence-calculator', 'retirement-savings-calculator', 'budget-calculator'],
+  },
+  {
+    slug: 'rental-property-roi-calculator',
+    title: 'Rental Property ROI Calculator',
+    desc: 'Calculate the return on investment, cash-on-cash return, and cap rate for a rental property.',
+    cat: 'finance', icon: '🏘️',
+    fields: [
+      { k: 'purchase_price', l: 'Purchase Price', p: '350000', min: 0, u: 'USD' },
+      { k: 'down_payment', l: 'Down Payment', p: '70000', min: 0, u: 'USD' },
+      { k: 'monthly_rent', l: 'Monthly Rent Collected', p: '2200', min: 0, u: 'USD' },
+      { k: 'monthly_expenses', l: 'Monthly Expenses (mortgage, taxes, insurance, maintenance)', p: '1800', min: 0, u: 'USD' },
+    ],
+    fn: (v) => {
+      const annualCashFlow = (v.monthly_rent - v.monthly_expenses) * 12
+      const cashOnCash = v.down_payment > 0 ? (annualCashFlow / v.down_payment) * 100 : 0
+      const noi = v.monthly_rent * 12 * 0.92 - (v.monthly_expenses - (v.purchase_price * 0.04) / 12) * 12
+      const capRate = v.purchase_price > 0 ? (noi / v.purchase_price) * 100 : 0
+      return {
+        primary: { value: parseFloat(cashOnCash.toFixed(2)), label: 'Cash-on-Cash Return', fmt: 'pct' },
+        details: [
+          { l: 'Annual Cash Flow', v: parseFloat(annualCashFlow.toFixed(2)), fmt: 'usd', color: annualCashFlow >= 0 ? 'var(--green)' : '#f87171' },
+          { l: 'Cap Rate', v: parseFloat(capRate.toFixed(2)), fmt: 'pct' },
+          { l: 'Monthly Cash Flow', v: parseFloat((annualCashFlow / 12).toFixed(2)), fmt: 'usd' },
+        ],
+        note: 'Target: 1% Rule (monthly rent ≥ 1% of purchase price). A cash-on-cash of 6–10% is generally considered good.',
+      }
+    },
+    about: 'The 1% rule (monthly rent ≥ 1% of purchase price) is a quick screening tool — a $350K property should rent for $3,500+/month. Average gross rental yield in the US is 6–8%. Cap rates above 5% in major metros are increasingly rare post-2020.',
+    related: ['mortgage-calculator', 'home-equity-loan-calculator', 'investment-calculator'],
+  },
+
 ]

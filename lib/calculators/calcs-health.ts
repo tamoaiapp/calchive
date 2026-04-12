@@ -768,5 +768,306 @@ export const healthCalcs: CalcConfig[] = [
     },
     about: 'Moderate cycling (12–14 mph) burns 400–600 calories/hour for a 160-lb rider. Indoor cycling classes often cite "600–1,000 calories" — these figures are significantly inflated. Research shows actual burns average 350–600 calories/hour for spin classes at typical intensities.',
     related: ['calories-burned-running-calculator', 'calories-burned-walking-calculator', 'tdee-calculator'],
+  },,
+  {
+    slug: 'waist-to-height-ratio-calculator',
+    title: 'Waist-to-Height Ratio Calculator',
+    desc: 'Calculate your waist-to-height ratio — a better predictor of metabolic risk than BMI alone.',
+    cat: 'health', icon: '📏',
+    fields: [
+      { k: 'waist', l: 'Waist Circumference (inches)', p: '34', min: 20, max: 80 },
+      { k: 'height', l: 'Height (inches)', p: '69', min: 48, max: 96 },
+    ],
+    fn: (v) => {
+      const ratio = v.waist / v.height
+      let risk = 'Healthy (ratio < 0.5)'
+      let color = 'var(--green)'
+      if (ratio >= 0.6) { risk = 'Very High Risk (ratio ≥ 0.6)'; color = '#f87171' }
+      else if (ratio >= 0.5) { risk = 'Increased Risk (0.5–0.59)'; color = '#fbbf24' }
+      return {
+        primary: { value: parseFloat(ratio.toFixed(3)), label: 'Waist-to-Height Ratio', fmt: 'num' },
+        details: [
+          { l: 'Risk Category', v: risk, fmt: 'txt', color },
+          { l: 'Healthy Target Waist (max)', v: parseFloat((v.height * 0.5).toFixed(1)), fmt: 'num' },
+        ],
+        note: 'Keep your waist to less than half your height. Research shows WtHR predicts cardiometabolic risk better than BMI.',
+      }
+    },
+    about: 'A 2020 meta-analysis of 300,000 participants found waist-to-height ratio outperforms BMI for predicting type 2 diabetes, cardiovascular disease, and all-cause mortality. The threshold of 0.5 (keep your waist under half your height) holds across ethnicities and ages.',
+    related: ['bmi-calculator', 'body-fat-percentage-calculator', 'waist-hip-ratio-calculator'],
   },
+  {
+    slug: 'daily-water-intake-calculator',
+    title: 'Daily Water Intake Calculator',
+    desc: 'Calculate how much water you should drink per day based on weight, activity, and climate.',
+    cat: 'health', icon: '💧',
+    fields: [
+      { k: 'weight_lbs', l: 'Body Weight (lbs)', p: '165', min: 50, max: 400 },
+      { k: 'activity', l: 'Activity Level (0=Sedentary, 1=Moderate, 2=Active, 3=Very Active)', p: '1', min: 0, max: 3 },
+      { k: 'climate', l: 'Climate (0=Temperate, 1=Hot)', p: '0', min: 0, max: 1 },
+    ],
+    fn: (v) => {
+      const baseOz = v.weight_lbs * 0.5
+      const activityBonus = [0, 12, 24, 36][Math.min(3, Math.round(v.activity))]
+      const climateBonus = v.climate >= 0.5 ? 16 : 0
+      const totalOz = baseOz + activityBonus + climateBonus
+      const totalLiters = totalOz * 0.02957
+      const cups = totalOz / 8
+      return {
+        primary: { value: parseFloat(totalLiters.toFixed(1)), label: 'Daily Water Target (liters)', fmt: 'num' },
+        details: [
+          { l: 'In fluid ounces', v: parseFloat(totalOz.toFixed(0)), fmt: 'num' },
+          { l: 'In cups (8 oz each)', v: parseFloat(cups.toFixed(1)), fmt: 'num' },
+          { l: 'Activity Bonus (oz)', v: activityBonus, fmt: 'num' },
+        ],
+        note: 'About 20% of daily water comes from food. Coffee and tea count toward intake — only alcohol actively dehydrates.',
+      }
+    },
+    about: 'The "8 glasses a day" rule is a myth — actual needs vary significantly by body weight, activity, and climate. The National Academies recommend 3.7L/day for men and 2.7L/day for women (from all sources). Urine should be pale yellow — darker indicates dehydration.',
+    related: ['bmi-calculator', 'calorie-deficit-calculator', 'tdee-calculator'],
+  },
+  {
+    slug: 'sleep-debt-calculator',
+    title: 'Sleep Debt Calculator',
+    desc: 'Calculate how much sleep debt you've accumulated and how long it takes to recover.',
+    cat: 'health', icon: '😴',
+    fields: [
+      { k: 'needed', l: 'Hours of Sleep You Need per Night', p: '8', min: 5, max: 12 },
+      { k: 'actual', l: 'Hours You Actually Sleep per Night', p: '6.5', min: 3, max: 12 },
+      { k: 'days', l: 'Days of This Pattern', p: '7', min: 1, max: 90 },
+    ],
+    fn: (v) => {
+      const debtPerNight = Math.max(0, v.needed - v.actual)
+      const totalDebt = debtPerNight * v.days
+      const recoveryDays = totalDebt > 0 ? Math.ceil(totalDebt / 1.5) : 0
+      return {
+        primary: { value: parseFloat(totalDebt.toFixed(1)), label: 'Total Sleep Debt (hours)', fmt: 'num' },
+        details: [
+          { l: 'Deficit per Night', v: parseFloat(debtPerNight.toFixed(1)), fmt: 'num' },
+          { l: 'Recovery Time Needed', v: recoveryDays, fmt: 'num' },
+          { l: 'Status', v: totalDebt === 0 ? 'No debt' : totalDebt < 7 ? 'Mild deficit' : 'Significant — address promptly', fmt: 'txt', color: totalDebt === 0 ? 'var(--green)' : totalDebt < 7 ? '#fbbf24' : '#f87171' },
+        ],
+        note: 'Recovery happens at roughly 1–2 extra hours of sleep per night. You cannot fully recover from chronic sleep debt in a single weekend.',
+      }
+    },
+    about: 'Adults need 7–9 hours per night (National Sleep Foundation). Sleeping 6 hours for 2 weeks creates cognitive impairment equivalent to 24 hours without sleep. Chronic sleep debt increases risk of obesity, type 2 diabetes, cardiovascular disease, and mortality.',
+    related: ['calorie-deficit-calculator', 'tdee-calculator', 'bmi-calculator'],
+  },
+  {
+    slug: 'macro-calculator',
+    title: 'Macronutrient (Macros) Calculator',
+    desc: 'Calculate your daily protein, carbohydrate, and fat targets based on your goals.',
+    cat: 'health', icon: '🥗',
+    fields: [
+      { k: 'calories', l: 'Daily Calorie Target', p: '2200', min: 1000, max: 6000 },
+      { k: 'goal', l: 'Goal (0=Balanced, 1=High Protein/Cut, 2=Low Carb/Keto)', p: '0', min: 0, max: 2 },
+      { k: 'weight_lbs', l: 'Body Weight (lbs)', p: '170', min: 80, max: 400 },
+    ],
+    fn: (v) => {
+      const g = Math.round(v.goal)
+      let proteinPct = g === 1 ? 0.35 : g === 2 ? 0.30 : 0.25
+      let carbPct = g === 2 ? 0.05 : g === 1 ? 0.40 : 0.45
+      let fatPct = 1 - proteinPct - carbPct
+      const proteinG = Math.round(v.calories * proteinPct / 4)
+      const carbG = Math.round(v.calories * carbPct / 4)
+      const fatG = Math.round(v.calories * fatPct / 9)
+      const proteinPerLb = (proteinG / v.weight_lbs).toFixed(2)
+      return {
+        primary: { value: proteinG, label: 'Daily Protein Target (grams)', fmt: 'num' },
+        details: [
+          { l: 'Carbohydrates', v: carbG, fmt: 'num' },
+          { l: 'Fat', v: fatG, fmt: 'num' },
+          { l: 'Protein per lb bodyweight', v: parseFloat(proteinPerLb), fmt: 'num' },
+        ],
+        note: 'For muscle building: aim for 0.7–1g protein per lb bodyweight. For fat loss: higher protein (0.8–1.2g/lb) preserves muscle.',
+      }
+    },
+    about: 'Research supports 1.6–2.2g of protein per kg of bodyweight for muscle hypertrophy (roughly 0.73–1g/lb). The remaining calories from carbs vs fat is largely personal preference — both approaches work for body composition when protein is adequate.',
+    related: ['calorie-deficit-calculator', 'tdee-calculator', 'bmi-calculator'],
+  },
+  {
+    slug: 'body-fat-percentage-calculator',
+    title: 'Body Fat Percentage Calculator (US Navy Method)',
+    desc: 'Estimate your body fat percentage using the US Navy circumference method.',
+    cat: 'health', icon: '💪',
+    fields: [
+      { k: 'height', l: 'Height (inches)', p: '70', min: 48, max: 96 },
+      { k: 'neck', l: 'Neck Circumference (inches)', p: '15', min: 8, max: 24 },
+      { k: 'waist', l: 'Waist Circumference (inches)', p: '34', min: 20, max: 70 },
+      { k: 'hip', l: 'Hip Circumference (inches, women only; enter 0 for men)', p: '0', min: 0, max: 70 },
+    ],
+    fn: (v) => {
+      let bf: number
+      if (v.hip > 0) {
+        bf = 163.205 * Math.log10(v.waist + v.hip - v.neck) - 97.684 * Math.log10(v.height) - 78.387
+      } else {
+        bf = 86.010 * Math.log10(v.waist - v.neck) - 70.041 * Math.log10(v.height) + 36.76
+      }
+      bf = Math.max(3, Math.min(60, bf))
+      let category = 'Athletic (6–13%)'
+      if (bf > 32) category = 'Obese (>32%)'
+      else if (bf > 25) category = 'Overweight (25–32%)'
+      else if (bf > 18) category = 'Average (18–25%)'
+      else if (bf > 13) category = 'Fitness (14–17%)'
+      return {
+        primary: { value: parseFloat(bf.toFixed(1)), label: 'Estimated Body Fat %', fmt: 'pct' },
+        details: [
+          { l: 'Category', v: category, fmt: 'txt' },
+          { l: 'Essential Fat Range (men)', v: '2–5%', fmt: 'txt' },
+          { l: 'Athlete Range (men)', v: '6–13%', fmt: 'txt' },
+        ],
+        note: 'Navy method has ±3–4% accuracy. DEXA scan is the gold standard for precise measurement.',
+      }
+    },
+    about: 'The US Navy circumference method is widely used in military fitness assessments. It correlates reasonably well with DEXA scans for most people but underestimates fat in the apple-shaped and overestimates in very muscular individuals.',
+    related: ['bmi-calculator', 'waist-to-height-ratio-calculator', 'tdee-calculator'],
+  },
+  {
+    slug: 'one-rep-max-epley-calculator',
+    title: 'One Rep Max (1RM) Calculator',
+    desc: 'Estimate your one-rep maximum for any lift using the Epley formula.',
+    cat: 'health', icon: '🏋️',
+    fields: [
+      { k: 'weight', l: 'Weight Lifted (lbs)', p: '225', min: 1 },
+      { k: 'reps', l: 'Number of Reps Completed', p: '5', min: 1, max: 30 },
+    ],
+    fn: (v) => {
+      const orm = v.weight * (1 + v.reps / 30)
+      const pct90 = orm * 0.90
+      const pct85 = orm * 0.85
+      const pct80 = orm * 0.80
+      return {
+        primary: { value: parseFloat(orm.toFixed(1)), label: 'Estimated 1-Rep Max (lbs)', fmt: 'num' },
+        details: [
+          { l: '90% of 1RM (strength)', v: parseFloat(pct90.toFixed(1)), fmt: 'num' },
+          { l: '85% of 1RM (5-rep target)', v: parseFloat(pct85.toFixed(1)), fmt: 'num' },
+          { l: '80% of 1RM (8-rep target)', v: parseFloat(pct80.toFixed(1)), fmt: 'num' },
+        ],
+        note: 'The Epley formula is most accurate for 1–10 reps. Above 10 reps, predictions become less reliable.',
+      }
+    },
+    about: 'The Epley formula (1985) remains one of the most validated 1RM estimation methods. Strength standards for a 185-lb male: Bench Press novice 135 lbs, intermediate 205 lbs, advanced 290 lbs. Deadlift novice 225 lbs, intermediate 315 lbs, advanced 450+ lbs.',
+    related: ['calorie-deficit-calculator', 'tdee-calculator', 'body-fat-percentage-calculator'],
+  },
+  {
+    slug: 'smoking-cost-calculator',
+    title: 'Smoking Cost Calculator',
+    desc: 'Calculate how much you spend on cigarettes per year and what you'd have if you invested it.',
+    cat: 'health', icon: '🚭',
+    fields: [
+      { k: 'packs_per_day', l: 'Packs Per Day', p: '1', min: 0.25, max: 5 },
+      { k: 'price_per_pack', l: 'Price Per Pack', p: '9.50', min: 1, max: 30, u: 'USD' },
+      { k: 'years', l: 'Years Since You Started (or plan to quit)', p: '10', min: 1, max: 50 },
+    ],
+    fn: (v) => {
+      const annual = v.packs_per_day * 365 * v.price_per_pack
+      const total = annual * v.years
+      const invested = v.packs_per_day * 365 * v.price_per_pack / 12
+      const investedValue = invested * ((Math.pow(1 + 0.10, v.years) - 1) / (0.10 / 12))
+      return {
+        primary: { value: parseFloat(total.toFixed(2)), label: 'Total Spent Over ' + v.years + ' Years', fmt: 'usd' },
+        details: [
+          { l: 'Annual Cost', v: parseFloat(annual.toFixed(2)), fmt: 'usd' },
+          { l: 'If Invested at 10% Return', v: parseFloat(investedValue.toFixed(2)), fmt: 'usd' },
+          { l: 'Monthly Cost', v: parseFloat((annual / 12).toFixed(2)), fmt: 'usd' },
+        ],
+        note: 'Average pack price varies: $10–14 in New York/California, $5–7 in tobacco-producing states.',
+      }
+    },
+    about: 'The average US smoker spends $3,000–$5,000/year on cigarettes. New York state has the highest pack price (~$14) due to taxes. The CDC estimates smoking-related healthcare costs average $19,000+ per smoker over a lifetime.',
+    related: ['alcohol-calories-calculator', 'savings-goal-calculator', 'compound-interest-calculator'],
+  },
+  {
+    slug: 'alcohol-calories-calculator',
+    title: 'Alcohol Calories Calculator',
+    desc: 'Calculate the calories in your drinks and how alcohol fits into your weekly calorie budget.',
+    cat: 'health', icon: '🍺',
+    fields: [
+      { k: 'beers', l: 'Regular Beers per Week (12 oz, 5% ABV)', p: '4', min: 0, max: 50 },
+      { k: 'wines', l: 'Glasses of Wine per Week (5 oz)', p: '2', min: 0, max: 30 },
+      { k: 'spirits', l: 'Shots of Spirits per Week (1.5 oz, 40% ABV)', p: '2', min: 0, max: 30 },
+    ],
+    fn: (v) => {
+      const beerCal = v.beers * 153
+      const wineCal = v.wines * 123
+      const spiritsCal = v.spirits * 97
+      const totalWeekly = beerCal + wineCal + spiritsCal
+      const totalAnnual = totalWeekly * 52
+      const poundsGained = totalAnnual / 3500
+      return {
+        primary: { value: Math.round(totalWeekly), label: 'Weekly Calories from Alcohol', fmt: 'num' },
+        details: [
+          { l: 'Annual Calories', v: Math.round(totalAnnual), fmt: 'num' },
+          { l: 'Annual Calorie Equivalent (lbs of fat)', v: parseFloat(poundsGained.toFixed(1)), fmt: 'num' },
+          { l: 'Monthly Cost Estimate', v: parseFloat(((v.beers * 1.5 + v.wines * 3 + v.spirits * 2) * 4.3).toFixed(2)), fmt: 'usd' },
+        ],
+        note: 'Alcohol has 7 calories per gram — almost as calorie-dense as fat (9 cal/g). It also suppresses fat oxidation for hours after consumption.',
+      }
+    },
+    about: 'Alcohol contributes an average of 100 extra calories per day for US adults who drink regularly (CDC). Light beers have 95–105 calories, IPAs 180–250, craft beers 200–350. Wine varies from 120–130 (dry) to 165+ (sweet). Spirits are calorie-dense but often mixed with high-sugar mixers.',
+    related: ['calorie-deficit-calculator', 'tdee-calculator', 'smoking-cost-calculator'],
+  },
+  {
+    slug: 'pregnancy-due-date-calculator',
+    title: 'Pregnancy Due Date Calculator',
+    desc: 'Calculate your estimated due date and key pregnancy milestones from your last menstrual period.',
+    cat: 'health', icon: '🤱',
+    fields: [
+      { k: 'lmp_days_ago', l: 'Days Since Last Menstrual Period (LMP)', p: '42', min: 0, max: 280 },
+      { k: 'cycle_length', l: 'Average Cycle Length (days)', p: '28', min: 21, max: 35 },
+    ],
+    fn: (v) => {
+      const ovulationOffset = v.cycle_length - 14
+      const gestationDays = 280 + (ovulationOffset - 14)
+      const daysRemaining = gestationDays - v.lmp_days_ago
+      const weeksPregnant = Math.floor(v.lmp_days_ago / 7)
+      const daysPregnant = v.lmp_days_ago % 7
+      const trimester = weeksPregnant < 14 ? 1 : weeksPregnant < 28 ? 2 : 3
+      return {
+        primary: { value: Math.max(0, daysRemaining), label: 'Days Until Estimated Due Date', fmt: 'num' },
+        details: [
+          { l: 'Weeks Pregnant', v: weeksPregnant, fmt: 'num' },
+          { l: 'Extra Days', v: daysPregnant, fmt: 'num' },
+          { l: 'Current Trimester', v: trimester, fmt: 'num' },
+        ],
+        note: 'Only 4% of babies are born exactly on their due date. The normal range is 38–42 weeks. Naegele's rule assumes a 28-day cycle.',
+      }
+    },
+    about: 'Naegele's rule calculates due date as LMP + 280 days (40 weeks). First trimester: weeks 1–13. Second: 14–27. Third: 28–40. Key milestones: heartbeat detectable ~6 weeks, anatomy scan ~20 weeks, viability ~24 weeks.',
+    related: ['bmi-calculator', 'daily-water-intake-calculator', 'macro-calculator'],
+  },
+  {
+    slug: 'running-pace-converter',
+    title: 'Running Pace Converter & Race Time Predictor',
+    desc: 'Convert running pace between min/mile and min/km, and predict your race finish times.',
+    cat: 'health', icon: '🏃',
+    fields: [
+      { k: 'minutes', l: 'Pace Minutes', p: '9', min: 3, max: 30 },
+      { k: 'seconds', l: 'Pace Seconds', p: '30', min: 0, max: 59 },
+      { k: 'is_per_mile', l: 'Unit (0=min/km, 1=min/mile)', p: '1', min: 0, max: 1 },
+    ],
+    fn: (v) => {
+      const paceSeconds = v.minutes * 60 + v.seconds
+      const isPerMile = v.is_per_mile >= 0.5
+      const pacePerMileSec = isPerMile ? paceSeconds : paceSeconds * 1.60934
+      const pacePerKmSec = isPerMile ? paceSeconds / 1.60934 : paceSeconds
+      const fmt = (s) => String(Math.floor(s / 60)) + ':' + String(Math.round(s % 60)).padStart(2, '0')
+      const fiveK = pacePerKmSec * 5
+      const tenK = pacePerKmSec * 10
+      const halfMarathon = pacePerKmSec * 21.0975
+      const marathon = pacePerKmSec * 42.195
+      return {
+        primary: { value: fmt(isPerMile ? pacePerKmSec : pacePerMileSec), label: isPerMile ? 'Pace per km' : 'Pace per mile', fmt: 'txt' },
+        details: [
+          { l: '5K Finish Time', v: fmt(fiveK), fmt: 'txt' },
+          { l: '10K Finish Time', v: fmt(tenK), fmt: 'txt' },
+          { l: 'Half Marathon', v: fmt(halfMarathon), fmt: 'txt' },
+          { l: 'Marathon', v: fmt(marathon), fmt: 'txt' },
+        ],
+      }
+    },
+    about: 'Average 5K time: 28–30 minutes (men), 34–36 minutes (women). Boston Marathon qualifying times range from 3:00 (men 18–34) to 5:35 (women 80+). A sub-4-hour marathon requires maintaining 9:09/mile for 26.2 miles.',
+    related: ['calories-burned-running-calculator', 'tdee-calculator', 'one-rep-max-epley-calculator'],
+  },
+
 ]
