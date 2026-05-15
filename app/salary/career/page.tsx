@@ -6,6 +6,7 @@ import { formatCurrency } from '@/lib/salary/generator'
 
 // Texas = no state tax, used for "national" take-home reference
 import { getStateBySlug } from '@/lib/salary/states'
+import AdSlot from '@/components/AdSlot'
 
 export const metadata: Metadata = {
   title: 'Career Salary After Tax — All Professions | USA-Calc',
@@ -38,6 +39,10 @@ export default function CareerIndexPage() {
         federal rates for a single filer (no state tax baseline). Click any career for a full
         breakdown by experience level and state.
       </p>
+
+      <div style={{ margin: '1.5rem 0' }}>
+        <AdSlot slot="hub-top-salary-career" format="leaderboard" />
+      </div>
 
       {PROFESSION_CATEGORIES.map(category => {
         const profs = PROFESSIONS.filter(p => p.category === category)
@@ -98,6 +103,10 @@ export default function CareerIndexPage() {
           </section>
         )
       })}
+
+      <div style={{ margin: '2.5rem 0 1.5rem' }}>
+        <AdSlot slot="hub-bot-salary-career" format="rectangle" />
+      </div>
     </div>
   )
 }

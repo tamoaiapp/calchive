@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import AdSlot from '@/components/AdSlot'
 
 export const metadata: Metadata = {
   title: 'USA-Calc — Free Online Calculators for Finance, Salary, Tax & More',
@@ -260,6 +261,10 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <div style={{ margin: '1.5rem 0' }}>
+        <AdSlot slot="hub-top-home" format="leaderboard" />
+      </div>
 
       {/* Categories */}
       <section
@@ -533,6 +538,10 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <div style={{ margin: '2.5rem 0 1.5rem' }}>
+        <AdSlot slot="hub-bot-home" format="rectangle" />
+      </div>
 
       {/* Trust bar */}
       <section

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { LOAN_RATES_2025 } from '@/lib/loan/data'
 import { PERSONAL_AMOUNTS, PERSONAL_TERMS, AUTO_AMOUNTS, AUTO_TERMS, STUDENT_AMOUNTS } from '@/lib/loan/pages-manifest'
+import AdSlot from '@/components/AdSlot'
 
 export const metadata: Metadata = {
   title: 'Loan Payment Calculator — Personal, Auto & Student | USA-Calc',
@@ -70,6 +71,10 @@ export default function LoanIndexPage() {
           Rates shown by credit score tier using real 2025 lender data.
         </p>
       </header>
+
+      <div style={{ margin: '1.5rem 0' }}>
+        <AdSlot slot="hub-top-loan" format="leaderboard" />
+      </div>
 
       {/* Current rates snapshot */}
       <section style={{ ...card, marginBottom: '2.5rem', background: 'rgba(59,130,246,0.07)', borderColor: 'rgba(59,130,246,0.2)' }}>
@@ -236,6 +241,10 @@ export default function LoanIndexPage() {
           })}
         </div>
       </section>
+
+      <div style={{ margin: '2.5rem 0 1.5rem' }}>
+        <AdSlot slot="hub-bot-loan" format="rectangle" />
+      </div>
 
       {/* Guides */}
       <section>

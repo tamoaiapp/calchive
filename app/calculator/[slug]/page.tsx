@@ -163,12 +163,10 @@ export default async function CalcPage({
         </p>
       </header>
 
-      {/* Top ad — AdSense leaderboard + Adsterra responsive */}
+      {/* Top ad — AdSlot now renders AdSense + Adsterra automatically */}
       <div style={{ marginBottom: '1.5rem' }}>
         <AdSlot slot="2345678901" format="leaderboard" />
       </div>
-      <AdsterraBanner size="728x90" showOn="desktop" />
-      <AdsterraBanner size="320x50" showOn="mobile" />
 
       {/* Calculator engine */}
       <CalcEngineWrapper slug={slug} />
@@ -198,7 +196,7 @@ export default async function CalcPage({
         )
       )}
 
-      {/* Mid ad — AdSense rectangle + Adsterra native */}
+      {/* Mid ad — AdSlot renders dual network */}
       <div style={{ margin: '2rem 0' }}>
         <AdSlot slot="3456789012" format="rectangle" />
       </div>
@@ -209,11 +207,10 @@ export default async function CalcPage({
         <RelatedLinks links={allRelated} title="Related Calculators" />
       )}
 
-      {/* Bottom ad — AdSense leaderboard + Adsterra 300x250 */}
+      {/* Bottom ad — AdSlot renders dual network */}
       <div style={{ marginTop: '2.5rem' }}>
         <AdSlot slot="4567890123" format="leaderboard" />
       </div>
-      <AdsterraBanner size="300x250" />
 
       {/* Schema.org */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }} />

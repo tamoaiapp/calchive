@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { NATIONAL_AUTO_AVG, AUTO_INSURANCE_BY_STATE } from '@/lib/insurance/data'
+import AdSlot from '@/components/AdSlot'
 
 export const metadata: Metadata = {
   title: 'Insurance Guides & Cost Estimators 2025 | USA-Calc',
@@ -61,6 +62,10 @@ export default function InsurancePage() {
           Michigan pays 83% more than that. See the full picture for your state.
         </p>
       </header>
+
+      <div style={{ margin: '1.5rem 0' }}>
+        <AdSlot slot="hub-top-insurance" format="leaderboard" />
+      </div>
 
       {/* Auto Insurance by State */}
       <section style={{ marginBottom: '3rem' }}>
@@ -187,6 +192,10 @@ export default function InsurancePage() {
           ))}
         </div>
       </section>
+
+      <div style={{ margin: '2.5rem 0 1.5rem' }}>
+        <AdSlot slot="hub-bot-insurance" format="rectangle" />
+      </div>
 
       {/* Other guides */}
       <section>

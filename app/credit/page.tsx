@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { CREDIT_SCORE_RANGES } from '@/lib/credit/data'
+import AdSlot from '@/components/AdSlot'
 
 export const metadata: Metadata = {
   title: 'Credit Score Guides, Card Interest & Debt Calculators 2025 | USA-Calc',
@@ -69,6 +70,10 @@ export default function CreditPage() {
           ))}
         </div>
       </header>
+
+      <div style={{ margin: '1.5rem 0' }}>
+        <AdSlot slot="hub-top-credit" format="leaderboard" />
+      </div>
 
       {/* Score ranges */}
       <section style={{ marginBottom: '3rem' }}>
@@ -160,6 +165,10 @@ export default function CreditPage() {
           ))}
         </div>
       </section>
+
+      <div style={{ margin: '2.5rem 0 1.5rem' }}>
+        <AdSlot slot="hub-bot-credit" format="rectangle" />
+      </div>
 
       {/* Guides */}
       <section>

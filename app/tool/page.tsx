@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ALL_TOOLS, TOOL_CATEGORIES } from '@/lib/tools'
+import AdSlot from '@/components/AdSlot'
 
 export const dynamic = 'force-static'
 
@@ -55,6 +56,10 @@ export default function ToolListPage() {
           ))}
         </div>
       </section>
+
+      <div style={{ margin: '1.5rem 0' }}>
+        <AdSlot slot="hub-top-tool" format="leaderboard" />
+      </div>
 
       {/* Category sections */}
       {byCategory.map((cat) => (
@@ -135,6 +140,10 @@ export default function ToolListPage() {
           </div>
         </section>
       ))}
+
+      <div style={{ margin: '2.5rem 0 1.5rem' }}>
+        <AdSlot slot="hub-bot-tool" format="rectangle" />
+      </div>
 
       {/* Bottom note */}
       <div

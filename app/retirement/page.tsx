@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SS_CLAIMING_BENEFIT, K401_BENCHMARK_MULTIPLIER } from '@/lib/retirement/pages-manifest'
+import AdSlot from '@/components/AdSlot'
 
 export const metadata: Metadata = {
   title: 'Retirement Planning: Can You Retire? Social Security & 401k | USA-Calc',
@@ -70,6 +71,10 @@ export default function RetirementPage() {
           The math matters — here it is.
         </p>
       </header>
+
+      <div style={{ margin: '1.5rem 0' }}>
+        <AdSlot slot="hub-top-retirement" format="leaderboard" />
+      </div>
 
       {/* Popular retire-at pages */}
       <section style={{ marginBottom: '3rem' }}>
@@ -172,6 +177,10 @@ export default function RetirementPage() {
           ))}
         </div>
       </section>
+
+      <div style={{ margin: '2.5rem 0 1.5rem' }}>
+        <AdSlot slot="hub-bot-retirement" format="rectangle" />
+      </div>
 
       {/* Guides */}
       <section>

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { STATES_ALL } from '@/lib/salary/states'
 import { MORTGAGE_RATES_2025 } from '@/lib/mortgage/data'
+import AdSlot from '@/components/AdSlot'
 
 export const metadata: Metadata = {
   title: 'Mortgage Payment Calculator by State & Price | USA-Calc',
@@ -83,6 +84,10 @@ export default function MortgageIndexPage() {
           ))}
         </div>
       </header>
+
+      <div style={{ margin: '1.5rem 0' }}>
+        <AdSlot slot="hub-top-mortgage" format="leaderboard" />
+      </div>
 
       {/* Current rates banner */}
       <section style={{ ...card, marginBottom: '2.5rem', background: 'rgba(59,130,246,0.07)', borderColor: 'rgba(59,130,246,0.2)' }}>
@@ -234,6 +239,10 @@ export default function MortgageIndexPage() {
           })}
         </div>
       </section>
+
+      <div style={{ margin: '2.5rem 0 1.5rem' }}>
+        <AdSlot slot="hub-bot-mortgage" format="rectangle" />
+      </div>
 
       {/* Guides */}
       <section>

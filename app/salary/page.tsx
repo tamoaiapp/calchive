@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { STATES_ALL } from '@/lib/salary/states'
 import { PROFESSIONS, PROFESSION_CATEGORIES } from '@/lib/salary/professions'
+import AdSlot from '@/components/AdSlot'
 
 export const metadata: Metadata = {
   title: 'Salary After Tax Calculator by State | USA-Calc',
@@ -79,6 +80,10 @@ export default function SalaryIndexPage() {
           ))}
         </div>
       </header>
+
+      <div style={{ margin: '1.5rem 0' }}>
+        <AdSlot slot="hub-top-salary" format="leaderboard" />
+      </div>
 
       {/* By State Grid */}
       <section style={{ marginBottom: '3rem' }}>
@@ -162,6 +167,10 @@ export default function SalaryIndexPage() {
           </details>
         </div>
       </section>
+
+      <div style={{ margin: '2.5rem 0 1.5rem' }}>
+        <AdSlot slot="hub-bot-salary" format="rectangle" />
+      </div>
 
       {/* By Profession */}
       <section>

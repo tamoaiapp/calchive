@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { GUIDE_SLUGS, GUIDE_CATEGORIES } from '@/lib/guides/manifest'
+import AdSlot from '@/components/AdSlot'
 
 export const metadata: Metadata = {
   title: 'Financial Guides: Budgeting, Investing, Crypto, Business & More | USA-Calc',
@@ -78,6 +79,10 @@ export default function GuidePage() {
         </p>
       </header>
 
+      <div style={{ margin: '1.5rem 0' }}>
+        <AdSlot slot="hub-top-guide" format="leaderboard" />
+      </div>
+
       {Object.entries(GUIDE_CATEGORIES).map(([category, slugs]) => (
         <section key={category} style={{ marginBottom: '3rem' }}>
           <h2 style={{ fontSize: '1.2rem', fontWeight: 800, marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -110,6 +115,10 @@ export default function GuidePage() {
           </div>
         </section>
       ))}
+
+      <div style={{ margin: '2.5rem 0 1.5rem' }}>
+        <AdSlot slot="hub-bot-guide" format="rectangle" />
+      </div>
 
       {/* Quick links to other sections */}
       <section style={{ ...card, marginTop: '2rem' }}>

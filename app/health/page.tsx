@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import AdSlot from '@/components/AdSlot'
 
 export const metadata: Metadata = {
   title: 'Health Calculators & Tools — BMI, Calories, Fitness | USA-Calc',
@@ -151,6 +152,10 @@ export default function HealthPage() {
         </div>
       </section>
 
+      <div style={{ margin: '1.5rem 0' }}>
+        <AdSlot slot="hub-top-health" format="leaderboard" />
+      </div>
+
       {/* Popular calculators */}
       <section style={{ background: 'var(--bg2)', padding: '56px 24px', borderBottom: '1px solid var(--line)' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
@@ -190,6 +195,10 @@ export default function HealthPage() {
           </div>
         </div>
       </section>
+
+      <div style={{ margin: '2.5rem 0 1.5rem' }}>
+        <AdSlot slot="hub-bot-health" format="rectangle" />
+      </div>
 
       {/* Category cards */}
       <section style={{ background: 'var(--bg)', padding: '56px 24px 72px' }}>

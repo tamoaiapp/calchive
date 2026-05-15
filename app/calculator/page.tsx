@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ALL_CALCULATORS, CALC_CATEGORIES } from '@/lib/calculators'
+import AdSlot from '@/components/AdSlot'
 
 export const dynamic = 'force-static'
 
@@ -52,6 +53,10 @@ export default function CalculatorListPage() {
           ))}
         </div>
       </section>
+
+      <div style={{ margin: '1.5rem 0' }}>
+        <AdSlot slot="hub-top-calculator" format="leaderboard" />
+      </div>
 
       {/* Category sections */}
       {byCategory.map((cat) => (
@@ -120,6 +125,10 @@ export default function CalculatorListPage() {
           </div>
         </section>
       ))}
+
+      <div style={{ margin: '2.5rem 0 1.5rem' }}>
+        <AdSlot slot="hub-bot-calculator" format="rectangle" />
+      </div>
 
       {/* Bottom CTA */}
       <div
