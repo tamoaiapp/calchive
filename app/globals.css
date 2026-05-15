@@ -107,6 +107,14 @@ p {
   outline-offset: 2px;
 }
 
+/* Responsive ad visibility */
+.ad-desktop-only { display: block; }
+.ad-mobile-only  { display: none; }
+@media (max-width: 768px) {
+  .ad-desktop-only { display: none; }
+  .ad-mobile-only  { display: block; }
+}
+
 /* Utility: gradient text */
 .gradient-text {
   background: var(--brand);

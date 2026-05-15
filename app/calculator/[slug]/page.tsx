@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation'
 import CalcEngineWrapper from '@/components/CalcEngineWrapper'
 import RelatedLinks from '@/components/RelatedLinks'
 import AdSlot from '@/components/AdSlot'
+import AdsterraBanner from '@/components/AdsterraBanner'
+import AdsterraNative from '@/components/AdsterraNative'
 import { ALL_CALCULATORS, getCalcBySlug } from '@/lib/calculators'
 import Breadcrumb from '@/components/Breadcrumb'
 
@@ -84,10 +86,12 @@ export default async function CalcPage({
         </p>
       </header>
 
-      {/* Top ad */}
+      {/* Top ad — AdSense leaderboard + Adsterra responsive (different networks, both render) */}
       <div style={{ marginBottom: '1.5rem' }}>
         <AdSlot slot="2345678901" format="leaderboard" />
       </div>
+      <AdsterraBanner size="728x90" showOn="desktop" />
+      <AdsterraBanner size="320x50" showOn="mobile" />
 
       {/* Calculator engine — uses slug to avoid passing fn to client */}
       <CalcEngineWrapper slug={slug} />
@@ -113,20 +117,22 @@ export default async function CalcPage({
         </section>
       )}
 
-      {/* Mid ad */}
+      {/* Mid ad — AdSense rectangle + Adsterra native (blends with content) */}
       <div style={{ margin: '2rem 0' }}>
         <AdSlot slot="3456789012" format="rectangle" />
       </div>
+      <AdsterraNative />
 
       {/* Related calculators */}
       {allRelated.length > 0 && (
         <RelatedLinks links={allRelated} title="Related Calculators" />
       )}
 
-      {/* Bottom ad */}
+      {/* Bottom ad — AdSense leaderboard + Adsterra 300x250 */}
       <div style={{ marginTop: '2.5rem' }}>
         <AdSlot slot="4567890123" format="leaderboard" />
       </div>
+      <AdsterraBanner size="300x250" />
 
       {/* Schema.org structured data */}
       <script
