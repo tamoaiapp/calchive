@@ -39,6 +39,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Homepage
   entries.push(entry('/', 1.0, 'daily'))
 
+  // Trust pages (E-E-A-T signals)
+  entries.push(entry('/about',       0.7, 'monthly'))
+  entries.push(entry('/methodology', 0.7, 'monthly'))
+
   // Section roots
   const sectionRoots = [
     '/calculator', '/tool', '/salary', '/tax',

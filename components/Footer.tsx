@@ -20,6 +20,8 @@ const popularCalcs = [
 
 const resources = [
   { label: 'About', href: '/about' },
+  { label: 'Editorial Team', href: '/about#author-finance' },
+  { label: 'Methodology', href: '/methodology' },
   { label: 'Privacy Policy', href: '/privacy' },
   { label: 'Terms of Use', href: '/terms' },
   { label: 'Contact', href: '/contact' },

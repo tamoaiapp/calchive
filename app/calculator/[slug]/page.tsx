@@ -5,7 +5,10 @@ import RelatedLinks from '@/components/RelatedLinks'
 import AdSlot from '@/components/AdSlot'
 import AdsterraBanner from '@/components/AdsterraBanner'
 import AdsterraNative from '@/components/AdsterraNative'
+import DeepContent from '@/components/DeepContent'
 import { ALL_CALCULATORS, getCalcBySlug } from '@/lib/calculators'
+import { getDeepContent } from '@/lib/calculators/deep-content'
+import { getAuthor } from '@/lib/authors'
 import Breadcrumb from '@/components/Breadcrumb'
 
 export const dynamic = 'force-static'
@@ -24,13 +27,23 @@ export async function generateMetadata({
   const calc = getCalcBySlug(slug)
   if (!calc) return { title: 'Calculator Not Found' }
 
+  const deep = getDeepContent(slug)
+  const description = deep?.intro
+    ? deep.intro.slice(0, 158)
+    : calc.desc
+
   return {
     title: calc.title,
-    description: calc.desc,
+    description,
     openGraph: {
       title: `${calc.title} | USA-Calc`,
-      description: calc.desc,
-      type: 'website',
+      description,
+      type: 'article',
+      ...(deep && {
+        publishedTime: deep.datePublished,
+        modifiedTime: deep.dateModified,
+        authors: [getAuthor(deep.author).name],
+      }),
     },
     alternates: {
       canonical: `/calculator/${slug}`,
@@ -47,6 +60,9 @@ export default async function CalcPage({
   const calc = getCalcBySlug(slug)
 
   if (!calc) notFound()
+
+  const deep = getDeepContent(slug)
+  const author = deep ? getAuthor(deep.author) : null
 
   // Build related links from related slugs (only serializable data)
   const relatedLinks = (calc.related ?? [])
@@ -68,6 +84,67 @@ export default async function CalcPage({
 
   const allRelated = [...relatedLinks, ...extraLinks].slice(0, 6)
 
+  const pageUrl = `https://www.usa-calc.com/calculator/${calc.slug}`
+
+  // ─── Schema.org ───────────────────────────────────────────────────────────
+  const webAppSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: calc.title,
+    description: deep?.intro ?? calc.desc,
+    applicationCategory: 'FinanceApplication',
+    operatingSystem: 'Web',
+    url: pageUrl,
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  }
+
+  const faqSchema = deep && deep.faq.length > 0
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: deep.faq.map((f) => ({
+          '@type': 'Question',
+          name: f.q,
+          acceptedAnswer: { '@type': 'Answer', text: f.a },
+        })),
+      }
+    : null
+
+  const articleSchema = deep && author
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: calc.title,
+        description: deep.intro,
+        author: {
+          '@type': 'Person',
+          name: author.name,
+          jobTitle: author.title,
+          description: author.bio,
+          knowsAbout: author.expertise,
+          url: `https://www.usa-calc.com${author.url}`,
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'USA-Calc',
+          url: 'https://www.usa-calc.com',
+        },
+        datePublished: deep.datePublished,
+        dateModified: deep.dateModified,
+        mainEntityOfPage: pageUrl,
+      }
+    : null
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.usa-calc.com' },
+      { '@type': 'ListItem', position: 2, name: 'Calculators', item: 'https://www.usa-calc.com/calculator' },
+      { '@type': 'ListItem', position: 3, name: calc.title, item: pageUrl },
+    ],
+  }
+
   return (
     <div style={{ maxWidth: 820, margin: '0 auto', padding: '2rem 1rem 4rem' }}>
       {/* Breadcrumb */}
@@ -82,42 +159,46 @@ export default async function CalcPage({
           </h1>
         </div>
         <p style={{ margin: 0, color: 'var(--muted)', fontSize: '1rem', lineHeight: 1.6 }}>
-          {calc.desc}
+          {deep?.intro ?? calc.desc}
         </p>
       </header>
 
-      {/* Top ad — AdSense leaderboard + Adsterra responsive (different networks, both render) */}
+      {/* Top ad — AdSense leaderboard + Adsterra responsive */}
       <div style={{ marginBottom: '1.5rem' }}>
         <AdSlot slot="2345678901" format="leaderboard" />
       </div>
       <AdsterraBanner size="728x90" showOn="desktop" />
       <AdsterraBanner size="320x50" showOn="mobile" />
 
-      {/* Calculator engine — uses slug to avoid passing fn to client */}
+      {/* Calculator engine */}
       <CalcEngineWrapper slug={slug} />
 
-      {/* About section */}
-      {calc.about && (
-        <section
-          aria-label="About this calculator"
-          style={{
-            marginTop: '2rem',
-            padding: '1.25rem 1.5rem',
-            background: 'var(--card)',
-            border: '1px solid var(--line)',
-            borderRadius: 16,
-          }}
-        >
-          <h2 style={{ margin: '0 0 0.6rem', fontSize: '1rem', fontWeight: 700, color: 'var(--text)' }}>
-            About This Calculator
-          </h2>
-          <p style={{ margin: 0, color: 'var(--muted)', fontSize: '0.9rem', lineHeight: 1.7 }}>
-            {calc.about}
-          </p>
-        </section>
+      {/* Deep content (top-priority calcs) OR fallback short About */}
+      {deep && author ? (
+        <DeepContent content={deep} author={author} />
+      ) : (
+        calc.about && (
+          <section
+            aria-label="About this calculator"
+            style={{
+              marginTop: '2rem',
+              padding: '1.25rem 1.5rem',
+              background: 'var(--card)',
+              border: '1px solid var(--line)',
+              borderRadius: 16,
+            }}
+          >
+            <h2 style={{ margin: '0 0 0.6rem', fontSize: '1rem', fontWeight: 700, color: 'var(--text)' }}>
+              About This Calculator
+            </h2>
+            <p style={{ margin: 0, color: 'var(--muted)', fontSize: '0.9rem', lineHeight: 1.7 }}>
+              {calc.about}
+            </p>
+          </section>
+        )
       )}
 
-      {/* Mid ad — AdSense rectangle + Adsterra native (blends with content) */}
+      {/* Mid ad — AdSense rectangle + Adsterra native */}
       <div style={{ margin: '2rem 0' }}>
         <AdSlot slot="3456789012" format="rectangle" />
       </div>
@@ -134,26 +215,15 @@ export default async function CalcPage({
       </div>
       <AdsterraBanner size="300x250" />
 
-      {/* Schema.org structured data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'WebApplication',
-            name: calc.title,
-            description: calc.desc,
-            applicationCategory: 'FinanceApplication',
-            operatingSystem: 'Web',
-            url: `https://usa-calc.com/calculator/${calc.slug}`,
-            offers: {
-              '@type': 'Offer',
-              price: '0',
-              priceCurrency: 'USD',
-            },
-          }),
-        }}
-      />
+      {/* Schema.org */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      {articleSchema && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      )}
+      {faqSchema && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      )}
     </div>
   )
 }

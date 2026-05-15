@@ -34,6 +34,37 @@ export const metadata: Metadata = {
   // verification: { google: 'add-later' },
 }
 
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': 'https://www.usa-calc.com/#organization',
+  name: 'USA-Calc',
+  url: 'https://www.usa-calc.com',
+  logo: 'https://www.usa-calc.com/icon.svg',
+  description:
+    'Free online financial calculators for finance, salary, tax, mortgage, and credit — built and reviewed by credentialed analysts.',
+  foundingDate: '2024',
+  knowsAbout: [
+    'Federal income tax',
+    'State income tax',
+    'Mortgage calculations',
+    'Student loan refinancing',
+    'Credit scoring',
+    'SaaS unit economics',
+    'Salary after tax',
+  ],
+}
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': 'https://www.usa-calc.com/#website',
+  url: 'https://www.usa-calc.com',
+  name: 'USA-Calc',
+  publisher: { '@id': 'https://www.usa-calc.com/#organization' },
+  inLanguage: 'en-US',
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -52,6 +83,8 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
         <Header />
         <main>{children}</main>
         <Footer />
