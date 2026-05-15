@@ -16,7 +16,7 @@ export default function AdsterraNative() {
         strategy="afterInteractive"
         async
         data-cfasync="false"
-        src={`https://pl29450474.profitablecpmratenetwork.com/${NATIVE_KEY}/invoke.js`}
+        src={`https://pl29450474.effectivecpmnetwork.com/${NATIVE_KEY}/invoke.js`}
       />
       <div id={`container-${NATIVE_KEY}`} />
     </div>
