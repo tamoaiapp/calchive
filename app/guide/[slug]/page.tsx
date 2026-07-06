@@ -6,10 +6,10 @@ import AdSlot from '@/components/AdSlot'
 import { GUIDE_SLUGS, getGuideContent } from '@/lib/guides/manifest'
 
 export const dynamic = 'force-static'
-export const dynamicParams = true
+export const dynamicParams = false
 
 export async function generateStaticParams() {
-  return GUIDE_SLUGS.slice(0, 80).map((slug) => ({ slug }))
+  return GUIDE_SLUGS.map((slug) => ({ slug }))
 }
 
 export async function generateMetadata({

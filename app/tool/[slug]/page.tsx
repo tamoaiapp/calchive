@@ -7,10 +7,10 @@ import { ALL_TOOLS, getToolBySlug, TOOL_CATEGORIES } from '@/lib/tools'
 import Breadcrumb from '@/components/Breadcrumb'
 
 export const dynamic = 'force-static'
-export const dynamicParams = true
+export const dynamicParams = false
 
 export async function generateStaticParams() {
-  return ALL_TOOLS.slice(0, 80).map((t) => ({ slug: t.slug }))
+  return ALL_TOOLS.map((t) => ({ slug: t.slug }))
 }
 
 export async function generateMetadata({

@@ -19,10 +19,10 @@ import {
 import { FILING_STATUS_LABELS, fmt, fmtPct } from '@/lib/tax/data'
 
 export const dynamic = 'force-static'
-export const dynamicParams = true
+export const dynamicParams = false
 
 export async function generateStaticParams() {
-  return TAX_PAGE_SLUGS.slice(0, 80).map(slug => ({ slug }))
+  return TAX_PAGE_SLUGS.map(slug => ({ slug }))
 }
 
 export async function generateMetadata({

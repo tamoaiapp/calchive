@@ -12,10 +12,10 @@ import { getAuthor } from '@/lib/authors'
 import Breadcrumb from '@/components/Breadcrumb'
 
 export const dynamic = 'force-static'
-export const dynamicParams = true
+export const dynamicParams = false
 
 export async function generateStaticParams() {
-  return ALL_CALCULATORS.slice(0, 80).map((c) => ({ slug: c.slug }))
+  return ALL_CALCULATORS.map((c) => ({ slug: c.slug }))
 }
 
 export async function generateMetadata({

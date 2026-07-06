@@ -7,10 +7,10 @@ import { INSURANCE_PAGE_SLUGS, parseInsuranceSlug } from '@/lib/insurance/pages-
 import { NATIONAL_AUTO_AVG, NATIONAL_HOME_AVG, LIFE_INSURANCE_RATES, HEALTH_INSURANCE_PREMIUMS_2025 } from '@/lib/insurance/data'
 
 export const dynamic = 'force-static'
-export const dynamicParams = true
+export const dynamicParams = false
 
 export async function generateStaticParams() {
-  return INSURANCE_PAGE_SLUGS.slice(0, 80).map((slug) => ({ slug }))
+  return INSURANCE_PAGE_SLUGS.map((slug) => ({ slug }))
 }
 
 // ─── Metadata ─────────────────────────────────────────────────────────────────

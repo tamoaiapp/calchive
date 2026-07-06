@@ -8,10 +8,10 @@ import { calculateMortgage, formatUSD, formatPct } from '@/lib/mortgage/calculat
 import { MORTGAGE_RATES_2025, STATE_PROPERTY_TAX } from '@/lib/mortgage/data'
 
 export const dynamic = 'force-static'
-export const dynamicParams = true
+export const dynamicParams = false
 
 export async function generateStaticParams() {
-  return MORTGAGE_PAGE_SLUGS.slice(0, 80).map(slug => ({ slug }))
+  return MORTGAGE_PAGE_SLUGS.map(slug => ({ slug }))
 }
 
 export async function generateMetadata({

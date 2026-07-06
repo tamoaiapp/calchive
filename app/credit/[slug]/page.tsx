@@ -7,10 +7,10 @@ import { CREDIT_PAGE_SLUGS, parseCreditSlug } from '@/lib/credit/pages-manifest'
 import { CREDIT_SCORE_RANGES, CC_RATES_BY_SCORE, AUTO_LOAN_RATES_BY_SCORE, MORTGAGE_RATE_ADJUSTMENT_BPS } from '@/lib/credit/data'
 
 export const dynamic = 'force-static'
-export const dynamicParams = true
+export const dynamicParams = false
 
 export async function generateStaticParams() {
-  return CREDIT_PAGE_SLUGS.slice(0, 80).map((slug) => ({ slug }))
+  return CREDIT_PAGE_SLUGS.map((slug) => ({ slug }))
 }
 
 export async function generateMetadata({

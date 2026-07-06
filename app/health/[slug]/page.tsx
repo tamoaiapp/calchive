@@ -11,10 +11,10 @@ import {
 } from '@/lib/health/calculator'
 
 export const dynamic = 'force-static'
-export const dynamicParams = true
+export const dynamicParams = false
 
 export async function generateStaticParams() {
-  return HEALTH_PAGE_SLUGS.slice(0, 80).map((slug) => ({ slug }))
+  return HEALTH_PAGE_SLUGS.map((slug) => ({ slug }))
 }
 
 // ─── Metadata ─────────────────────────────────────────────────────────────────

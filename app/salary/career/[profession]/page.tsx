@@ -8,10 +8,10 @@ import { generateProfessionPage } from '@/lib/salary/generator'
 import { formatCurrency } from '@/lib/salary/calculator'
 
 export const dynamic = 'force-static'
-export const dynamicParams = true
+export const dynamicParams = false
 
 export async function generateStaticParams() {
-  return PROFESSIONS.slice(0, 80).map(p => ({ profession: p.slug }))
+  return PROFESSIONS.map(p => ({ profession: p.slug }))
 }
 
 export async function generateMetadata({

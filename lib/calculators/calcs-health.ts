@@ -768,7 +768,7 @@ export const healthCalcs: CalcConfig[] = [
     },
     about: 'Moderate cycling (12–14 mph) burns 400–600 calories/hour for a 160-lb rider. Indoor cycling classes often cite "600–1,000 calories" — these figures are significantly inflated. Research shows actual burns average 350–600 calories/hour for spin classes at typical intensities.',
     related: ['calories-burned-running-calculator', 'calories-burned-walking-calculator', 'tdee-calculator'],
-  },,
+  },
   {
     slug: 'waist-to-height-ratio-calculator',
     title: 'Waist-to-Height Ratio Calculator',
@@ -829,7 +829,7 @@ export const healthCalcs: CalcConfig[] = [
   {
     slug: 'sleep-debt-calculator',
     title: 'Sleep Debt Calculator',
-    desc: 'Calculate how much sleep debt you've accumulated and how long it takes to recover.',
+    desc: 'Calculate how much sleep debt you\'ve accumulated and how long it takes to recover.',
     cat: 'health', icon: '😴',
     fields: [
       { k: 'needed', l: 'Hours of Sleep You Need per Night', p: '8', min: 5, max: 12 },
@@ -952,7 +952,7 @@ export const healthCalcs: CalcConfig[] = [
   {
     slug: 'smoking-cost-calculator',
     title: 'Smoking Cost Calculator',
-    desc: 'Calculate how much you spend on cigarettes per year and what you'd have if you invested it.',
+    desc: 'Calculate how much you spend on cigarettes per year and what you\'d have if you invested it.',
     cat: 'health', icon: '🚭',
     fields: [
       { k: 'packs_per_day', l: 'Packs Per Day', p: '1', min: 0.25, max: 5 },
@@ -1030,10 +1030,10 @@ export const healthCalcs: CalcConfig[] = [
           { l: 'Extra Days', v: daysPregnant, fmt: 'num' },
           { l: 'Current Trimester', v: trimester, fmt: 'num' },
         ],
-        note: 'Only 4% of babies are born exactly on their due date. The normal range is 38–42 weeks. Naegele's rule assumes a 28-day cycle.',
+        note: 'Only 4% of babies are born exactly on their due date. The normal range is 38–42 weeks. Naegele\'s rule assumes a 28-day cycle.',
       }
     },
-    about: 'Naegele's rule calculates due date as LMP + 280 days (40 weeks). First trimester: weeks 1–13. Second: 14–27. Third: 28–40. Key milestones: heartbeat detectable ~6 weeks, anatomy scan ~20 weeks, viability ~24 weeks.',
+    about: 'Naegele\'s rule calculates due date as LMP + 280 days (40 weeks). First trimester: weeks 1–13. Second: 14–27. Third: 28–40. Key milestones: heartbeat detectable ~6 weeks, anatomy scan ~20 weeks, viability ~24 weeks.',
     related: ['bmi-calculator', 'daily-water-intake-calculator', 'macro-calculator'],
   },
   {
@@ -1051,7 +1051,7 @@ export const healthCalcs: CalcConfig[] = [
       const isPerMile = v.is_per_mile >= 0.5
       const pacePerMileSec = isPerMile ? paceSeconds : paceSeconds * 1.60934
       const pacePerKmSec = isPerMile ? paceSeconds / 1.60934 : paceSeconds
-      const fmt = (s) => String(Math.floor(s / 60)) + ':' + String(Math.round(s % 60)).padStart(2, '0')
+      const fmt = (s: number) => String(Math.floor(s / 60)) + ':' + String(Math.round(s % 60)).padStart(2, '0')
       const fiveK = pacePerKmSec * 5
       const tenK = pacePerKmSec * 10
       const halfMarathon = pacePerKmSec * 21.0975

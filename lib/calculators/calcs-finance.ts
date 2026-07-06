@@ -1546,7 +1546,7 @@ export const financeCalcs: CalcConfig[] = [
     },
     about: 'Bond prices and yields move inversely — a 1% rise in rates drops a 10-year bond\'s price by roughly 8–9% (its "duration"). The 10-year Treasury yield hit 5% in October 2023 for the first time since 2007, repricing trillions in fixed-income assets.',
     related: ['dividend-yield-calculator', 'present-value-calculator', 'annuity-calculator'],
-  },,
+  },
   {
     slug: 'emergency-fund-calculator',
     title: 'Emergency Fund Calculator',
@@ -1576,12 +1576,12 @@ export const financeCalcs: CalcConfig[] = [
   {
     slug: 'college-529-savings-calculator',
     title: '529 College Savings Calculator',
-    desc: 'Project how much you'll have in a 529 plan for college by the time your child turns 18.',
+    desc: 'Project how much you\'ll have in a 529 plan for college by the time your child turns 18.',
     cat: 'finance', icon: '🎓',
     fields: [
       { k: 'current_balance', l: 'Current 529 Balance', p: '5000', min: 0, u: 'USD' },
       { k: 'monthly_contribution', l: 'Monthly Contribution', p: '300', min: 0, u: 'USD' },
-      { k: 'child_age', l: 'Child's Current Age', p: '5', min: 0, max: 17 },
+      { k: 'child_age', l: 'Child\'s Current Age', p: '5', min: 0, max: 17 },
       { k: 'annual_return', l: 'Expected Annual Return', p: '7', min: 0, max: 15, u: '%' },
     ],
     fn: (v) => {
@@ -1664,7 +1664,7 @@ export const financeCalcs: CalcConfig[] = [
         ],
       }
     },
-    about: 'Most lenders allow borrowing up to 85% of your home's value minus any mortgage balance. Home equity loan rates in 2025 average 8–9.5%. Interest may be tax-deductible if used for home improvements — consult a tax advisor.',
+    about: 'Most lenders allow borrowing up to 85% of your home\'s value minus any mortgage balance. Home equity loan rates in 2025 average 8–9.5%. Interest may be tax-deductible if used for home improvements — consult a tax advisor.',
     related: ['mortgage-calculator', 'refinance-break-even-calculator', 'heloc-calculator'],
   },
   {
@@ -1692,7 +1692,7 @@ export const financeCalcs: CalcConfig[] = [
         note: 'HSA triple tax advantage: contributions pre-tax, growth tax-free, withdrawals tax-free for medical expenses.',
       }
     },
-    about: 'The HSA is considered by many financial planners as the best tax-advantaged account in the US — it's the only one with a triple tax benefit. Unused funds roll over forever and can be invested in stocks after age 65.',
+    about: 'The HSA is considered by many financial planners as the best tax-advantaged account in the US — it\'s the only one with a triple tax benefit. Unused funds roll over forever and can be invested in stocks after age 65.',
     related: ['tax-bracket-calculator', 'roth-ira-calculator', 'retirement-savings-calculator'],
   },
   {
@@ -1813,7 +1813,7 @@ export const financeCalcs: CalcConfig[] = [
         ],
       }
     },
-    about: 'Median US net worth in 2025: $192,700 (Federal Reserve). For those under 35: $39,000. For 35–44: $135,600. For 45–54: $247,200. Real estate often makes up 60–70% of net worth for middle-class households — meaning it's often illiquid.',
+    about: 'Median US net worth in 2025: $192,700 (Federal Reserve). For those under 35: $39,000. For 35–44: $135,600. For 45–54: $247,200. Real estate often makes up 60–70% of net worth for middle-class households — meaning it\'s often illiquid.',
     related: ['financial-independence-calculator', 'retirement-savings-calculator', 'budget-calculator'],
   },
   {

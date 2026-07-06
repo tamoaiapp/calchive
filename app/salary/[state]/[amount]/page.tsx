@@ -8,19 +8,18 @@ import { generateStatePage } from '@/lib/salary/generator'
 import { formatCurrency, formatPct } from '@/lib/salary/calculator'
 
 export const dynamic = 'force-static'
-export const dynamicParams = true
+export const dynamicParams = false
 
-const TOP_STATE_SLUGS = [
-  'california', 'texas', 'new-york', 'florida', 'washington',
-  'illinois', 'pennsylvania', 'ohio', 'georgia', 'north-carolina',
-]
-const AMOUNTS = [30000, 40000, 50000, 60000, 75000, 100000, 125000, 150000]
+// Must match the salary URLs advertised in app/sitemap.ts exactly.
+// With dynamicParams = false, any (state, amount) not built here returns a
+// static 404 — no serverless render, no ISR write. This is the cost cap.
+const AMOUNTS = [30000, 40000, 50000, 60000, 75000, 100000, 125000, 150000, 200000, 250000]
 
 export async function generateStaticParams() {
   const params: { state: string; amount: string }[] = []
-  for (const slug of TOP_STATE_SLUGS) {
+  for (const state of STATES_ALL) {
     for (const amount of AMOUNTS) {
-      params.push({ state: slug, amount: String(amount) })
+      params.push({ state: state.slug, amount: String(amount) })
     }
   }
   return params

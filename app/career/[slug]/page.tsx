@@ -7,10 +7,10 @@ import { CAREER_PAGE_SLUGS, parseCareerSlug, type CareerPageConfig } from '@/lib
 import { type CareerExtended } from '@/lib/career/professions-extended'
 
 export const dynamic = 'force-static'
-export const dynamicParams = true
+export const dynamicParams = false
 
 export async function generateStaticParams() {
-  return CAREER_PAGE_SLUGS.slice(0, 80).map(slug => ({ slug }))
+  return CAREER_PAGE_SLUGS.map(slug => ({ slug }))
 }
 
 // ─────────────────────────────────────────────

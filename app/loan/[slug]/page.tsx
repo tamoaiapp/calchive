@@ -8,10 +8,10 @@ import { calculateLoan, formatUSD, formatUSDCents } from '@/lib/loan/calculator'
 import { LOAN_RATES_2025, CREDIT_TIERS, type CreditTier } from '@/lib/loan/data'
 
 export const dynamic = 'force-static'
-export const dynamicParams = true
+export const dynamicParams = false
 
 export async function generateStaticParams() {
-  return LOAN_PAGE_SLUGS.slice(0, 80).map(slug => ({ slug }))
+  return LOAN_PAGE_SLUGS.map(slug => ({ slug }))
 }
 
 export async function generateMetadata({
